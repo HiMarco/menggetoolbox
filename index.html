@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -1078,13 +1079,13 @@
 
       <!-- 核心多功能切换标签 -->
       <nav class="nav-tabs">
-        <button class="nav-tab active" data-target="panel-pdf">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-          PDF 智能压缩
-        </button>
-        <button class="nav-tab" data-target="panel-image">
+        <button class="nav-tab active" data-target="panel-image">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
           图片深度压缩
+        </button>
+        <button class="nav-tab" data-target="panel-pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          PDF 智能压缩
         </button>
         <button class="nav-tab" data-target="panel-svg">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -1112,8 +1113,8 @@
     <!-- 动态宣传 Banner -->
     <div class="hero-banner">
       <div class="hero-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--brand);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <span id="heroBannerText">PDF 智能保真压缩 · 100% 保护文字矢量排版，支持任意文本复制与搜索</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:#0071e3;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span id="heroBannerText">全能图片深度压缩 · 支持 JPG/PNG/WebP/GIF/AVIF，智能达标与格式互转</span>
       </div>
       <div class="hero-tags">
         <span class="hero-tag">极速并发</span>
@@ -1122,115 +1123,11 @@
       </div>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- 模块一：PDF 智能压缩                                         -->
-    <!-- ============================================================ -->
-    <div class="tool-panel active" id="panel-pdf">
-      <!-- 模式选择 -->
-      <section class="panel-card">
-        <div class="panel-title">
-          <span>PDF 压缩模式选择</span>
-          <span style="font-size:12px; font-weight:normal; text-transform:none; color:var(--text-3);">
-            文字矢量层绝对保护，仅对内嵌高分辨率位图进行无损重采样
-          </span>
-        </div>
-
-        <div class="preset-grid" id="pdfPresetGrid">
-          <div class="preset-item active" data-mode="balanced">
-            <div class="preset-header">
-              <span class="preset-name">⚡ 智能推荐（均衡）</span>
-              <span class="preset-tag" style="background:#e8f4fd; color:#0071e3;">推荐</span>
-            </div>
-            <p class="preset-desc">重采样内嵌大图至 1600px / 75% 质量，文字极致锐利，体积减少 50%~85%。</p>
-          </div>
-          <div class="preset-item" data-mode="max">
-            <div class="preset-header">
-              <span class="preset-name">🚀 极限压缩（最小体积）</span>
-              <span class="preset-tag" style="background:#fdecec; color:#ff3b30;">强力</span>
-            </div>
-            <p class="preset-desc">重采样至 1000px / 50% 质量，适合邮件超大附件与政企网申大小限制。</p>
-          </div>
-          <div class="preset-item" data-mode="target">
-            <div class="preset-header">
-              <span class="preset-name">🎯 指定目标大小</span>
-              <span class="preset-tag" style="background:#fff4e5; color:#ff9500;">精准</span>
-            </div>
-            <p class="preset-desc">指定如 2.0 MB 或 800 KB，算法自动测算最佳分辨率与压缩比。</p>
-          </div>
-          <div class="preset-item" data-mode="lossless">
-            <div class="preset-header">
-              <span class="preset-name">🔒 无损精简（0画质损失）</span>
-              <span class="preset-tag" style="background:#f1f5f9; color:#475569;">无损</span>
-            </div>
-            <p class="preset-desc">0 像素修改，仅执行对象流压缩与元数据瘦身。</p>
-          </div>
-        </div>
-
-        <div class="custom-settings">
-          <div class="setting-group" id="pdfTargetGroup" style="display:none;">
-            <label class="setting-label">目标文件大小 (MB)</label>
-            <input type="number" id="pdfTargetMb" class="text-input" value="2.0" step="0.1" min="0.1" max="500">
-          </div>
-          <div class="setting-group">
-            <div class="setting-label">
-              <span>图片质量</span>
-              <span id="pdfQualityVal" class="slider-val">75%</span>
-            </div>
-            <div class="slider-wrapper">
-              <input type="range" id="pdfQualitySlider" min="15" max="95" value="75">
-            </div>
-          </div>
-          <div class="setting-group">
-            <label class="setting-label">图像长边上限</label>
-            <select id="pdfMaxDim" class="select-input">
-              <option value="1000">1000 px（超紧凑）</option>
-              <option value="1600" selected>1600 px（标准高清）</option>
-              <option value="2400">2400 px（超清保真）</option>
-              <option value="99999">无限制（原图分辨率）</option>
-            </select>
-          </div>
-          <div class="setting-group">
-            <label class="checkbox-label" style="margin-top:20px;">
-              <input type="checkbox" id="pdfGrayscale">
-              <span>转为灰度黑白（扫描件体积再降 60%）</span>
-            </label>
-          </div>
-        </div>
-      </section>
-
-      <!-- PDF 拖拽区 -->
-      <div class="dropzone" id="pdfDropzone">
-        <input type="file" id="pdfFileInput" accept="application/pdf" multiple style="display:none;">
-        <div class="dropzone-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-        </div>
-        <div class="dropzone-title">拖拽 PDF 文件到此处，或 <span>点击浏览选择</span></div>
-        <div class="dropzone-desc">纯本地高保真压缩 · 100% 保护文字可选中复制 · 支持批量处理</div>
-        <div class="dropzone-paste-tip">支持快捷键 ⌘+V 粘贴文件</div>
-      </div>
-
-      <!-- PDF 统计与操作栏 -->
-      <div class="action-bar" id="pdfActionBar" style="display:none;">
-        <div class="stat-summary" id="pdfStatSummary">
-          <span>共 <strong id="pdfTotalCount">0</strong> 个文件</span>
-          <span>原始: <strong id="pdfTotalOrig">0 MB</strong></span>
-          <span>压缩后: <strong class="highlight" id="pdfTotalComp">0 MB</strong></span>
-          <span class="saved" id="pdfTotalSaved">节省 0 MB (-0%)</span>
-        </div>
-        <div class="btn-group">
-          <button class="btn" id="pdfClearBtn">清空</button>
-          <button class="btn btn-primary" id="pdfStartAllBtn">一键全部压缩</button>
-          <button class="btn" id="pdfDownloadAllBtn" style="display:none;">全部打包下载 (ZIP)</button>
-        </div>
-      </div>
-
-      <div class="file-list" id="pdfFileList"></div>
-    </div>
 
     <!-- ============================================================ -->
-    <!-- 模块二：图片深度压缩 (JPG/PNG/WebP/GIF/AVIF)                   -->
+    <!-- 模块一：图片深度压缩 (JPG/PNG/WebP/GIF/AVIF)                   -->
     <!-- ============================================================ -->
-    <div class="tool-panel" id="panel-image">
+    <div class="tool-panel active" id="panel-image">
       <section class="panel-card">
         <div class="panel-title">
           <span>图片压缩与转换设置</span>
@@ -1333,6 +1230,112 @@
 
       <div class="file-list" id="imgFileList"></div>
     </div>
+
+    <!-- ============================================================ -->
+    <!-- 模块二：PDF 智能压缩                                         -->
+    <!-- ============================================================ -->
+    <div class="tool-panel" id="panel-pdf">
+      <!-- 模式选择 -->
+      <section class="panel-card">
+        <div class="panel-title">
+          <span>PDF 压缩模式选择</span>
+          <span style="font-size:12px; font-weight:normal; text-transform:none; color:var(--text-3);">
+            文字矢量层绝对保护，仅对内嵌高分辨率位图进行无损重采样
+          </span>
+        </div>
+
+        <div class="preset-grid" id="pdfPresetGrid">
+          <div class="preset-item active" data-mode="balanced">
+            <div class="preset-header">
+              <span class="preset-name">⚡ 智能推荐（均衡）</span>
+              <span class="preset-tag" style="background:#e8f4fd; color:#0071e3;">推荐</span>
+            </div>
+            <p class="preset-desc">重采样内嵌大图至 1600px / 75% 质量，文字极致锐利，体积减少 50%~85%。</p>
+          </div>
+          <div class="preset-item" data-mode="max">
+            <div class="preset-header">
+              <span class="preset-name">🚀 极限压缩（最小体积）</span>
+              <span class="preset-tag" style="background:#fdecec; color:#ff3b30;">强力</span>
+            </div>
+            <p class="preset-desc">重采样至 1000px / 50% 质量，适合邮件超大附件与政企网申大小限制。</p>
+          </div>
+          <div class="preset-item" data-mode="target">
+            <div class="preset-header">
+              <span class="preset-name">🎯 指定目标大小</span>
+              <span class="preset-tag" style="background:#fff4e5; color:#ff9500;">精准</span>
+            </div>
+            <p class="preset-desc">指定如 2.0 MB 或 800 KB，算法自动测算最佳分辨率与压缩比。</p>
+          </div>
+          <div class="preset-item" data-mode="lossless">
+            <div class="preset-header">
+              <span class="preset-name">🔒 无损精简（0画质损失）</span>
+              <span class="preset-tag" style="background:#f1f5f9; color:#475569;">无损</span>
+            </div>
+            <p class="preset-desc">0 像素修改，仅执行对象流压缩与元数据瘦身。</p>
+          </div>
+        </div>
+
+        <div class="custom-settings">
+          <div class="setting-group" id="pdfTargetGroup" style="display:none;">
+            <label class="setting-label">目标文件大小 (MB)</label>
+            <input type="number" id="pdfTargetMb" class="text-input" value="2.0" step="0.1" min="0.1" max="500">
+          </div>
+          <div class="setting-group">
+            <div class="setting-label">
+              <span>图片质量</span>
+              <span id="pdfQualityVal" class="slider-val">75%</span>
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" id="pdfQualitySlider" min="15" max="95" value="75">
+            </div>
+          </div>
+          <div class="setting-group">
+            <label class="setting-label">图像长边上限</label>
+            <select id="pdfMaxDim" class="select-input">
+              <option value="1000">1000 px（超紧凑）</option>
+              <option value="1600" selected>1600 px（标准高清）</option>
+              <option value="2400">2400 px（超清保真）</option>
+              <option value="99999">无限制（原图分辨率）</option>
+            </select>
+          </div>
+          <div class="setting-group">
+            <label class="checkbox-label" style="margin-top:20px;">
+              <input type="checkbox" id="pdfGrayscale">
+              <span>转为灰度黑白（扫描件体积再降 60%）</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- PDF 拖拽区 -->
+      <div class="dropzone" id="pdfDropzone">
+        <input type="file" id="pdfFileInput" accept="application/pdf" multiple style="display:none;">
+        <div class="dropzone-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        </div>
+        <div class="dropzone-title">拖拽 PDF 文件到此处，或 <span>点击浏览选择</span></div>
+        <div class="dropzone-desc">纯本地高保真压缩 · 100% 保护文字可选中复制 · 支持批量处理</div>
+        <div class="dropzone-paste-tip">支持快捷键 ⌘+V 粘贴文件</div>
+      </div>
+
+      <!-- PDF 统计与操作栏 -->
+      <div class="action-bar" id="pdfActionBar" style="display:none;">
+        <div class="stat-summary" id="pdfStatSummary">
+          <span>共 <strong id="pdfTotalCount">0</strong> 个文件</span>
+          <span>原始: <strong id="pdfTotalOrig">0 MB</strong></span>
+          <span>压缩后: <strong class="highlight" id="pdfTotalComp">0 MB</strong></span>
+          <span class="saved" id="pdfTotalSaved">节省 0 MB (-0%)</span>
+        </div>
+        <div class="btn-group">
+          <button class="btn" id="pdfClearBtn">清空</button>
+          <button class="btn btn-primary" id="pdfStartAllBtn">一键全部压缩</button>
+          <button class="btn" id="pdfDownloadAllBtn" style="display:none;">全部打包下载 (ZIP)</button>
+        </div>
+      </div>
+
+      <div class="file-list" id="pdfFileList"></div>
+    </div>
+
 
     <!-- ============================================================ -->
     <!-- 模块三：SVG 无损瘦身                                          -->
