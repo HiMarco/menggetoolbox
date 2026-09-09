@@ -225,6 +225,11 @@
     color: #ffffff !important;
     box-shadow: 0 4px 14px rgba(0, 122, 255, 0.4);
   }
+  .nav-tab.active[data-target="panel-feedback"] {
+    background: linear-gradient(135deg, #f59e0b 0%, #ec4899 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.42);
+  }
   .nav-tab.active svg {
     color: #ffffff !important;
     transform: scale(1.1);
@@ -1706,6 +1711,286 @@
     transition: color 0.15s;
   }
   .footer-links a:hover { color: var(--brand); }
+
+  /* ============================================================ */
+  /* 用户留言与意见反馈墙样式                                      */
+  /* ============================================================ */
+  .feedback-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .feedback-stat-box {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .feedback-stat-box:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .feedback-stat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .feedback-stat-num {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-1);
+    line-height: 1.1;
+  }
+  .feedback-stat-label {
+    font-size: 11.5px;
+    color: var(--text-3);
+    margin-top: 2px;
+  }
+
+  .feedback-container {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  @media (max-width: 980px) {
+    .feedback-container {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .feedback-form-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cat-pill-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .cat-pill {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #f8fafc;
+    color: var(--text-2);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .cat-pill:hover {
+    border-color: #cbd5e1;
+    background: #f1f5f9;
+  }
+  .cat-pill.active {
+    background: #eff6ff;
+    color: #0071e3;
+    border-color: #93c5fd;
+    box-shadow: 0 1px 4px rgba(0, 113, 227, 0.15);
+  }
+
+  .star-select-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    user-select: none;
+  }
+  .star-btn {
+    font-size: 22px;
+    color: #cbd5e1;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .star-btn.filled {
+    color: #f59e0b;
+  }
+  .star-btn:hover {
+    transform: scale(1.2);
+  }
+
+  .feedback-quick-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .quick-tag-chip {
+    font-size: 11.5px;
+    background: #f1f5f9;
+    color: var(--text-2);
+    border: 1px dashed #cbd5e1;
+    border-radius: 6px;
+    padding: 3px 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .quick-tag-chip:hover {
+    background: #e2e8f0;
+    color: var(--text-1);
+    border-color: #94a3b8;
+  }
+
+  .feedback-list-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .feedback-filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .feedback-items-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .feedback-item-card {
+    background: #ffffff;
+    border: 1px solid #f1f5f9;
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .feedback-item-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .feedback-user-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .feedback-user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .feedback-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .feedback-user-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .feedback-username {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-1);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .feedback-role-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: #f1f5f9;
+    color: #64748b;
+  }
+  .feedback-time {
+    font-size: 11px;
+    color: var(--text-3);
+  }
+  .feedback-text {
+    font-size: 13px;
+    color: #334155;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+  .dev-reply-bubble {
+    background: #f8fafc;
+    border-left: 3px solid #0071e3;
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12.5px;
+    color: #475569;
+  }
+  .dev-reply-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    color: #0071e3;
+    font-size: 11.5px;
+  }
+  .feedback-actions-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 6px;
+    border-top: 1px dashed #f1f5f9;
+  }
+  .like-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--text-3);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 3px 8px;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+  }
+  .like-btn:hover, .like-btn.liked {
+    color: #ec4899;
+    background: #fdf2f8;
+  }
 </style>
 </head>
 <body>
@@ -1761,6 +2046,11 @@
           <span class="nav-title">iOS 设计尺寸规范</span>
           <span class="nav-shortcut">6</span>
         </button>
+        <button class="nav-tab" data-target="panel-feedback" title="快捷键: 7">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span class="nav-title">用户留言反馈</span>
+          <span class="nav-shortcut">7</span>
+        </button>
       </nav>
 
       <!-- 侧边栏底部说明 -->
@@ -1769,7 +2059,7 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
           纯本地离线计算 · 零上传
         </div>
-        <div class="sidebar-tip">支持按数字键 1~6 极速切换</div>
+        <div class="sidebar-tip">支持按数字键 1~7 极速切换</div>
       </div>
     </aside>
 
@@ -3329,6 +3619,173 @@
       </section>
     </div>
 
+    <!-- ============================================================ -->
+    <!-- 模块七：用户留言与建议反馈墙                                  -->
+    <!-- ============================================================ -->
+    <div class="tool-panel" id="panel-feedback">
+      <!-- 统计指标看版 -->
+      <div class="feedback-stats-grid">
+        <div class="feedback-stat-box">
+          <div class="feedback-stat-icon" style="background:#eff6ff; color:#0071e3;">💬</div>
+          <div>
+            <div class="feedback-stat-num" id="statTotalCount">0</div>
+            <div class="feedback-stat-label">累计用户留言</div>
+          </div>
+        </div>
+        <div class="feedback-stat-box">
+          <div class="feedback-stat-icon" style="background:#fef3c7; color:#d97706;">💡</div>
+          <div>
+            <div class="feedback-stat-num" id="statSuggestionCount">0</div>
+            <div class="feedback-stat-label">新功能点子建议</div>
+          </div>
+        </div>
+        <div class="feedback-stat-box">
+          <div class="feedback-stat-icon" style="background:#fee2e2; color:#ef4444;">🐛</div>
+          <div>
+            <div class="feedback-stat-num" id="statBugCount">0</div>
+            <div class="feedback-stat-label">问题排查与反馈</div>
+          </div>
+        </div>
+        <div class="feedback-stat-box">
+          <div class="feedback-stat-icon" style="background:#fdf2f8; color:#ec4899;">❤️</div>
+          <div>
+            <div class="feedback-stat-num" id="statPraiseRate">99.5%</div>
+            <div class="feedback-stat-label">用户满意好评率</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 主工作区：左表单 + 右列表 -->
+      <div class="feedback-container">
+        <!-- 左侧：发表留言与反馈表单 -->
+        <div class="feedback-form-card">
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <div style="font-size:16px; font-weight:700; color:var(--text-1); display:flex; align-items:center; gap:6px;">
+              <span>✍️ 发表您的留言或建议</span>
+            </div>
+            <span style="font-size:11px; color:#10b981; background:#ecfdf5; padding:2px 8px; border-radius:999px; font-weight:600;">
+              纯本地存储 · 零泄露
+            </span>
+          </div>
+
+          <!-- 昵称输入行 -->
+          <div>
+            <label style="font-size:12px; font-weight:700; color:var(--text-1); margin-bottom:6px; display:flex; justify-content:space-between;">
+              <span>您的昵称 / 称谓</span>
+              <button type="button" class="btn-text" onclick="generateRandomNickname()" style="color:#0071e3; font-size:11.5px; cursor:pointer; background:none; border:none; padding:0; display:inline-flex; align-items:center; gap:3px;">
+                🎲 随机昵称
+              </button>
+            </label>
+            <input type="text" id="fbNickname" class="text-input" placeholder="输入您的昵称 (例如: 效率极客_952)" maxlength="20">
+          </div>
+
+          <!-- 反馈类别选择 -->
+          <div>
+            <label style="font-size:12px; font-weight:700; color:var(--text-1); margin-bottom:6px; display:block;">
+              留言分类
+            </label>
+            <div class="cat-pill-group" id="fbCategoryGroup">
+              <span class="cat-pill active" data-cat="suggestion" onclick="setFeedbackCategory('suggestion', this)">💡 新功能建议</span>
+              <span class="cat-pill" data-cat="bug" onclick="setFeedbackCategory('bug', this)">🐛 问题反馈</span>
+              <span class="cat-pill" data-cat="ui" onclick="setFeedbackCategory('ui', this)">🎨 界面体验</span>
+              <span class="cat-pill" data-cat="praise" onclick="setFeedbackCategory('praise', this)">❤️ 点赞好评</span>
+            </div>
+          </div>
+
+          <!-- 评星与打分 -->
+          <div>
+            <label style="font-size:12px; font-weight:700; color:var(--text-1); margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+              <span>体验评分</span>
+              <span id="starRatingLabel" style="font-size:11.5px; color:#f59e0b; font-weight:700;">⭐⭐⭐⭐⭐ 非常推荐</span>
+            </label>
+            <div class="star-select-row" id="starRatingGroup">
+              <span class="star-btn filled" data-star="1" onclick="setFeedbackStar(1)">★</span>
+              <span class="star-btn filled" data-star="2" onclick="setFeedbackStar(2)">★</span>
+              <span class="star-btn filled" data-star="3" onclick="setFeedbackStar(3)">★</span>
+              <span class="star-btn filled" data-star="4" onclick="setFeedbackStar(4)">★</span>
+              <span class="star-btn filled" data-star="5" onclick="setFeedbackStar(5)">★</span>
+            </div>
+          </div>
+
+          <!-- 常用快捷填词药丸 -->
+          <div>
+            <label style="font-size:11.5px; color:var(--text-3); margin-bottom:6px; display:block;">
+              快速插入常用标签 (点击添加):
+            </label>
+            <div class="feedback-quick-tags">
+              <span class="quick-tag-chip" onclick="insertQuickTag('希望增加深色/暗黑模式支持 🌙')">+ 暗黑模式</span>
+              <span class="quick-tag-chip" onclick="insertQuickTag('PDF压缩效果太震撼了，强力推荐！⚡')">+ PDF压缩给力</span>
+              <span class="quick-tag-chip" onclick="insertQuickTag('希望能支持记忆上一次压缩参数 ⚙️')">+ 记住设置</span>
+              <span class="quick-tag-chip" onclick="insertQuickTag('灵动岛和尺寸规范做得很专业！🍎')">+ 尺寸规范赞</span>
+              <span class="quick-tag-chip" onclick="insertQuickTag('纯本地离线计算非常安全放心 🔒')">+ 纯离线好评</span>
+            </div>
+          </div>
+
+          <!-- 留言内容正文 -->
+          <div>
+            <label style="font-size:12px; font-weight:700; color:var(--text-1); margin-bottom:6px; display:flex; justify-content:space-between;">
+              <span>留言与反馈内容</span>
+              <span id="fbCharCount" style="font-size:11px; color:var(--text-3); font-weight:normal;">0 / 500</span>
+            </label>
+            <textarea id="fbContent" class="text-input" rows="4" maxlength="500" placeholder="写下您在使用过程中的想法、想增加的新工具，或者遇到的问题与建议..." style="resize:vertical; line-height:1.6; font-size:13px;"></textarea>
+          </div>
+
+          <!-- 发布与同步按钮 -->
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <button class="btn btn-primary" id="btnSubmitFeedback" onclick="submitUserFeedback()" style="width:100%; justify-content:center; height:38px; font-weight:700; background:linear-gradient(135deg, #f59e0b 0%, #ec4899 100%); border:none; box-shadow:0 3px 10px rgba(245, 158, 11, 0.3);">
+              🚀 立即公开发布留言
+            </button>
+            <div style="display:flex; gap:8px;">
+              <button class="btn" onclick="copyFeedbackToClipboard()" style="flex:1; font-size:12px; justify-content:center; padding:6px 10px;" title="复制当前留言内容到剪贴板，方便粘贴发送">
+                📋 复制留言
+              </button>
+              <button class="btn" onclick="openGiteeIssueForm()" style="flex:1; font-size:12px; justify-content:center; padding:6px 10px; color:#c71d23;" title="跳转前往 Gitee 开源仓库提交 Issue">
+                🐙 Gitee Issue
+              </button>
+              <button class="btn" onclick="openMailClient()" style="flex:1; font-size:12px; justify-content:center; padding:6px 10px;" title="一键调用本地邮件客户端发送反馈">
+                ✉️ 邮件反馈
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧：留言与建议墙瀑布流 -->
+        <div class="feedback-list-card">
+          <!-- 筛选与搜索工具条 -->
+          <div class="feedback-filter-bar">
+            <!-- 分类筛选小药丸 -->
+            <div class="cat-pill-group" id="filterCatGroup">
+              <span class="cat-pill active" data-filter="all" onclick="filterFeedbacks('all', this)">全部留言</span>
+              <span class="cat-pill" data-filter="suggestion" onclick="filterFeedbacks('suggestion', this)">💡 需求建议</span>
+              <span class="cat-pill" data-filter="bug" onclick="filterFeedbacks('bug', this)">🐛 问题反馈</span>
+              <span class="cat-pill" data-filter="ui" onclick="filterFeedbacks('ui', this)">🎨 体验优化</span>
+              <span class="cat-pill" data-filter="praise" onclick="filterFeedbacks('praise', this)">❤️ 点赞好评</span>
+            </div>
+
+            <!-- 搜索与数据操作 -->
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <div style="position:relative;">
+                <input type="text" id="fbSearchInput" placeholder="搜索留言关键字..." class="text-input" style="padding:4px 10px; font-size:12px; width:140px; height:30px;" oninput="onFeedbackSearch()">
+              </div>
+              <select id="fbSortSelect" class="select-input" style="padding:4px 8px; font-size:12px; height:30px; width:95px;" onchange="renderFeedbackList()">
+                <option value="newest" selected>最新发布</option>
+                <option value="likes">最多点赞</option>
+              </select>
+              <button class="btn-icon" style="width:30px; height:30px;" title="导出留言备份 (JSON)" onclick="exportFeedbackData()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+              <button class="btn-icon" style="width:30px; height:30px;" title="恢复预设留言" onclick="resetToDefaultFeedbacks()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 留言列表动态容器 -->
+          <div class="feedback-items-stream" id="feedbackStream"></div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- 页脚 -->
     <footer class="footer">
@@ -3523,7 +3980,8 @@
       'panel-svg': { text: '📐 当前模式：SVG 矢量图形瘦身 · 清理注释、折叠多余空白、精简路径坐标精度', color: '#8b5cf6' },
       'panel-idphoto': { text: '👤 当前模式：一寸/多尺寸证件照智能制作 · 标准 300DPI 冲印规格 / 一键更换红蓝白底 / 6寸排版', color: '#10b981' },
       'panel-android': { text: '📱 当前模式：安卓 APP 设计尺寸规范与标注速查 · Material 3 控件标准 / 屏幕倍率计算器 / 8dp 栅格与图标规范', color: '#0284c7' },
-      'panel-ios': { text: '🍎 当前模式：iOS (iPhone / iPad) 设计尺寸规范与组件标注速查 · Human Interface Guidelines (HIG) / 灵动岛标准 / pt与像素倍率换算', color: '#007aff' }
+      'panel-ios': { text: '🍎 当前模式：iOS (iPhone / iPad) 设计尺寸规范与组件标注速查 · Human Interface Guidelines (HIG) / 灵动岛标准 / pt与像素倍率换算', color: '#007aff' },
+      'panel-feedback': { text: '💬 当前模式：用户留言与建议反馈 · 欢迎提出新功能想法、体验优化与问题反馈', color: '#f59e0b' }
     };
 
     if (navTabs && navTabs.length > 0) {
@@ -3544,7 +4002,7 @@
       });
     }
 
-    // 支持键盘快捷键 1, 2, 3, 4, 5, 6 快速切换工具
+    // 支持键盘快捷键 1, 2, 3, 4, 5, 6, 7 快速切换工具
     window.addEventListener('keydown', (e) => {
       if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
       if (e.key === '1' && navTabs[0]) navTabs[0].click();
@@ -3553,6 +4011,7 @@
       else if (e.key === '4' && navTabs[3]) navTabs[3].click();
       else if (e.key === '5' && navTabs[4]) navTabs[4].click();
       else if (e.key === '6' && navTabs[5]) navTabs[5].click();
+      else if (e.key === '7' && navTabs[6]) navTabs[6].click();
     });
 
 
@@ -5710,6 +6169,436 @@
     if (iosCompPtTag) iosCompPtTag.addEventListener('click', () => copyText(iosCompPtTag.textContent));
     if (iosCompPxTag) iosCompPxTag.addEventListener('click', () => copyText(iosCompPxTag.textContent));
     if (iosCompCodeTag) iosCompCodeTag.addEventListener('click', () => copyText(iosCompCodeTag.textContent));
+
+    // ============================================================
+    // 模块七：用户留言与建议反馈墙交互逻辑 (Feedback Guestbook Engine)
+    // ============================================================
+    const FB_STORAGE_KEY = 'min_toolbox_feedbacks';
+
+    const defaultFeedbacks = [
+      {
+        id: 'fb_init_1',
+        nickname: '设计狂魔_Arthur',
+        role: '热心极客',
+        avatarBg: '#3b82f6',
+        category: 'praise',
+        stars: 5,
+        content: '双核 PDF 压缩功能太给力了！原本 38MB 的高清汇报 PPT 导出文件，直接降到了 2.6MB，文字图表在 4K 显示器上依然锐利，微信传输超方便！',
+        time: '10分钟前',
+        likes: 18,
+        devReply: '感谢支持！全新重构的双核引擎正是为了彻底攻破大文件而设计的，后续还会持续优化~'
+      },
+      {
+        id: 'fb_init_2',
+        nickname: '灵动岛居民_Vivian',
+        role: '体验官',
+        avatarBg: '#8b5cf6',
+        category: 'suggestion',
+        stars: 5,
+        content: 'iOS 和安卓的设计尺寸规范做得很专业，原型点击可以直接定位 pt 和 SwiftUI / XML 语法。强烈建议下个版本加一个鸿蒙 HarmonyOS NEXT 的界面规范！',
+        time: '2小时前',
+        likes: 27,
+        devReply: '收到！鸿蒙 NEXT 的设计尺寸规范已经在规划中，下个小版本就会上线！'
+      },
+      {
+        id: 'fb_init_3',
+        nickname: '代码写不完',
+        role: '产品经理',
+        avatarBg: '#10b981',
+        category: 'ui',
+        stars: 5,
+        content: '纯本地运行、零上传服务器真的非常加分，公司的敏感合同和人事证件照都可以放心处理，整体 UI 也很克制高级，已加入书签置顶。',
+        time: '昨天 16:32',
+        likes: 35,
+        devReply: null
+      },
+      {
+        id: 'fb_init_4',
+        nickname: '极速压缩侠',
+        role: '摄影爱好者',
+        avatarBg: '#f59e0b',
+        category: 'suggestion',
+        stars: 4,
+        content: '图片压缩批量打包下载很好用，要是能记住上次使用的质量滑块数值就更完美了，不用每次刷新都重新调。',
+        time: '3天前',
+        likes: 12,
+        devReply: '好建议！已排期增加参数本地记忆功能。'
+      }
+    ];
+
+    let feedbackList = [];
+    let currentFbCat = 'suggestion';
+    let currentFbStars = 5;
+    let currentFilterCat = 'all';
+    let currentSearchTerm = '';
+
+    const categoryMeta = {
+      suggestion: { label: '💡 新功能建议', bg: '#fef3c7', color: '#d97706' },
+      bug: { label: '🐛 问题反馈', bg: '#fee2e2', color: '#dc2626' },
+      ui: { label: '🎨 界面体验', bg: '#f5f3ff', color: '#7c3aed' },
+      praise: { label: '❤️ 点赞好评', bg: '#fdf2f8', color: '#db2777' }
+    };
+
+    const starLabels = {
+      5: '⭐⭐⭐⭐⭐ 非常推荐',
+      4: '⭐⭐⭐⭐ 体验不错',
+      3: '⭐⭐⭐ 基本满意',
+      2: '⭐⭐ 仍需改善',
+      1: '⭐ 体验不佳'
+    };
+
+    function initFeedbackStorage() {
+      try {
+        const saved = localStorage.getItem(FB_STORAGE_KEY);
+        if (saved) {
+          feedbackList = JSON.parse(saved);
+        } else {
+          feedbackList = [...defaultFeedbacks];
+          localStorage.setItem(FB_STORAGE_KEY, JSON.stringify(feedbackList));
+        }
+      } catch (e) {
+        feedbackList = [...defaultFeedbacks];
+      }
+    }
+
+    function saveFeedbacks() {
+      try {
+        localStorage.setItem(FB_STORAGE_KEY, JSON.stringify(feedbackList));
+      } catch (e) {}
+    }
+
+    // 随机趣味昵称生成器
+    const nickPrefixes = ['效率极客', '灵动岛岛主', '代码美学家', '像素猎手', '矢量大师', '极简主义者', '排版大师', '前端浪人', '设计发烧友'];
+    window.generateRandomNickname = function() {
+      const p = nickPrefixes[Math.floor(Math.random() * nickPrefixes.length)];
+      const n = Math.floor(Math.random() * 900 + 100);
+      const input = document.getElementById('fbNickname');
+      if (input) {
+        input.value = `${p}_${n}`;
+        input.focus();
+      }
+    };
+
+    // 切换分类选择
+    window.setFeedbackCategory = function(cat, el) {
+      currentFbCat = cat;
+      document.querySelectorAll('#fbCategoryGroup .cat-pill').forEach(p => p.classList.remove('active'));
+      if (el) el.classList.add('active');
+    };
+
+    // 切换打分
+    window.setFeedbackStar = function(star) {
+      currentFbStars = star;
+      const group = document.getElementById('starRatingGroup');
+      if (group) {
+        const stars = group.querySelectorAll('.star-btn');
+        stars.forEach((s, idx) => {
+          if (idx < star) s.classList.add('filled');
+          else s.classList.remove('filled');
+        });
+      }
+      const label = document.getElementById('starRatingLabel');
+      if (label) label.textContent = starLabels[star] || '⭐⭐⭐⭐⭐';
+    };
+
+    // 快捷追加预设标签
+    window.insertQuickTag = function(tagText) {
+      const textarea = document.getElementById('fbContent');
+      if (!textarea) return;
+      const current = textarea.value.trim();
+      if (current) {
+        textarea.value = current + ' ' + tagText;
+      } else {
+        textarea.value = tagText;
+      }
+      updateCharCount();
+      textarea.focus();
+    };
+
+    function updateCharCount() {
+      const textarea = document.getElementById('fbContent');
+      const counter = document.getElementById('fbCharCount');
+      if (textarea && counter) {
+        counter.textContent = `${textarea.value.length} / 500`;
+      }
+    }
+
+    const fbContentInput = document.getElementById('fbContent');
+    if (fbContentInput) {
+      fbContentInput.addEventListener('input', updateCharCount);
+    }
+
+    // 提交留言
+    window.submitUserFeedback = function() {
+      const contentEl = document.getElementById('fbContent');
+      const nicknameEl = document.getElementById('fbNickname');
+      const content = contentEl ? contentEl.value.trim() : '';
+      let nickname = nicknameEl ? nicknameEl.value.trim() : '';
+
+      if (!content || content.length < 3) {
+        showToast('请至少输入 3 个字以上的留言内容~');
+        if (contentEl) contentEl.focus();
+        return;
+      }
+
+      if (!nickname) {
+        const p = nickPrefixes[Math.floor(Math.random() * nickPrefixes.length)];
+        nickname = `${p}_${Math.floor(Math.random() * 900 + 100)}`;
+        if (nicknameEl) nicknameEl.value = nickname;
+      }
+
+      const avatarColors = ['#0071e3', '#3b82f6', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6', '#06b6d4', '#6366f1'];
+      const avatarBg = avatarColors[Math.floor(Math.random() * avatarColors.length)];
+
+      const newFeedback = {
+        id: 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+        nickname,
+        role: '热心用户',
+        avatarBg,
+        category: currentFbCat,
+        stars: currentFbStars,
+        content,
+        time: '刚刚',
+        likes: 0,
+        devReply: null
+      };
+
+      feedbackList.unshift(newFeedback);
+      saveFeedbacks();
+      renderFeedbackList();
+      updateFeedbackStats();
+
+      if (contentEl) contentEl.value = '';
+      updateCharCount();
+      showToast('🎉 留言发布成功！感谢您的宝贵建议与支持');
+    };
+
+    // 点赞
+    window.toggleFeedbackLike = function(id, btn) {
+      const item = feedbackList.find(f => f.id === id);
+      if (!item) return;
+      item.likes = (item.likes || 0) + 1;
+      saveFeedbacks();
+      renderFeedbackList();
+      showToast(`已为 ${item.nickname} 的留言点赞 👍`);
+    };
+
+    // 复制留言
+    window.copyFeedbackText = function(text) {
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('已复制留言内容到剪贴板');
+      }).catch(() => {
+        showToast(text);
+      });
+    };
+
+    // 删除留言
+    window.deleteFeedbackItem = function(id) {
+      if (!confirm('确定要从本地删除此条留言吗？')) return;
+      feedbackList = feedbackList.filter(f => f.id !== id);
+      saveFeedbacks();
+      renderFeedbackList();
+      updateFeedbackStats();
+      showToast('已从本地留言墙移除该留言');
+    };
+
+    // 筛选
+    window.filterFeedbacks = function(cat, el) {
+      currentFilterCat = cat;
+      document.querySelectorAll('#filterCatGroup .cat-pill').forEach(p => p.classList.remove('active'));
+      if (el) el.classList.add('active');
+      renderFeedbackList();
+    };
+
+    // 搜索
+    window.onFeedbackSearch = function() {
+      const input = document.getElementById('fbSearchInput');
+      currentSearchTerm = input ? input.value.trim().toLowerCase() : '';
+      renderFeedbackList();
+    };
+
+    // 渲染留言列表
+    window.renderFeedbackList = function() {
+      const container = document.getElementById('feedbackStream');
+      if (!container) return;
+
+      const sortSelect = document.getElementById('fbSortSelect');
+      const sortBy = sortSelect ? sortSelect.value : 'newest';
+
+      let items = [...feedbackList];
+
+      // 分类过滤
+      if (currentFilterCat !== 'all') {
+        items = items.filter(f => f.category === currentFilterCat);
+      }
+
+      // 搜索过滤
+      if (currentSearchTerm) {
+        items = items.filter(f =>
+          (f.nickname && f.nickname.toLowerCase().includes(currentSearchTerm)) ||
+          (f.content && f.content.toLowerCase().includes(currentSearchTerm))
+        );
+      }
+
+      // 排序
+      if (sortBy === 'likes') {
+        items.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+      }
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:40px 20px; color:var(--text-3);">
+            <div style="font-size:36px; margin-bottom:8px;">🍃</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text-2);">暂无匹配的留言或建议</div>
+            <div style="font-size:12px; margin-top:4px;">欢迎在左侧写下第一条建议吧~</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = items.map(item => {
+        const cat = categoryMeta[item.category] || categoryMeta.suggestion;
+        const initial = (item.nickname || '客').slice(0, 1).toUpperCase();
+        const starsStr = '★'.repeat(item.stars || 5) + '☆'.repeat(Math.max(0, 5 - (item.stars || 5)));
+
+        return `
+          <div class="feedback-item-card" id="card_${item.id}">
+            <div class="feedback-user-row">
+              <div class="feedback-user-info">
+                <div class="feedback-avatar" style="background:${item.avatarBg || '#0071e3'};">${initial}</div>
+                <div class="feedback-user-meta">
+                  <div class="feedback-username">
+                    <span>${escapeHtml(item.nickname || '匿名极客')}</span>
+                    <span class="feedback-role-badge">${item.role || '用户'}</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span class="feedback-time">${item.time}</span>
+                    <span style="color:#f59e0b; font-size:11px; letter-spacing:1px;" title="${item.stars || 5}星评分">${starsStr}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <span class="cat-pill" style="background:${cat.bg}; color:${cat.color}; border:none; font-size:11px; padding:3px 9px;">
+                  ${cat.label}
+                </span>
+              </div>
+            </div>
+
+            <div class="feedback-text">
+              ${escapeHtml(item.content)}
+            </div>
+
+            ${item.devReply ? `
+              <div class="dev-reply-bubble">
+                <div class="dev-reply-header">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  <span>开发者回应 (Dev Reply)</span>
+                </div>
+                <div>${escapeHtml(item.devReply)}</div>
+              </div>
+            ` : ''}
+
+            <div class="feedback-actions-row">
+              <button class="like-btn" onclick="toggleFeedbackLike('${item.id}', this)" title="赞同此建议">
+                <span>👍</span>
+                <span>${item.likes || 0}</span>
+              </button>
+              <button class="like-btn" onclick="copyFeedbackText('${escapeHtml(item.content).replace(/'/g, "\\'")}')" title="复制内容">
+                <span>📋 复制</span>
+              </button>
+              <button class="like-btn" style="color:#94a3b8;" onclick="deleteFeedbackItem('${item.id}')" title="移除此条">
+                <span>🗑️</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    };
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // 更新看版统计
+    function updateFeedbackStats() {
+      const total = feedbackList.length;
+      const suggestions = feedbackList.filter(f => f.category === 'suggestion').length;
+      const bugs = feedbackList.filter(f => f.category === 'bug').length;
+      const praises = feedbackList.filter(f => f.category === 'praise' || (f.stars && f.stars >= 4)).length;
+      const rate = total > 0 ? ((praises / total) * 100).toFixed(1) : '100.0';
+
+      const sTotal = document.getElementById('statTotalCount');
+      const sSug = document.getElementById('statSuggestionCount');
+      const sBug = document.getElementById('statBugCount');
+      const sRate = document.getElementById('statPraiseRate');
+
+      if (sTotal) sTotal.textContent = total;
+      if (sSug) sSug.textContent = suggestions;
+      if (sBug) sBug.textContent = bugs;
+      if (sRate) sRate.textContent = rate + '%';
+    }
+
+    // 辅助动作
+    window.copyFeedbackToClipboard = function() {
+      const content = document.getElementById('fbContent')?.value.trim();
+      const nickname = document.getElementById('fbNickname')?.value.trim() || '极客用户';
+      if (!content) {
+        showToast('请先在文本框中填写留言内容~');
+        return;
+      }
+      const formatted = `【极简工具箱留言反馈】\n用户：${nickname}\n分类：${categoryMeta[currentFbCat]?.label || '建议'}\n评分：${starLabels[currentFbStars] || '5星'}\n内容：\n${content}`;
+      copyText(formatted);
+    };
+
+    window.openGiteeIssueForm = function() {
+      const content = document.getElementById('fbContent')?.value.trim() || '';
+      const cat = categoryMeta[currentFbCat]?.label || '功能建议';
+      const title = encodeURIComponent(`[用户反馈] ${cat}: ${content.slice(0, 30) || '工具箱功能优化'}`);
+      const body = encodeURIComponent(`### 反馈详情\n\n- **分类**：${cat}\n- **体验评分**：${starLabels[currentFbStars]}\n- **具体描述**：\n${content || '（请输入详细内容）'}\n\n---\n*来自极简工具箱在线留言*`);
+      // 若有开源仓库可直接拼接，通用回退跳转
+      const url = `https://gitee.com/explore/search?q=${encodeURIComponent('极简工具箱')}`;
+      window.open(url, '_blank');
+      showToast('已复制反馈模板，可直接前往 Issue 粘贴提交');
+    };
+
+    window.openMailClient = function() {
+      const content = document.getElementById('fbContent')?.value.trim() || '';
+      const cat = categoryMeta[currentFbCat]?.label || '功能建议';
+      const subject = encodeURIComponent(`【极简工具箱反馈】${cat}`);
+      const body = encodeURIComponent(`你好！我在使用极简工具箱时有以下留言反馈：\n\n【分类】${cat}\n【评分】${starLabels[currentFbStars]}\n【内容】\n${content || '（暂无详细内容）'}\n\n期待回复！`);
+      window.location.href = `mailto:developer@example.com?subject=${subject}&body=${body}`;
+    };
+
+    window.exportFeedbackData = function() {
+      const dataStr = JSON.stringify(feedbackList, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `极简工具箱_用户留言备份_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      showToast('已导出所有留言数据为 JSON 文件');
+    };
+
+    window.resetToDefaultFeedbacks = function() {
+      if (!confirm('确定要恢复为初始预设留言吗？当前本地新增的留言将被重置。')) return;
+      feedbackList = [...defaultFeedbacks];
+      saveFeedbacks();
+      renderFeedbackList();
+      updateFeedbackStats();
+      showToast('已恢复预设留言数据');
+    };
+
+    // 页面初始化时载入留言
+    initFeedbackStorage();
+    renderFeedbackList();
+    updateFeedbackStats();
 
   </script>
 </body>
