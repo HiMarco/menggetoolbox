@@ -58,116 +58,110 @@
   }
 
   /* 顶部导航栏 (Frosted Glass Topbar) */
-  .header {
+  /* ======================================================== */
+  /* 左右布局架构 (Sidebar + Main Layout) */
+  /* ======================================================== */
+  .app-layout {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bg);
+  }
+
+  /* 左侧常驻导航侧边栏 */
+  .sidebar {
+    width: 250px;
+    min-width: 250px;
+    background: #ffffff;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
     position: sticky;
     top: 0;
+    height: 100vh;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.82);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.02);
+    user-select: none;
+    flex-shrink: 0;
+  }
+  .sidebar-header {
+    padding: 20px 18px 16px;
     border-bottom: 1px solid var(--border);
-    transition: box-shadow 0.2s ease;
-  }
-  .header.scrolled {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-  }
-  .header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
   }
   .brand {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-weight: 800;
-    font-size: 17.5px;
-    letter-spacing: -0.4px;
+    gap: 12px;
     text-decoration: none;
     color: var(--text-1);
-    user-select: none;
   }
   .brand-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
     background: var(--brand-gradient);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    box-shadow: 0 3px 10px rgba(0, 113, 227, 0.28);
+    box-shadow: 0 4px 12px rgba(0, 113, 227, 0.28);
     transition: transform 0.2s ease;
+    flex-shrink: 0;
   }
   .brand:hover .brand-icon {
     transform: scale(1.05) rotate(2deg);
   }
-  .brand-icon svg { width: 19px; height: 19px; }
-
-  /* 现代化高对比度胶囊标签栏 (High-Contrast Segmented Switcher) */
-  .nav-tabs {
+  .brand-icon svg { width: 20px; height: 20px; }
+  .brand-text {
     display: flex;
-    align-items: center;
-    background: #e2e8f0;
-    padding: 5px;
-    border-radius: 999px;
+    flex-direction: column;
+  }
+  .brand-title {
+    font-weight: 800;
+    font-size: 16.5px;
+    letter-spacing: -0.4px;
+    color: var(--text-1);
+    line-height: 1.2;
+  }
+  .brand-sub {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  /* 侧边栏垂直导航菜单 */
+  .sidebar-nav {
+    flex: 1;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
     gap: 6px;
-    border: 1.5px solid #cbd5e1;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+    overflow-y: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
   }
   .nav-tab {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 20px;
-    border-radius: 999px;
-    font-size: 14px;
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 12px;
+    font-size: 13.5px;
     font-weight: 600;
     color: #475569;
     cursor: pointer;
-    border: none;
+    border: 1px solid transparent;
     background: transparent;
-    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-    user-select: none;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
+    text-align: left;
+    gap: 10px;
   }
   .nav-tab:hover {
     color: #0f172a;
-    background: rgba(255, 255, 255, 0.7);
-  }
-  /* 针对各模块定制高辨识度激活色彩 */
-  .nav-tab.active[data-target="panel-pdf"] {
-    background: linear-gradient(135deg, #ef4444 0%, #f97316 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.42);
-    font-weight: 700;
-    transform: scale(1.02);
-  }
-  .nav-tab.active[data-target="panel-image"] {
-    background: linear-gradient(135deg, #0071e3 0%, #6366f1 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 14px rgba(0, 113, 227, 0.42);
-    font-weight: 700;
-    transform: scale(1.02);
-  }
-  .nav-tab.active[data-target="panel-svg"] {
-    background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.42);
-    font-weight: 700;
-    transform: scale(1.02);
-  }
-  .nav-tab.active[data-target="panel-idphoto"] {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.42);
-    font-weight: 700;
-    transform: scale(1.02);
+    background: #f1f5f9;
+    transform: translateX(2px);
   }
   .nav-tab svg {
     width: 17px;
@@ -175,13 +169,155 @@
     flex-shrink: 0;
     transition: transform 0.2s;
   }
+  .nav-title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .nav-shortcut {
+    font-size: 11px;
+    font-family: monospace;
+    font-weight: 700;
+    color: var(--text-3);
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    line-height: 1;
+  }
+
+  /* 各功能定制高辨识度激活色彩 */
+  .nav-tab.active {
+    font-weight: 700 !important;
+    transform: scale(1.01) !important;
+  }
+  .nav-tab.active .nav-shortcut {
+    background: rgba(255, 255, 255, 0.25) !important;
+    color: #ffffff !important;
+  }
+  .nav-tab.active[data-target="panel-image"] {
+    background: linear-gradient(135deg, #0071e3 0%, #6366f1 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 113, 227, 0.38);
+  }
+  .nav-tab.active[data-target="panel-pdf"] {
+    background: linear-gradient(135deg, #ef4444 0%, #f97316 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.38);
+  }
+  .nav-tab.active[data-target="panel-svg"] {
+    background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.38);
+  }
+  .nav-tab.active[data-target="panel-idphoto"] {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.38);
+  }
+  .nav-tab.active[data-target="panel-android"] {
+    background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.38);
+  }
+  .nav-tab.active[data-target="panel-ios"] {
+    background: linear-gradient(135deg, #007aff 0%, #5856d6 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 122, 255, 0.4);
+  }
   .nav-tab.active svg {
     color: #ffffff !important;
     transform: scale(1.1);
   }
 
+
+  /* 侧边栏底部信息 */
+  .sidebar-footer {
+    padding: 16px 14px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #ffffff;
+  }
+  .sidebar-tip {
+    font-size: 11px;
+    color: var(--text-3);
+    text-align: center;
+    font-weight: 500;
+  }
+
+  /* 右侧主区域容器 */
+  .main-wrapper {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .main-content-header {
+    width: 100%;
+    padding: 24px 32px 0;
+  }
+
+
+
+  @media (max-width: 960px) {
+    .app-layout {
+      flex-direction: column;
+    }
+    .sidebar {
+      width: 100%;
+      min-width: 100%;
+      height: auto;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .sidebar-header {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sidebar-nav {
+      flex-direction: row;
+      overflow-x: auto;
+      padding: 8px 12px;
+      gap: 6px;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-tab {
+      width: auto;
+      padding: 7px 14px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .nav-shortcut {
+      display: none;
+    }
+    .sidebar-footer {
+      display: none;
+    }
+    .main-content-header {
+      padding: 14px 16px 0;
+    }
+    .main {
+      padding: 16px 16px 60px;
+    }
+    .footer {
+      padding: 20px 16px;
+    }
+  }
+
+
   /* 证件照制作工作台 (ID Photo Studio) */
   .idphoto-workspace {
+
     display: grid;
     grid-template-columns: 1.15fr 1fr;
     gap: 20px;
@@ -363,9 +499,519 @@
     object-fit: contain;
   }
 
+  /* ======================================================== */
+  /* 安卓 APP 设计尺寸规范与标注展示样式 */
+  /* ======================================================== */
+  .android-spec-layout {
+    display: grid;
+    grid-template-columns: 330px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 960px) {
+    .android-spec-layout {
+      grid-template-columns: 1fr;
+    }
+  }
 
+  .phone-mockup-wrapper {
+    position: sticky;
+    top: 86px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 22px 18px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .phone-device {
+    width: 280px;
+    height: 590px;
+    background: #0f172a;
+    border-radius: 38px;
+    padding: 8px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.2), inset 0 0 0 2px #334155;
+    position: relative;
+    user-select: none;
+    box-sizing: border-box;
+  }
+  .phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #f8fafc;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0 0 1px rgba(0,0,0,0.2);
+  }
+  .phone-camera-hole {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 9px;
+    height: 9px;
+    background: #000;
+    border-radius: 50%;
+    z-index: 50;
+  }
+  .mockup-comp {
+    position: relative;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .mockup-comp:hover, .mockup-comp.selected {
+    outline: 2px dashed #0284c7 !important;
+    outline-offset: -2px;
+    background-color: rgba(2, 132, 199, 0.09) !important;
+  }
+  .mockup-status-bar {
+    height: 24px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #1e293b;
+    border-bottom: 1px solid #e2e8f0;
+    z-index: 40;
+    flex-shrink: 0;
+  }
+  .mockup-app-bar {
+    height: 56px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    border-bottom: 1px solid #e2e8f0;
+    z-index: 30;
+    flex-shrink: 0;
+  }
+  .mockup-content-body {
+    flex: 1;
+    background: #f1f5f9;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    position: relative;
+  }
+  .mockup-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 10px 12px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .mockup-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    flex-shrink: 0;
+  }
+  .mockup-fab {
+    position: absolute;
+    right: 14px;
+    bottom: 88px;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
+    box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    z-index: 35;
+    transition: all 0.2s;
+  }
+  .mockup-fab:hover, .mockup-fab.selected {
+    transform: scale(1.06);
+    outline: 2px dashed #0284c7;
+  }
+  .mockup-bottom-nav {
+    height: 74px;
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px 10px;
+    z-index: 40;
+    flex-shrink: 0;
+  }
+  .mockup-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 9px;
+    color: #64748b;
+  }
+  .mockup-nav-item.active {
+    color: #0284c7;
+    font-weight: 700;
+  }
+  .mockup-gesture-bar {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 68px;
+    height: 3.5px;
+    background: #94a3b8;
+    border-radius: 999px;
+  }
+  .dim-pill {
+    position: absolute;
+    right: 6px;
+    background: rgba(15, 23, 42, 0.88);
+    color: #38bdf8;
+    font-size: 9.5px;
+    font-family: monospace;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 999px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    z-index: 45;
+  }
 
-  .header-actions {
+  /* 规范子标签页导航 */
+  .spec-tabs-nav {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+    overflow-x: auto;
+  }
+  .spec-tab-btn {
+    padding: 7px 15px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-2);
+    background: #f1f5f9;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .spec-tab-btn:hover {
+    background: #e2e8f0;
+    color: var(--text-1);
+  }
+  .spec-tab-btn.active {
+    background: #0284c7;
+    color: #ffffff;
+    box-shadow: 0 3px 10px rgba(2, 132, 199, 0.3);
+  }
+
+  .preset-chip {
+    padding: 3px 9px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--text-2);
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .preset-chip:hover {
+    background: #e0f2fe;
+    color: #0284c7;
+    border-color: #bae6fd;
+  }
+  .preset-chip.active {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+  }
+
+  /* 换算器卡片 */
+  .converter-grid {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .converter-box {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+    position: relative;
+  }
+  .converter-box:hover {
+    border-color: #0284c7;
+    background: #f0f9ff;
+    transform: translateY(-2px);
+  }
+  .converter-box.highlight {
+    border-color: #0284c7;
+    background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+  }
+  .converter-density {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #64748b;
+    margin-bottom: 4px;
+  }
+  .converter-val {
+    font-size: 19px;
+    font-weight: 800;
+    color: #0f172a;
+    font-family: monospace;
+  }
+  .converter-scale {
+    font-size: 11px;
+    color: #0284c7;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  /* 规范表格与组件卡片 */
+  .spec-table-container {
+    overflow-x: auto;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .spec-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: left;
+  }
+  .spec-data-table th {
+    background: #f8fafc;
+    padding: 12px 14px;
+    font-weight: 700;
+    color: var(--text-1);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .spec-data-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-2);
+  }
+  .spec-data-table tr:hover td {
+    background: #f8fafc;
+  }
+  .spec-code-tag {
+    font-family: monospace;
+    font-size: 11.5px;
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #0f172a;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .spec-code-tag:hover {
+    background: #e2e8f0;
+    color: #0284c7;
+    border-color: #cbd5e1;
+  }
+
+  /* 控件详情弹出条 */
+  .comp-detail-banner {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .comp-detail-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0369a1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .comp-detail-dims {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* 自适应图标图解器 */
+  .adaptive-icon-demo {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-top: 14px;
+  }
+  .icon-canvas-box {
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    border: 2px dashed #0284c7;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+  }
+  .icon-safe-circle {
+    width: 93px;
+    height: 93px;
+    border: 2px dashed rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+  }
+  .mask-circle { border-radius: 50%; }
+  .mask-squircle { border-radius: 38px; }
+  .mask-rounded { border-radius: 24px; }
+  .mask-pebble { border-radius: 46px 20px 46px 20px; }
+
+  /* ======================================================== */
+  /* iOS 设计尺寸规范与组件标注专用样式 */
+  /* ======================================================== */
+  .phone-device-ios {
+    width: 280px;
+    height: 590px;
+    background: #18181b;
+    border-radius: 46px;
+    padding: 9px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28), inset 0 0 0 2.5px #3f3f46;
+    position: relative;
+    user-select: none;
+    box-sizing: border-box;
+  }
+  .phone-screen-ios {
+    width: 100%;
+    height: 100%;
+    background: #f8fafc;
+    border-radius: 38px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0 0 1px rgba(0,0,0,0.25);
+  }
+  .dynamic-island {
+    position: absolute;
+    top: 9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 86px;
+    height: 25px;
+    background: #000000;
+    border-radius: 999px;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  .dynamic-island:hover, .dynamic-island.selected {
+    width: 110px;
+    box-shadow: 0 0 0 2px #007aff, 0 4px 12px rgba(0, 122, 255, 0.35);
+  }
+  .mockup-status-bar-ios {
+    height: 50px;
+    background: #ffffff;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 16px 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #0f172a;
+    z-index: 40;
+    flex-shrink: 0;
+  }
+  .mockup-nav-bar-ios {
+    height: 44px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    border-bottom: 0.5px solid #e2e8f0;
+    z-index: 30;
+    flex-shrink: 0;
+  }
+  .mockup-tab-bar-ios {
+    height: 76px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 0.5px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6px 12px 6px;
+    z-index: 40;
+    flex-shrink: 0;
+  }
+  .mockup-tab-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .mockup-home-indicator {
+    width: 96px;
+    height: 4px;
+    background: #0f172a;
+    border-radius: 999px;
+    margin: 4px auto 2px;
+  }
+  .squircle-card {
+    border-radius: 16px;
+  }
+  .apple-badge {
+    background: linear-gradient(135deg, #007aff 0%, #5856d6 100%);
+    color: #ffffff;
+  }
+
     display: flex;
     align-items: center;
     gap: 12px;
@@ -385,15 +1031,14 @@
 
   /* 主体内容区 */
   .main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 24px 24px 80px;
     width: 100%;
+    padding: 20px 32px 80px;
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 22px;
   }
+
 
   /* 顶部动态宣传 Banner */
   .hero-banner {
@@ -1036,20 +1681,20 @@
   .footer {
     background: #fff;
     border-top: 1px solid var(--border);
-    padding: 32px 24px;
+    padding: 24px 32px;
     margin-top: auto;
     font-size: 13px;
     color: var(--text-3);
   }
   .footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 14px;
   }
+
   .footer-links {
     display: flex;
     gap: 20px;
@@ -1065,63 +1710,89 @@
 </head>
 <body>
 
-  <!-- 顶栏导航 -->
-  <header class="header" id="navbar">
-    <div class="header-inner">
-      <a href="#" class="brand">
-        <span class="brand-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M14 9l3 3-3 3"/>
-          </svg>
-        </span>
-        极简工具箱
-      </a>
+  <!-- 整体左右布局容器 -->
+  <div class="app-layout">
 
-      <!-- 核心多功能切换标签 -->
-      <nav class="nav-tabs">
-        <button class="nav-tab active" data-target="panel-image">
+    <!-- 左侧常驻导航侧边栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="#" class="brand">
+          <span class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M14 9l3 3-3 3"/>
+            </svg>
+          </span>
+          <div class="brand-text">
+            <span class="brand-title">极简工具箱</span>
+            <span class="brand-sub">纯本地 · 隐私 · 高效</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 侧边栏垂直导航菜单 -->
+      <nav class="nav-tabs sidebar-nav">
+        <button class="nav-tab active" data-target="panel-image" title="快捷键: 1">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          图片深度压缩
+          <span class="nav-title">图片深度压缩</span>
+          <span class="nav-shortcut">1</span>
         </button>
-        <button class="nav-tab" data-target="panel-pdf">
+        <button class="nav-tab" data-target="panel-pdf" title="快捷键: 2">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-          PDF 智能压缩
+          <span class="nav-title">PDF 智能压缩</span>
+          <span class="nav-shortcut">2</span>
         </button>
-        <button class="nav-tab" data-target="panel-svg">
+        <button class="nav-tab" data-target="panel-svg" title="快捷键: 3">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          SVG 矢量瘦身
+          <span class="nav-title">SVG 矢量瘦身</span>
+          <span class="nav-shortcut">3</span>
         </button>
-        <button class="nav-tab" data-target="panel-idphoto">
+        <button class="nav-tab" data-target="panel-idphoto" title="快捷键: 4">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          一寸证件照生成
+          <span class="nav-title">一寸证件照生成</span>
+          <span class="nav-shortcut">4</span>
+        </button>
+        <button class="nav-tab" data-target="panel-android" title="快捷键: 5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/><line x1="9" y1="5" x2="15" y2="5"/></svg>
+          <span class="nav-title">安卓设计尺寸规范</span>
+          <span class="nav-shortcut">5</span>
+        </button>
+        <button class="nav-tab" data-target="panel-ios" title="快捷键: 6">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.87c.62-.75 1.04-1.8 0.92-2.87-.9.04-1.99.6-2.64 1.35-.57.65-1.06 1.72-.93 2.75 1 .08 2.03-.48 2.65-1.23z"/></svg>
+          <span class="nav-title">iOS 设计尺寸规范</span>
+          <span class="nav-shortcut">6</span>
         </button>
       </nav>
 
-
-      <div class="header-actions">
+      <!-- 侧边栏底部说明 -->
+      <div class="sidebar-footer">
         <div class="badge-privacy">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
           纯本地离线计算 · 零上传
         </div>
+        <div class="sidebar-tip">支持按数字键 1~6 极速切换</div>
       </div>
-    </div>
-  </header>
+    </aside>
 
-  <!-- 主体 -->
-  <main class="main">
+    <!-- 右侧主体内容区域 -->
+    <div class="main-wrapper">
+      <!-- 顶部状态栏 -->
+      <div class="main-content-header">
+        <div class="hero-banner">
+          <div class="hero-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:#0071e3;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span id="heroBannerText">全能图片深度压缩 · 支持 JPG/PNG/WebP/GIF/AVIF，智能达标与格式互转</span>
+          </div>
+          <div class="hero-tags">
+            <span class="hero-tag">极速并发</span>
+            <span class="hero-tag">画质对比</span>
+            <span class="hero-tag">安全加密</span>
+          </div>
+        </div>
+      </div>
 
-    <!-- 动态宣传 Banner -->
-    <div class="hero-banner">
-      <div class="hero-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:#0071e3;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <span id="heroBannerText">全能图片深度压缩 · 支持 JPG/PNG/WebP/GIF/AVIF，智能达标与格式互转</span>
-      </div>
-      <div class="hero-tags">
-        <span class="hero-tag">极速并发</span>
-        <span class="hero-tag">画质对比</span>
-        <span class="hero-tag">安全加密</span>
-      </div>
-    </div>
+      <!-- 核心工具操作区 -->
+      <main class="main">
+
 
 
     <!-- ============================================================ -->
@@ -1240,38 +1911,38 @@
         <div class="panel-title">
           <span>PDF 压缩模式选择</span>
           <span style="font-size:12px; font-weight:normal; text-transform:none; color:var(--text-3);">
-            文字矢量层绝对保护，仅对内嵌高分辨率位图进行无损重采样
+            双核压缩引擎 · 专克扫描件与各类图文大文件 · 支持指定目标大小与矢量文字保真
           </span>
         </div>
 
         <div class="preset-grid" id="pdfPresetGrid">
           <div class="preset-item active" data-mode="balanced">
             <div class="preset-header">
-              <span class="preset-name">⚡ 智能推荐（均衡）</span>
-              <span class="preset-tag" style="background:#e8f4fd; color:#0071e3;">推荐</span>
+              <span class="preset-name">⚡ 深度智能压缩</span>
+              <span class="preset-tag" style="background:#e8f4fd; color:#0071e3;">推荐 (降幅 60%~85%)</span>
             </div>
-            <p class="preset-desc">重采样内嵌大图至 1600px / 75% 质量，文字极致锐利，体积减少 50%~85%。</p>
+            <p class="preset-desc">基于高清光栅引擎重构，彻底解决扫描件、PPT导出、图文报告“压不动”问题，兼顾高清与极佳压缩率。</p>
           </div>
           <div class="preset-item" data-mode="max">
             <div class="preset-header">
-              <span class="preset-name">🚀 极限压缩（最小体积）</span>
-              <span class="preset-tag" style="background:#fdecec; color:#ff3b30;">强力</span>
+              <span class="preset-name">🚀 极限极小体积</span>
+              <span class="preset-tag" style="background:#fdecec; color:#ff3b30;">强力 (降幅 80%~95%)</span>
             </div>
-            <p class="preset-desc">重采样至 1000px / 50% 质量，适合邮件超大附件与政企网申大小限制。</p>
+            <p class="preset-desc">紧凑 DPI / 50% 质量，强力突破邮件超大附件与政企网申系统 1MB/2MB 上传大小限制。</p>
           </div>
           <div class="preset-item" data-mode="target">
             <div class="preset-header">
               <span class="preset-name">🎯 指定目标大小</span>
-              <span class="preset-tag" style="background:#fff4e5; color:#ff9500;">精准</span>
+              <span class="preset-tag" style="background:#fff4e5; color:#ff9500;">精准达标</span>
             </div>
-            <p class="preset-desc">指定如 2.0 MB 或 800 KB，算法自动测算最佳分辨率与压缩比。</p>
+            <p class="preset-desc">指定如 2.0 MB 或 1.0 MB，系统自动多轮调优参数，确保输出文件严格达标。</p>
           </div>
-          <div class="preset-item" data-mode="lossless">
+          <div class="preset-item" data-mode="vector">
             <div class="preset-header">
-              <span class="preset-name">🔒 无损精简（0画质损失）</span>
-              <span class="preset-tag" style="background:#f1f5f9; color:#475569;">无损</span>
+              <span class="preset-name">📄 矢量文字保真</span>
+              <span class="preset-tag" style="background:#f1f5f9; color:#475569;">文字可复制</span>
             </div>
-            <p class="preset-desc">0 像素修改，仅执行对象流压缩与元数据瘦身。</p>
+            <p class="preset-desc">100% 保护文字可选中复制，仅优化内嵌图片与流结构（注：对纯图片扫描件效果有限）。</p>
           </div>
         </div>
 
@@ -1282,26 +1953,26 @@
           </div>
           <div class="setting-group">
             <div class="setting-label">
-              <span>图片质量</span>
+              <span>压缩品质 (Quality)</span>
               <span id="pdfQualityVal" class="slider-val">75%</span>
             </div>
             <div class="slider-wrapper">
               <input type="range" id="pdfQualitySlider" min="15" max="95" value="75">
             </div>
           </div>
-          <div class="setting-group">
-            <label class="setting-label">图像长边上限</label>
-            <select id="pdfMaxDim" class="select-input">
-              <option value="1000">1000 px（超紧凑）</option>
-              <option value="1600" selected>1600 px（标准高清）</option>
-              <option value="2400">2400 px（超清保真）</option>
-              <option value="99999">无限制（原图分辨率）</option>
+          <div class="setting-group" id="pdfDpiGroup">
+            <label class="setting-label">渲染清晰度 (DPI)</label>
+            <select id="pdfDpiSelect" class="select-input">
+              <option value="100">100 DPI（极速紧凑 / 适合手机查看与网申）</option>
+              <option value="140" selected>140 DPI（标准高清 / 推荐，屏幕阅读极其清晰）</option>
+              <option value="180">180 DPI（超清保真 / 适合高清打印）</option>
+              <option value="240">240 DPI（极清印刷级）</option>
             </select>
           </div>
           <div class="setting-group">
             <label class="checkbox-label" style="margin-top:20px;">
               <input type="checkbox" id="pdfGrayscale">
-              <span>转为灰度黑白（扫描件体积再降 60%）</span>
+              <span>转为灰度黑白（扫描件/公文体积再降 50%~70%）</span>
             </label>
           </div>
         </div>
@@ -1649,8 +2320,1028 @@
       </div>
     </div>
 
+    <!-- ============================================================ -->
+    <!-- 模块五：安卓 APP 设计尺寸规范与组件标注展示                   -->
+    <!-- ============================================================ -->
+    <div class="tool-panel" id="panel-android">
+      <section class="panel-card">
+        <div class="panel-title">
+          <span>安卓 APP 设计尺寸规范与组件标注速查</span>
+          <span style="font-size:12px; font-weight:normal; text-transform:none; color:var(--text-3);">
+            基于 Google Material Design 3 官方标准 · 主流 360×800dp (1080×2400px @3x) 核心基准
+          </span>
+        </div>
 
-  </main>
+        <div class="android-spec-layout">
+          <!-- 左侧：可交互标注的安卓手机原型模型 -->
+          <div class="phone-mockup-wrapper">
+            <div style="font-size:12px; font-weight:700; color:var(--text-2); display:flex; align-items:center; justify-content:space-between; width:100%;">
+              <span>📱 交互机型原型（点击部件定位）</span>
+              <span style="font-size:11px; color:#0284c7; background:#e0f2fe; padding:2px 8px; border-radius:999px;">@3x xxhdpi</span>
+            </div>
+
+            <div class="phone-device">
+              <div class="phone-screen">
+                <div class="phone-camera-hole"></div>
+
+                <!-- 状态栏 24dp -->
+                <div class="mockup-status-bar mockup-comp selected" id="mockupStatusBar" data-comp="statusbar">
+                  <span>09:41</span>
+                  <div style="display:flex; gap:4px; align-items:center;">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/></svg>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+                  </div>
+                  <span class="dim-pill" style="top:2px;">24dp (72px)</span>
+                </div>
+
+                <!-- 顶部应用栏 56dp -->
+                <div class="mockup-app-bar mockup-comp" id="mockupAppBar" data-comp="appbar">
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                    <span style="font-size:13.5px; font-weight:700; color:#0f172a;">页面标题</span>
+                  </div>
+                  <div style="display:flex; gap:8px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                  </div>
+                  <span class="dim-pill" style="top:18px;">56dp (168px)</span>
+                </div>
+
+                <!-- 内容区域 -->
+                <div class="mockup-content-body">
+                  <div style="font-size:10px; font-weight:700; color:#64748b; display:flex; justify-content:space-between;">
+                    <span>↔️ 页面左右安全边距</span>
+                    <span style="color:#0284c7;">16dp (48px)</span>
+                  </div>
+
+                  <!-- 列表卡片组件 72dp -->
+                  <div class="mockup-card mockup-comp" id="mockupListItem" data-comp="listitem">
+                    <div class="mockup-avatar"></div>
+                    <div style="flex:1; display:flex; flex-direction:column; gap:3px;">
+                      <span style="font-size:12px; font-weight:700; color:#0f172a;">Material 列表卡片</span>
+                      <span style="font-size:10px; color:#64748b;">单行 56dp / 双行 72dp</span>
+                    </div>
+                  </div>
+
+                  <!-- 按钮组件 48dp -->
+                  <div class="mockup-comp" id="mockupButton" data-comp="button" style="background:#0284c7; color:#fff; border-radius:20px; height:40px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; box-shadow:0 3px 8px rgba(2,132,199,0.3);">
+                    主按钮 (高 40dp / 触控区 48dp)
+                  </div>
+
+                  <!-- 搜索栏 56dp -->
+                  <div class="mockup-comp" id="mockupSearchBar" data-comp="searchbar" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:28px; height:46px; display:flex; align-items:center; padding:0 14px; gap:8px; font-size:11px; color:#94a3b8;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <span>搜索组件 (56dp / 圆角 28dp)</span>
+                  </div>
+                </div>
+
+                <!-- 浮动操作按钮 FAB 56dp -->
+                <div class="mockup-fab mockup-comp" id="mockupFab" data-comp="fab" title="浮动操作按钮 (FAB) 56×56dp">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <span class="dim-pill" style="top:-8px; right:-8px;">56dp</span>
+                </div>
+
+                <!-- 底部导航栏 80dp -->
+                <div class="mockup-bottom-nav mockup-comp" id="mockupBottomNav" data-comp="bottomnav">
+                  <div class="mockup-nav-item active">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    <span>首页</span>
+                  </div>
+                  <div class="mockup-nav-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    <span>分类</span>
+                  </div>
+                  <div class="mockup-nav-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span>消息</span>
+                  </div>
+                  <div class="mockup-nav-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span>我的</span>
+                  </div>
+                  <span class="dim-pill" style="top:6px;">底栏 80dp (240px)</span>
+                </div>
+
+                <!-- 底部手势指示横条 16dp -->
+                <div class="mockup-gesture-bar"></div>
+              </div>
+            </div>
+
+            <div style="font-size:11.5px; color:var(--text-3); text-align:center;">
+              提示：点击手机界面上任意元素可立即联动查阅对应规范与代码
+            </div>
+          </div>
+
+          <!-- 右侧：规范详情、多倍率换算器与速查卡片 -->
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <!-- 当前高亮选中的部件尺寸详条 -->
+            <div class="comp-detail-banner" id="androidCompBanner">
+              <div class="comp-detail-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span id="compName">状态栏 (Status Bar)</span>
+              </div>
+              <div class="comp-detail-dims">
+                <span class="spec-code-tag" id="compDpTag" title="点击复制">标准高度: 24dp</span>
+                <span class="spec-code-tag" id="compPxTag" title="点击复制" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd;">@3x (xxhdpi): 72px</span>
+                <span class="spec-code-tag" id="compCodeTag" title="点击复制 XML 属性" style="background:#f0fdf4; color:#15803d; border-color:#bbf7d0;">android:layout_height="24dp"</span>
+              </div>
+            </div>
+
+            <!-- 子功能分类导航标签 -->
+            <div class="spec-tabs-nav">
+              <button class="spec-tab-btn active" data-subtab="converter">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
+                实时多倍率单位换算
+              </button>
+              <button class="spec-tab-btn" data-subtab="components">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                核心控件尺寸规范
+              </button>
+              <button class="spec-tab-btn" data-subtab="density">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                屏幕密度倍率与切图目录
+              </button>
+              <button class="spec-tab-btn" data-subtab="icons">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+                自适应图标规范
+              </button>
+              <button class="spec-tab-btn" data-subtab="grid">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                8dp 栅格与字阶
+              </button>
+            </div>
+
+            <!-- 子模块 1：实时多倍率单位换算器 -->
+            <div class="subtab-content" id="subtab-converter">
+              <div style="background:#ffffff; border:1px solid var(--border); border-radius:var(--radius); padding:18px;">
+                <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                  <div style="flex:1; min-width:180px;">
+                    <label style="font-size:12px; font-weight:700; color:var(--text-1); margin-bottom:6px; display:block;">输入数值</label>
+                    <input type="number" id="convertInputVal" value="16" step="1" min="0" class="text-input" style="font-size:16px; font-weight:700;">
+                  </div>
+                  <div style="width:200px;">
+                    <label style="font-size:12px; font-weight:700; color:var(--text-1); margin-bottom:6px; display:block;">输入单位 / 来源基准</label>
+                    <select id="convertUnitSelect" class="select-input">
+                      <option value="dp" selected>dp (设备独立像素)</option>
+                      <option value="sp">sp (字体独立像素)</option>
+                      <option value="xxhdpi">px @ xxhdpi (3x 设计稿基准)</option>
+                      <option value="xhdpi">px @ xhdpi (2x 720p)</option>
+                      <option value="mdpi">px @ mdpi (1x 基准)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- 常用数值快速点击测试 -->
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:12px; align-items:center;">
+                  <span style="font-size:11.5px; color:var(--text-3); font-weight:600;">常用数值预设:</span>
+                  <button class="preset-chip" onclick="setConvertVal(4, 'dp')">4dp (微调)</button>
+                  <button class="preset-chip" onclick="setConvertVal(8, 'dp')">8dp (网格)</button>
+                  <button class="preset-chip" onclick="setConvertVal(16, 'dp')">16dp (边距)</button>
+                  <button class="preset-chip" onclick="setConvertVal(24, 'dp')">24dp (状态栏/图标)</button>
+                  <button class="preset-chip" onclick="setConvertVal(40, 'dp')">40dp (头像/小按钮)</button>
+                  <button class="preset-chip" onclick="setConvertVal(48, 'dp')">48dp (无障碍触控下限)</button>
+                  <button class="preset-chip" onclick="setConvertVal(56, 'dp')">56dp (应用栏/FAB)</button>
+                  <button class="preset-chip" onclick="setConvertVal(80, 'dp')">80dp (M3底栏)</button>
+                </div>
+
+                <!-- 5 大倍率换算结果卡片 -->
+                <div class="converter-grid">
+                  <div class="converter-box" onclick="copyText(this.querySelector('.converter-val').textContent + 'px')">
+                    <div class="converter-density">mdpi (基准)</div>
+                    <div class="converter-val" id="resMdpi">16</div>
+                    <div class="converter-scale">1.0×</div>
+                    <span style="font-size:10px; color:#94a3b8; display:block; margin-top:4px;">res/drawable-mdpi</span>
+                  </div>
+                  <div class="converter-box" onclick="copyText(this.querySelector('.converter-val').textContent + 'px')">
+                    <div class="converter-density">hdpi</div>
+                    <div class="converter-val" id="resHdpi">24</div>
+                    <div class="converter-scale">1.5×</div>
+                    <span style="font-size:10px; color:#94a3b8; display:block; margin-top:4px;">res/drawable-hdpi</span>
+                  </div>
+                  <div class="converter-box" onclick="copyText(this.querySelector('.converter-val').textContent + 'px')">
+                    <div class="converter-density">xhdpi (720P)</div>
+                    <div class="converter-val" id="resXhdpi">32</div>
+                    <div class="converter-scale">2.0×</div>
+                    <span style="font-size:10px; color:#94a3b8; display:block; margin-top:4px;">res/drawable-xhdpi</span>
+                  </div>
+                  <div class="converter-box highlight" onclick="copyText(this.querySelector('.converter-val').textContent + 'px')">
+                    <div class="converter-density" style="color:#0369a1;">xxhdpi (主流设计稿)</div>
+                    <div class="converter-val" id="resXxhdpi" style="color:#0284c7;">48</div>
+                    <div class="converter-scale" style="color:#0369a1; font-weight:700;">3.0× [推荐输出]</div>
+                    <span style="font-size:10px; color:#0284c7; display:block; margin-top:4px;">res/drawable-xxhdpi</span>
+                  </div>
+                  <div class="converter-box" onclick="copyText(this.querySelector('.converter-val').textContent + 'px')">
+                    <div class="converter-density">xxxhdpi (2K/4K)</div>
+                    <div class="converter-val" id="resXxxhdpi">64</div>
+                    <div class="converter-scale">4.0×</div>
+                    <span style="font-size:10px; color:#94a3b8; display:block; margin-top:4px;">res/drawable-xxxhdpi</span>
+                  </div>
+                </div>
+
+                <div style="margin-top:14px; padding:10px 14px; background:#f8fafc; border-radius:8px; font-size:12px; color:var(--text-2); display:flex; justify-content:space-between; align-items:center;">
+                  <span>📐 换算公式：<code style="background:#e2e8f0; padding:2px 6px; border-radius:4px; font-weight:700;">px = dp × (dpi / 160)</code></span>
+                  <span style="color:#0284c7; font-weight:600;">点击任意数值卡片即可直接复制到剪贴板</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 子模块 2：核心控件尺寸规范表 -->
+            <div class="subtab-content" id="subtab-components" style="display:none;">
+              <div class="spec-table-container">
+                <table class="spec-data-table">
+                  <thead>
+                    <tr>
+                      <th>系统 / 控件名称</th>
+                      <th>推荐 dp 规格</th>
+                      <th>@3x 像素 (1080p)</th>
+                      <th>Material 3 设计要点与无障碍说明</th>
+                      <th>代码属性</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr onclick="selectComponentFromTable('statusbar')">
+                      <td><strong style="color:var(--text-1);">状态栏 (Status Bar)</strong></td>
+                      <td><span class="spec-code-tag">24 dp</span></td>
+                      <td>72 px</td>
+                      <td>展示系统电量、时间、Wi-Fi、信号，背景支持沉浸式透明。</td>
+                      <td><span class="spec-code-tag">height="24dp"</span></td>
+                    </tr>
+                    <tr onclick="selectComponentFromTable('appbar')">
+                      <td><strong style="color:var(--text-1);">顶部应用栏 (Top App Bar)</strong></td>
+                      <td><span class="spec-code-tag">56 dp / 64 dp</span></td>
+                      <td>168 / 192 px</td>
+                      <td>M2 标准为 56dp，M3 小号标题栏提升为 64dp，大号伸缩栏可达 112dp~152dp。</td>
+                      <td><span class="spec-code-tag">height="64dp"</span></td>
+                    </tr>
+                    <tr onclick="selectComponentFromTable('bottomnav')">
+                      <td><strong style="color:var(--text-1);">底部导航栏 (Navigation Bar)</strong></td>
+                      <td><span class="spec-code-tag">80 dp (M3)</span></td>
+                      <td>240 px</td>
+                      <td>包含 3~5 个主导航入口，图标 + 胶囊药丸高亮 + 文字标签。</td>
+                      <td><span class="spec-code-tag">height="80dp"</span></td>
+                    </tr>
+                    <tr onclick="selectComponentFromTable('fab')">
+                      <td><strong style="color:var(--text-1);">浮动操作按钮 (FAB)</strong></td>
+                      <td><span class="spec-code-tag">56 × 56 dp</span></td>
+                      <td>168 × 168 px</td>
+                      <td>标准尺寸 56dp，内嵌 24dp 图标；小号 40dp，大号 96dp，距离屏幕右下各留白 16dp。</td>
+                      <td><span class="spec-code-tag">fabSize="normal"</span></td>
+                    </tr>
+                    <tr onclick="selectComponentFromTable('button')">
+                      <td><strong style="color:var(--text-1);">按钮高度 (Button)</strong></td>
+                      <td><span class="spec-code-tag">40 dp / 48 dp</span></td>
+                      <td>120 / 144 px</td>
+                      <td>标准视觉高度 40dp，但<strong>触控感应区域必须满足至少 48×48dp</strong>无障碍标准。</td>
+                      <td><span class="spec-code-tag">minHeight="48dp"</span></td>
+                    </tr>
+                    <tr onclick="selectComponentFromTable('listitem')">
+                      <td><strong style="color:var(--text-1);">列表项 (List Item)</strong></td>
+                      <td><span class="spec-code-tag">56 / 72 / 88 dp</span></td>
+                      <td>168 / 216 / 264 px</td>
+                      <td>单行 56dp，带副标题的双行 72dp，带复杂描述的三行 88dp。</td>
+                      <td><span class="spec-code-tag">height="72dp"</span></td>
+                    </tr>
+                    <tr onclick="selectComponentFromTable('searchbar')">
+                      <td><strong style="color:var(--text-1);">搜索栏 (Search Bar)</strong></td>
+                      <td><span class="spec-code-tag">56 dp (全圆角 28dp)</span></td>
+                      <td>168 px</td>
+                      <td>Material 3 标准搜索条，支持左右内嵌语音或扫码图标。</td>
+                      <td><span class="spec-code-tag">height="56dp"</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong style="color:var(--text-1);">对话框 (Dialog)</strong></td>
+                      <td><span class="spec-code-tag">宽 280 ~ 560 dp</span></td>
+                      <td>840 ~ 1680 px</td>
+                      <td>全圆角 28dp (M3)，内边距 24dp，操作按钮行高 48dp。</td>
+                      <td><span class="spec-code-tag">padding="24dp"</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 子模块 3：屏幕密度倍率对照表 -->
+            <div class="subtab-content" id="subtab-density" style="display:none;">
+              <div class="spec-table-container">
+                <table class="spec-data-table">
+                  <thead>
+                    <tr>
+                      <th>密度类别</th>
+                      <th>缩放倍率</th>
+                      <th>物理 DPI 范围</th>
+                      <th>代表分辨率</th>
+                      <th>对应工程资源文件夹</th>
+                      <th>切图状态</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>mdpi</strong> (基准)</td>
+                      <td><span class="spec-code-tag">1.0×</span></td>
+                      <td>~160 dpi</td>
+                      <td>320 × 480</td>
+                      <td><code>res/drawable-mdpi/</code></td>
+                      <td>极少单独出图</td>
+                    </tr>
+                    <tr>
+                      <td><strong>hdpi</strong></td>
+                      <td><span class="spec-code-tag">1.5×</span></td>
+                      <td>~240 dpi</td>
+                      <td>480 × 800</td>
+                      <td><code>res/drawable-hdpi/</code></td>
+                      <td>低端机型备用</td>
+                    </tr>
+                    <tr>
+                      <td><strong>xhdpi</strong></td>
+                      <td><span class="spec-code-tag">2.0×</span></td>
+                      <td>~320 dpi</td>
+                      <td>720 × 1280</td>
+                      <td><code>res/drawable-xhdpi/</code></td>
+                      <td>主流标清机型</td>
+                    </tr>
+                    <tr style="background:#f0f9ff;">
+                      <td><strong style="color:#0284c7;">xxhdpi</strong> (设计基准)</td>
+                      <td><span class="spec-code-tag" style="background:#0284c7; color:#fff;">3.0×</span></td>
+                      <td>~480 dpi</td>
+                      <td>1080 × 2400 (主流 1080P)</td>
+                      <td><code style="color:#0284c7; font-weight:700;">res/drawable-xxhdpi/</code></td>
+                      <td><strong style="color:#10b981;">必出切图 (核心主力)</strong></td>
+                    </tr>
+                    <tr>
+                      <td><strong>xxxhdpi</strong></td>
+                      <td><span class="spec-code-tag">4.0×</span></td>
+                      <td>~640 dpi</td>
+                      <td>1440 × 3200 (2K/4K 旗舰)</td>
+                      <td><code>res/drawable-xxxhdpi/</code></td>
+                      <td>仅应用大图标需出图</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div style="margin-top:12px; padding:12px 16px; background:#fffbeb; border:1px solid #fef3c7; border-radius:8px; font-size:12.5px; color:#92400e; line-height:1.6;">
+                💡 <strong>现代安卓开发最佳实践</strong>：非位图图标请优先采用 <strong>SVG 矢量图（VectorDrawable）</strong>，放置在 <code>res/drawable/</code> 目录，系统会自动无损缩放且无需生成 5 套位图切图，包体积立省 80%！
+              </div>
+            </div>
+
+            <!-- 子模块 4：自适应图标规范 -->
+            <div class="subtab-content" id="subtab-icons" style="display:none;">
+              <div style="background:#ffffff; border:1px solid var(--border); border-radius:var(--radius); padding:18px;">
+                <div style="font-size:14px; font-weight:700; color:var(--text-1); margin-bottom:6px;">
+                  Android 8.0+ 自适应图标 (Adaptive Icons) 规范
+                </div>
+                <p style="font-size:12.5px; color:var(--text-2); line-height:1.5;">
+                  自适应图标由<strong>前景层 (Foreground)</strong> 与 <strong>背景层 (Background)</strong> 双图层构成，系统各品牌机型（小米、华为、三星、原生 Pixel）会自动套用不同形状蒙版裁切。
+                </p>
+
+                <!-- 交互式自适应图标预览与蒙版切换 -->
+                <div class="adaptive-icon-demo">
+                  <div class="icon-canvas-box mask-circle" id="adaptiveIconPreview">
+                    <div class="icon-safe-circle">
+                      <svg width="42" height="42" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V17a1 1 0 0 1-2 0v-.07A8 8 0 0 1 4.07 11H5a1 1 0 0 1 0-2h-.93A8 8 0 0 1 11 4.07V5a1 1 0 0 1 2 0v-.93A8 8 0 0 1 19.93 9H19a1 1 0 0 1 0 2h.93A8 8 0 0 1 13 16.93z"/></svg>
+                    </div>
+                  </div>
+
+                  <div style="flex:1; min-width:240px; display:flex; flex-direction:column; gap:10px;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <span style="font-size:12.5px; font-weight:700; color:var(--text-1);">切换手机品牌蒙版形状:</span>
+                      <button class="preset-chip active" onclick="setMaskShape('circle', this)">圆形 (原生/Pixel)</button>
+                      <button class="preset-chip" onclick="setMaskShape('squircle', this)">方圆形 (小米/澎湃)</button>
+                      <button class="preset-chip" onclick="setMaskShape('rounded', this)">圆角矩形 (华为/鸿蒙)</button>
+                      <button class="preset-chip" onclick="setMaskShape('pebble', this)">卵石形 (三星 OneUI)</button>
+                    </div>
+
+                    <div style="font-size:12px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">
+                      <div>• <strong>画布总尺寸</strong>：108 × 108 dp（@3x: 324 × 324 px）</div>
+                      <div>• <strong>核心内容安全区</strong>：直径 72 dp（@3x: 216 px）内的正圆，绝不被裁切</div>
+                      <div>• <strong>外围溢出留白 (Bleed)</strong>：四周各 18 dp（@3x: 54 px），用于视差滚动与蒙版动画</div>
+                      <div>• <strong>Google Play 商店图标</strong>：512 × 512 px，32 位 PNG，无透明背景，直角无需切圆角</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 子模块 5：8dp 网格与字体字阶规范 -->
+            <div class="subtab-content" id="subtab-grid" style="display:none;">
+              <div style="background:#ffffff; border:1px solid var(--border); border-radius:var(--radius); padding:18px; display:flex; flex-direction:column; gap:16px;">
+                <div>
+                  <div style="font-size:14px; font-weight:700; color:var(--text-1); margin-bottom:4px;">为什么安卓坚持 8dp 栅格系统？</div>
+                  <div style="font-size:12.5px; color:var(--text-2); line-height:1.6;">
+                    因为所有安卓主流屏幕倍率（1.5×、2.0×、3.0×、4.0×）乘以 8dp 都能得到<strong>绝对整数物理像素</strong>（12px、16px、24px、32px），能从数学上彻底根除半像素（0.5px）导致的图像与线条边缘发虚、模糊和错位。
+                  </div>
+                </div>
+
+                <div class="spec-table-container">
+                  <table class="spec-data-table">
+                    <thead>
+                      <tr>
+                        <th>Material 3 字体角色</th>
+                        <th>推荐字号 (sp)</th>
+                        <th>行高 (Line Height)</th>
+                        <th>字重 (Weight)</th>
+                        <th>应用场景</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Display Large</strong></td>
+                        <td><span class="spec-code-tag">57 sp</span></td>
+                        <td>64 sp</td>
+                        <td>Regular (400)</td>
+                        <td>重大数字、引人注目的大看板</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Headline Large</strong></td>
+                        <td><span class="spec-code-tag">32 sp</span></td>
+                        <td>40 sp</td>
+                        <td>Regular (400)</td>
+                        <td>高优先级页面主标题</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Title Large</strong></td>
+                        <td><span class="spec-code-tag">22 sp</span></td>
+                        <td>28 sp</td>
+                        <td>Medium (500)</td>
+                        <td>顶部应用栏标题、对话框标题</td>
+                      </tr>
+                      <tr style="background:#f0f9ff;">
+                        <td><strong style="color:#0284c7;">Body Large (标准正文)</strong></td>
+                        <td><span class="spec-code-tag" style="background:#0284c7; color:#fff;">16 sp</span></td>
+                        <td>24 sp</td>
+                        <td>Regular (400)</td>
+                        <td>正文主体、列表主标题、输入框文字</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Body Medium</strong></td>
+                        <td><span class="spec-code-tag">14 sp</span></td>
+                        <td>20 sp</td>
+                        <td>Regular (400)</td>
+                        <td>正文副文本、次级描述</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Label Medium</strong></td>
+                        <td><span class="spec-code-tag">12 sp</span></td>
+                        <td>16 sp</td>
+                        <td>Medium (500)</td>
+                        <td>底部导航栏标签、徽章、辅助说明</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 模块六：iOS 设计尺寸规范与组件标注展示                         -->
+    <!-- ============================================================ -->
+    <div class="tool-panel" id="panel-ios">
+      <section class="panel-card">
+        <div class="panel-title">
+          <span>iOS (iPhone / iPad) 设计尺寸规范与组件标注速查</span>
+          <span style="font-size:12px; font-weight:normal; text-transform:none; color:var(--text-3);">
+            遵循 Apple 官方 Human Interface Guidelines (HIG) · 393×852 pt (iPhone 15/16 Pro @3x) 主流设计基准
+          </span>
+        </div>
+
+        <div class="android-spec-layout">
+          <!-- 左侧：可交互标注的 iPhone 灵动岛机型原型 -->
+          <div class="phone-mockup-wrapper">
+            <div style="font-size:12px; font-weight:700; color:var(--text-2); display:flex; align-items:center; justify-content:space-between; width:100%;">
+              <span>📱 灵动岛机型原型（点击部件定位）</span>
+              <span class="apple-badge" style="font-size:11px; padding:2px 8px; border-radius:999px;">@3x Super Retina</span>
+            </div>
+
+            <div class="phone-device-ios">
+              <div class="phone-screen-ios">
+                <!-- 灵动岛 (Dynamic Island) -->
+                <div class="dynamic-island mockup-comp" id="mockupDynamicIsland" data-comp="dynamicisland" title="灵动岛 126×37pt (紧凑态)">
+                  <div style="width:10px; height:10px; background:#18181b; border-radius:50%;"></div>
+                  <div style="display:flex; align-items:center; gap:4px; font-size:9px; color:#22c55e;">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                  </div>
+                </div>
+
+                <!-- 状态栏 54pt -->
+                <div class="mockup-status-bar-ios mockup-comp selected" id="mockupIosStatusBar" data-comp="ios_statusbar">
+                  <span style="font-weight:700; font-size:11px;">09:41</span>
+                  <div style="display:flex; gap:5px; align-items:center;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/></svg>
+                    <svg width="14" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="18" height="12" rx="3"/><path d="M22 10v4"/><rect x="4" y="8" width="12" height="8" rx="1" fill="currentColor"/></svg>
+                  </div>
+                  <span class="dim-pill" style="top:26px; right:6px;">54pt (162px)</span>
+                </div>
+
+                <!-- 标准导航栏 44pt -->
+                <div class="mockup-nav-bar-ios mockup-comp" id="mockupIosNavBar" data-comp="ios_navbar">
+                  <div style="display:flex; align-items:center; gap:4px; color:#007aff; font-size:13px; font-weight:500;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                    <span>返回</span>
+                  </div>
+                  <span style="font-size:13.5px; font-weight:600; color:#0f172a;">页面标题</span>
+                  <div style="display:flex; gap:8px; color:#007aff;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                  </div>
+                  <span class="dim-pill" style="top:12px; right:6px;">44pt (132px)</span>
+                </div>
+
+                <!-- 内容区域 -->
+                <div class="mockup-content-body" style="background:#f2f2f7; padding:10px 14px;">
+                  <!-- 大标题栏 52pt -->
+                  <div class="mockup-comp" id="mockupLargeTitle" data-comp="ios_largetitle" style="padding:4px 0 2px;">
+                    <div style="font-size:18px; font-weight:800; color:#000; letter-spacing:-0.5px;">探索发现</div>
+                    <span style="font-size:9.5px; color:#8e8e93;">大标题区域 (高度 52pt / 总高 96pt)</span>
+                  </div>
+
+                  <!-- 搜索栏 36pt -->
+                  <div class="mockup-comp" id="mockupIosSearch" data-comp="ios_search" style="background:#e3e3e8; border-radius:10px; height:34px; display:flex; align-items:center; padding:0 10px; gap:6px; font-size:11.5px; color:#8e8e93;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <span>搜索 (高度 36pt / 圆角 10pt)</span>
+                  </div>
+
+                  <!-- 连续曲率卡片 (Squircle 16pt) -->
+                  <div class="mockup-card squircle-card mockup-comp" id="mockupIosCard" data-comp="ios_card" style="box-shadow:0 2px 8px rgba(0,0,0,0.04); border:none;">
+                    <div style="width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg, #007aff 0%, #5856d6 100%); flex-shrink:0;"></div>
+                    <div style="flex:1; display:flex; flex-direction:column; gap:2px;">
+                      <span style="font-size:12.5px; font-weight:600; color:#000;">连续曲率超椭圆卡片</span>
+                      <span style="font-size:10px; color:#8e8e93;">连续圆角 16pt / 边距 16pt</span>
+                    </div>
+                  </div>
+
+                  <!-- 操作按钮 (Touch Target 44pt) -->
+                  <div class="mockup-comp" id="mockupIosButton" data-comp="ios_button" style="background:#007aff; color:#fff; border-radius:12px; height:44px; display:flex; align-items:center; justify-content:center; font-size:12.5px; font-weight:600;">
+                    操作按钮 (触控下限 44×44 pt)
+                  </div>
+                </div>
+
+                <!-- 标签栏 Tab Bar 49pt + Home Indicator 34pt = 83pt -->
+                <div class="mockup-tab-bar-ios mockup-comp" id="mockupIosTabBar" data-comp="ios_tabbar">
+                  <div class="mockup-tab-items">
+                    <div class="mockup-nav-item active" style="color:#007aff;">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                      <span>精选</span>
+                    </div>
+                    <div class="mockup-nav-item">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                      <span>搜索</span>
+                    </div>
+                    <div class="mockup-nav-item">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                      <span>书签</span>
+                    </div>
+                    <div class="mockup-nav-item">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                      <span>我的</span>
+                    </div>
+                  </div>
+                  <!-- Home Indicator 横条 (134×5pt, safe inset 34pt) -->
+                  <div class="mockup-home-indicator mockup-comp" id="mockupHomeIndicator" data-comp="ios_homeindicator" title="Home Indicator 指示条 134×5pt"></div>
+                  <span class="dim-pill" style="bottom:22px; right:6px;">底栏 49pt + 底部安全区 34pt</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="font-size:11.5px; color:var(--text-3); text-align:center;">
+              提示：点击 iPhone 原型上任意组件即可在右侧查看 pt 尺寸与 SwiftUI 代码
+            </div>
+          </div>
+
+          <!-- 右侧：iOS 规范详情、多倍率换算器与速查表 -->
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <!-- 当前选中的组件高亮栏 -->
+            <div class="comp-detail-banner" id="iosCompBanner" style="background:#eff6ff; border-color:#bfdbfe;">
+              <div class="comp-detail-title" style="color:#1d4ed8;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span id="iosCompName">状态栏 (Status Bar)</span>
+              </div>
+              <div class="comp-detail-dims">
+                <span class="spec-code-tag" id="iosCompPtTag" title="点击复制">高度: 54 pt</span>
+                <span class="spec-code-tag" id="iosCompPxTag" title="点击复制" style="background:#dbeafe; color:#1e40af; border-color:#93c5fd;">@3x: 162 px / @2x: 108 px</span>
+                <span class="spec-code-tag" id="iosCompCodeTag" title="点击复制 SwiftUI 代码" style="background:#f5f3ff; color:#6d28d9; border-color:#ddd6fe;">.safeAreaInset(edge: .top)</span>
+              </div>
+            </div>
+
+            <!-- iOS 子功能切换标签 -->
+            <div class="spec-tabs-nav">
+              <button class="spec-tab-btn active" data-subtab="ios-converter">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
+                pt ↔ @2x / @3x 像素换算
+              </button>
+              <button class="spec-tab-btn" data-subtab="ios-components">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                核心系统栏与组件规范
+              </button>
+              <button class="spec-tab-btn" data-subtab="ios-devices">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                iPhone & iPad 全机型尺寸表
+              </button>
+              <button class="spec-tab-btn" data-subtab="ios-icons">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+                App Store 图标与切图规范
+              </button>
+              <button class="spec-tab-btn" data-subtab="ios-typography">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                SF Pro 标准字阶与排版
+              </button>
+            </div>
+
+            <!-- 子模块 1：iOS pt 与像素换算器 -->
+            <div class="subtab-content" id="subtab-ios-converter">
+              <div style="background:#ffffff; border:1px solid var(--border); border-radius:var(--radius); padding:18px;">
+                <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                  <div style="flex:1; min-width:180px;">
+                    <label style="font-size:12px; font-weight:700; color:var(--text-1); margin-bottom:6px; display:block;">输入数值</label>
+                    <input type="number" id="convertIosInputVal" value="44" step="1" min="0" class="text-input" style="font-size:16px; font-weight:700;">
+                  </div>
+                  <div style="width:200px;">
+                    <label style="font-size:12px; font-weight:700; color:var(--text-1); margin-bottom:6px; display:block;">输入单位 / 来源基准</label>
+                    <select id="convertIosUnitSelect" class="select-input">
+                      <option value="pt" selected>pt (iOS 逻辑点 - 设计基准)</option>
+                      <option value="3x">px @3x (Super Retina HD / XDR 主力)</option>
+                      <option value="2x">px @2x (Retina 显示屏 / SE / iPad)</option>
+                      <option value="1x">px @1x (原始点)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- 常用数值快速点击测试 -->
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:12px; align-items:center;">
+                  <span style="font-size:11.5px; color:var(--text-3); font-weight:600;">iOS 高频数值:</span>
+                  <button class="preset-chip" onclick="setIosConvertVal(8, 'pt')">8pt (栅格)</button>
+                  <button class="preset-chip" onclick="setIosConvertVal(16, 'pt')">16pt (边距/卡片圆角)</button>
+                  <button class="preset-chip" onclick="setIosConvertVal(34, 'pt')">34pt (底部安全区)</button>
+                  <button class="preset-chip" onclick="setIosConvertVal(44, 'pt')">44pt (触控下限/导航栏)</button>
+                  <button class="preset-chip" onclick="setIosConvertVal(49, 'pt')">49pt (Tab Bar 内容区)</button>
+                  <button class="preset-chip" onclick="setIosConvertVal(54, 'pt')">54pt (灵动岛状态栏)</button>
+                  <button class="preset-chip" onclick="setIosConvertVal(83, 'pt')">83pt (底栏总高度)</button>
+                  <button class="preset-chip" onclick="setIosConvertVal(96, 'pt')">96pt (大标题导航栏)</button>
+                </div>
+
+                <!-- 3 大关键换算结果卡片 -->
+                <div class="converter-grid" style="grid-template-columns: repeat(3, 1fr);">
+                  <div class="converter-box" onclick="copyText(this.querySelector('.converter-val').textContent + 'pt')">
+                    <div class="converter-density">逻辑尺寸 (Points)</div>
+                    <div class="converter-val" id="resIosPt">44</div>
+                    <div class="converter-scale">1.0× (pt)</div>
+                    <span style="font-size:10px; color:#94a3b8; display:block; margin-top:4px;">Sketch / Figma / SwiftUI</span>
+                  </div>
+                  <div class="converter-box" onclick="copyText(this.querySelector('.converter-val').textContent + 'px')">
+                    <div class="converter-density">@2x (Retina)</div>
+                    <div class="converter-val" id="resIos2x">88</div>
+                    <div class="converter-scale">2.0× (px)</div>
+                    <span style="font-size:10px; color:#94a3b8; display:block; margin-top:4px;">iPhone SE / iPad</span>
+                  </div>
+                  <div class="converter-box highlight" onclick="copyText(this.querySelector('.converter-val').textContent + 'px')" style="border-color:#007aff; background:linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);">
+                    <div class="converter-density" style="color:#1d4ed8;">@3x (Super Retina XDR)</div>
+                    <div class="converter-val" id="resIos3x" style="color:#007aff;">132</div>
+                    <div class="converter-scale" style="color:#1d4ed8; font-weight:700;">3.0× (主力输出)</div>
+                    <span style="font-size:10px; color:#007aff; display:block; margin-top:4px;">iPhone 14/15/16 Pro 旗舰机型</span>
+                  </div>
+                </div>
+
+                <div style="margin-top:14px; padding:10px 14px; background:#f8fafc; border-radius:8px; font-size:12px; color:var(--text-2); display:flex; justify-content:space-between; align-items:center;">
+                  <span>📐 换算公式：<code style="background:#e2e8f0; padding:2px 6px; border-radius:4px; font-weight:700;">@2x px = pt × 2</code> ｜ <code style="background:#e2e8f0; padding:2px 6px; border-radius:4px; font-weight:700;">@3x px = pt × 3</code></span>
+                  <span style="color:#007aff; font-weight:600;">点击任意卡片即可一键复制像素值</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 子模块 2：核心系统栏与常用组件规范表 -->
+            <div class="subtab-content" id="subtab-ios-components" style="display:none;">
+              <div class="spec-table-container">
+                <table class="spec-data-table">
+                  <thead>
+                    <tr>
+                      <th>系统 / 控件名称</th>
+                      <th>标准 pt 规格</th>
+                      <th>@3x 物理像素 (主力)</th>
+                      <th>Apple HIG 交互要点与规范说明</th>
+                      <th>SwiftUI 代码</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr onclick="selectIOSComponentFromTable('dynamicisland')">
+                      <td><strong style="color:var(--text-1);">灵动岛 (Dynamic Island)</strong></td>
+                      <td><span class="spec-code-tag">126 × 37 pt</span></td>
+                      <td>378 × 111 px</td>
+                      <td>紧凑默认态宽 126pt、高 37pt，圆角连续平滑，展开大卡片最大可至 367 × 160pt。</td>
+                      <td><span class="spec-code-tag">ActivityConfiguration</span></td>
+                    </tr>
+                    <tr onclick="selectIOSComponentFromTable('ios_statusbar')">
+                      <td><strong style="color:var(--text-1);">状态栏 (Status Bar)</strong></td>
+                      <td><span class="spec-code-tag">54 pt (灵动岛)</span></td>
+                      <td>162 px</td>
+                      <td>灵动岛机型（14 Pro / 15 / 16）为 54pt；旧款刘海屏为 47pt/44pt；SE非全面屏为 20pt。</td>
+                      <td><span class="spec-code-tag">.safeAreaInset(edge: .top)</span></td>
+                    </tr>
+                    <tr onclick="selectIOSComponentFromTable('ios_navbar')">
+                      <td><strong style="color:var(--text-1);">导航栏标准态 (Nav Bar)</strong></td>
+                      <td><span class="spec-code-tag">44 pt</span></td>
+                      <td>132 px</td>
+                      <td>包含返回按钮、页面标题与操作图标；加上状态栏后顶部总安全区为 <strong>98 pt</strong> (54+44)。</td>
+                      <td><span class="spec-code-tag">.navigationBarTitleDisplayMode(.inline)</span></td>
+                    </tr>
+                    <tr onclick="selectIOSComponentFromTable('ios_largetitle')">
+                      <td><strong style="color:var(--text-1);">大标题导航栏 (Large Title)</strong></td>
+                      <td><span class="spec-code-tag">96 pt (总高)</span></td>
+                      <td>288 px</td>
+                      <td>标准标题区 44pt + 大标题文字区 52pt；向上滚动时平滑收缩过渡为 44pt 标准内联栏。</td>
+                      <td><span class="spec-code-tag">.navigationBarTitleDisplayMode(.large)</span></td>
+                    </tr>
+                    <tr onclick="selectIOSComponentFromTable('ios_tabbar')">
+                      <td><strong style="color:var(--text-1);">标签栏 (Tab Bar)</strong></td>
+                      <td><span class="spec-code-tag">49 pt + 34 pt</span></td>
+                      <td>147 + 102 = 249 px</td>
+                      <td>内容区高度 49pt，底部配合 Home 指示条留白 34pt，底部常驻总高度 <strong>83 pt</strong>。</td>
+                      <td><span class="spec-code-tag">TabView { ... }</span></td>
+                    </tr>
+                    <tr onclick="selectIOSComponentFromTable('ios_homeindicator')">
+                      <td><strong style="color:var(--text-1);">Home 指示条 (Home Indicator)</strong></td>
+                      <td><span class="spec-code-tag">134 × 5 pt</span></td>
+                      <td>402 × 15 px</td>
+                      <td>横条本身 134×5pt，距屏幕底部留白 8pt，该区域任何控件不可与边缘直接贴合。</td>
+                      <td><span class="spec-code-tag">.safeAreaInset(edge: .bottom)</span></td>
+                    </tr>
+                    <tr onclick="selectIOSComponentFromTable('ios_button')">
+                      <td><strong style="color:var(--text-1);">最小触控区域 (Touch Target)</strong></td>
+                      <td><span class="spec-code-tag">44 × 44 pt</span></td>
+                      <td>132 × 132 px</td>
+                      <td><strong>Apple HIG 核心铁律</strong>：任何可点击区域视觉可小（如 24pt 图标），但点击热区必须 $\ge$ 44×44pt。</td>
+                      <td><span class="spec-code-tag">.frame(minWidth: 44, minHeight: 44)</span></td>
+                    </tr>
+                    <tr onclick="selectIOSComponentFromTable('ios_search')">
+                      <td><strong style="color:var(--text-1);">搜索栏 (Search Field)</strong></td>
+                      <td><span class="spec-code-tag">36 pt (圆角 10pt)</span></td>
+                      <td>108 px</td>
+                      <td>浅灰背景 <code>#E3E3E8</code>，内嵌放大镜与清除图标，聚焦时右侧滑出「取消」按钮。</td>
+                      <td><span class="spec-code-tag">.searchable(text: $query)</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 子模块 3：iPhone & iPad 全机型尺寸总表 -->
+            <div class="subtab-content" id="subtab-ios-devices" style="display:none;">
+              <div class="spec-table-container">
+                <table class="spec-data-table">
+                  <thead>
+                    <tr>
+                      <th>机型类别</th>
+                      <th>逻辑点尺寸 (pt)</th>
+                      <th>倍率</th>
+                      <th>物理像素分辨率 (px)</th>
+                      <th>屏幕形态</th>
+                      <th>设计定位</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="background:#eff6ff;">
+                      <td><strong style="color:#007aff;">iPhone 15 / 15 Pro / 16 / 14 Pro</strong></td>
+                      <td><span class="spec-code-tag" style="background:#007aff; color:#fff;">393 × 852 pt</span></td>
+                      <td><strong>@3x</strong></td>
+                      <td><strong>1179 × 2556 px</strong></td>
+                      <td>灵动岛 (54pt)</td>
+                      <td><strong style="color:#10b981;">主力首选设计基准 (首选出图)</strong></td>
+                    </tr>
+                    <tr>
+                      <td><strong>iPhone 16 Pro (6.3")</strong></td>
+                      <td><span class="spec-code-tag">402 × 874 pt</span></td>
+                      <td>@3x</td>
+                      <td>1206 × 2622 px</td>
+                      <td>灵动岛超窄边</td>
+                      <td>2024+ 旗舰基准</td>
+                    </tr>
+                    <tr>
+                      <td><strong>iPhone 15/16 Plus & Pro Max</strong></td>
+                      <td><span class="spec-code-tag">430 × 932 pt</span></td>
+                      <td>@3x</td>
+                      <td>1290 × 2796 px</td>
+                      <td>灵动岛大屏</td>
+                      <td>大屏主力机型</td>
+                    </tr>
+                    <tr>
+                      <td><strong>iPhone 13 / 14 / 13 Pro</strong></td>
+                      <td><span class="spec-code-tag">390 × 844 pt</span></td>
+                      <td>@3x</td>
+                      <td>1170 × 2532 px</td>
+                      <td>小刘海 (47pt)</td>
+                      <td>前代主流机型</td>
+                    </tr>
+                    <tr>
+                      <td><strong>iPhone 11 / XR / SE (第3代)</strong></td>
+                      <td><span class="spec-code-tag">414 × 896 / 375 × 667 pt</span></td>
+                      <td>@2x</td>
+                      <td>828 × 1792 / 750 × 1334 px</td>
+                      <td>刘海 / 经典 16:9</td>
+                      <td>低倍率兼容测试</td>
+                    </tr>
+                    <tr>
+                      <td><strong>iPad Pro 11" / iPad Air</strong></td>
+                      <td><span class="spec-code-tag">834 × 1194 pt</span></td>
+                      <td>@2x</td>
+                      <td>1668 × 2388 px</td>
+                      <td>平板四等边</td>
+                      <td>iPad 平板主适配</td>
+                    </tr>
+                    <tr>
+                      <td><strong>iPad Pro 12.9" / 13"</strong></td>
+                      <td><span class="spec-code-tag">1024 × 1366 pt</span></td>
+                      <td>@2x</td>
+                      <td>2048 × 2732 px</td>
+                      <td>平板大屏</td>
+                      <td>专业生产力平板</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div style="margin-top:12px; padding:12px 16px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; font-size:12.5px; color:#1e40af; line-height:1.6;">
+                💡 <strong>当前 iOS 设计行业黄金法则</strong>：新建 Figma / Sketch 画布时，请直接选用 <strong>393 × 852 pt (iPhone 15/16 Pro)</strong> 作为 1:1 核心基准稿进行设计与标注，向大屏与折叠机型拉伸自动适配！
+              </div>
+            </div>
+
+            <!-- 子模块 4：App Store 图标与切图资源规范 -->
+            <div class="subtab-content" id="subtab-ios-icons" style="display:none;">
+              <div style="background:#ffffff; border:1px solid var(--border); border-radius:var(--radius); padding:18px;">
+                <div style="font-size:14px; font-weight:700; color:var(--text-1); margin-bottom:6px;">
+                  iOS App 图标与 Assets.car 切图输出标准
+                </div>
+                <p style="font-size:12.5px; color:var(--text-2); line-height:1.5;">
+                  提交 App Store 审核时，图标必须提供 <strong>1024 × 1024 px</strong> 正方形无圆角 PNG。Apple 系统会自动对其添加基于数学连贯曲率的超椭圆（Squircle）遮罩，切勿自己裁剪圆角！
+                </p>
+
+                <div class="spec-table-container" style="margin-top:14px;">
+                  <table class="spec-data-table">
+                    <thead>
+                      <tr>
+                        <th>图标使用场景</th>
+                        <th>逻辑点 (pt)</th>
+                        <th>@2x 像素 (px)</th>
+                        <th>@3x 像素 (px)</th>
+                        <th>输出规格要求</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr style="background:#f0fdf4;">
+                        <td><strong style="color:#15803d;">App Store 商店提交图标</strong></td>
+                        <td><span class="spec-code-tag">1024 × 1024 pt</span></td>
+                        <td>—</td>
+                        <td><strong style="color:#15803d;">1024 × 1024 px</strong></td>
+                        <td>直角、无透明度、RGB 格式、不含内阴影</td>
+                      </tr>
+                      <tr>
+                        <td><strong>iPhone 主屏幕桌面图标</strong></td>
+                        <td>60 × 60 pt</td>
+                        <td>120 × 120 px</td>
+                        <td>180 × 180 px</td>
+                        <td>核心用户首屏入口</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Spotlight 全局搜索图标</strong></td>
+                        <td>40 × 40 pt</td>
+                        <td>80 × 80 px</td>
+                        <td>120 × 120 px</td>
+                        <td>下滑搜索结果中展示</td>
+                      </tr>
+                      <tr>
+                        <td><strong>设置菜单图标 (Settings)</strong></td>
+                        <td>29 × 29 pt</td>
+                        <td>58 × 58 px</td>
+                        <td>87 × 87 px</td>
+                        <td>系统「设置」列表左侧小图标</td>
+                      </tr>
+                      <tr>
+                        <td><strong>系统通知提示图标 (Notification)</strong></td>
+                        <td>20 × 20 pt</td>
+                        <td>40 × 40 px</td>
+                        <td>60 × 60 px</td>
+                        <td>锁屏推送与横幅提醒图标</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div style="margin-top:12px; padding:12px 16px; background:#fffbeb; border:1px solid #fef3c7; border-radius:8px; font-size:12.5px; color:#92400e; line-height:1.6;">
+                  🌟 <strong>矢量推荐：SF Symbols 5</strong>：对于应用内所有单色/多色功能图标，强烈推荐直接使用 Apple 官方内置的 <strong>SF Symbols</strong> 矢量符号库，天生支持无损缩放、动态字体粗细（Bold/Medium）对齐以及自动暗黑模式反色！
+                </div>
+              </div>
+            </div>
+
+            <!-- 子模块 5：SF Pro 标准字阶与动态类型 -->
+            <div class="subtab-content" id="subtab-ios-typography" style="display:none;">
+              <div style="background:#ffffff; border:1px solid var(--border); border-radius:var(--radius); padding:18px; display:flex; flex-direction:column; gap:16px;">
+                <div>
+                  <div style="font-size:14px; font-weight:700; color:var(--text-1); margin-bottom:4px;">Apple San Francisco (SF Pro) 系统标准字阶</div>
+                  <div style="font-size:12.5px; color:var(--text-2); line-height:1.6;">
+                    iOS 界面默认采用 <strong>SF Pro</strong>（西文/数字）与 <strong>PingFang SC 苹方</strong>（中文）。Apple 规范了严格的层级比例，并支持无障碍动态字体大小缩放（Dynamic Type）。
+                  </div>
+                </div>
+
+                <div class="spec-table-container">
+                  <table class="spec-data-table">
+                    <thead>
+                      <tr>
+                        <th>文本层级角色</th>
+                        <th>字号大小 (pt)</th>
+                        <th>行高 (Leading)</th>
+                        <th>推荐字重 (Weight)</th>
+                        <th>典型应用场景</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Large Title (大标题)</strong></td>
+                        <td><span class="spec-code-tag">34 pt</span></td>
+                        <td>41 pt</td>
+                        <td>Bold (700)</td>
+                        <td>顶层导航大标题、重大分类看板</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Title 1 (一级标题)</strong></td>
+                        <td><span class="spec-code-tag">28 pt</span></td>
+                        <td>34 pt</td>
+                        <td>Bold (700)</td>
+                        <td>次级重要大区段主标题</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Title 2 (二级标题)</strong></td>
+                        <td><span class="spec-code-tag">22 pt</span></td>
+                        <td>28 pt</td>
+                        <td>Bold / Regular</td>
+                        <td>模块分类卡片标题</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Headline (小标题/重点)</strong></td>
+                        <td><span class="spec-code-tag">17 pt</span></td>
+                        <td>22 pt</td>
+                        <td>Semi-Bold (600)</td>
+                        <td>列表项主文字加粗、表单字段标签</td>
+                      </tr>
+                      <tr style="background:#eff6ff;">
+                        <td><strong style="color:#007aff;">Body (正文基准)</strong></td>
+                        <td><span class="spec-code-tag" style="background:#007aff; color:#fff;">17 pt</span></td>
+                        <td>22 pt</td>
+                        <td>Regular (400)</td>
+                        <td><strong>iOS 正文字体绝对基准</strong>，所有长文本阅读主体</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Callout (醒目引文)</strong></td>
+                        <td><span class="spec-code-tag">16 pt</span></td>
+                        <td>21 pt</td>
+                        <td>Regular (400)</td>
+                        <td>信息卡片引述、提示小注</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Subheadline (副标题)</strong></td>
+                        <td><span class="spec-code-tag">15 pt</span></td>
+                        <td>20 pt</td>
+                        <td>Regular (400)</td>
+                        <td>列表描述副文本、作者与时间</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Footnote (脚注)</strong></td>
+                        <td><span class="spec-code-tag">13 pt</span></td>
+                        <td>18 pt</td>
+                        <td>Regular (400)</td>
+                        <td>法律条款、次要注释信息</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Caption 1 / 2 (标注文字)</strong></td>
+                        <td><span class="spec-code-tag">12 / 11 pt</span></td>
+                        <td>16 / 13 pt</td>
+                        <td>Medium / Regular</td>
+                        <td>底栏 Tab 文字、角标、图表轴刻度</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <!-- 页脚 -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>© 2026 极简工具箱 · 纯本地浏览器计算 · 保障隐私与数据安全</div>
+        <div class="footer-links">
+          <a href="privacy.html" target="_blank">隐私政策</a>
+          <a href="#" onclick="showToast('本工具箱所有计算均在本地浏览器完成，绝不上传任何服务器'); return false;">安全声明</a>
+        </div>
+      </div>
+    </footer>
+  </div> <!-- 关闭 .main-wrapper -->
+</div> <!-- 关闭 .app-layout -->
 
   <!-- 沉浸式画质放大对比模态弹窗 (Split Slider) -->
   <div class="modal-overlay" id="compareModal">
@@ -1689,20 +3380,11 @@
   <!-- Toast 容器 -->
   <div class="toast-container" id="toastContainer"></div>
 
-  <!-- 页脚 -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div>© 2026 极简工具箱 · 纯本地浏览器计算 · 保障隐私与数据安全</div>
-      <div class="footer-links">
-        <a href="privacy.html" target="_blank">隐私政策</a>
-        <a href="#" onclick="showToast('本工具箱所有计算均在本地浏览器完成，绝不上传任何服务器'); return false;">安全声明</a>
-      </div>
-    </div>
-  </footer>
 
   <!-- 依赖库 -->
-  <script src="vendor/pdf-lib.min.js"></script>
+  <script src="vendor/pdf.worker.min.js"></script>
   <script src="vendor/pdf.min.js"></script>
+  <script src="vendor/pdf-lib.min.js"></script>
   <script>
     if (typeof PDFLib === 'undefined') {
       document.write('<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"><\/script>');
@@ -1836,10 +3518,12 @@
     const heroIcon = heroBanner ? heroBanner.querySelector('svg') : null;
 
     const themeColors = {
-      'panel-pdf': { text: '📄 当前模式：PDF 智能保真压缩 · 100% 保护文字矢量排版，支持任意文本复制与搜索', color: '#ef4444' },
       'panel-image': { text: '🖼️ 当前模式：全能图片深度压缩 · 支持 JPG/PNG/WebP/GIF/AVIF，智能达标与格式互转', color: '#0071e3' },
+      'panel-pdf': { text: '📄 当前模式：PDF 双核强力压缩 · 深度光栅重采(专克扫描件/PPT) + 矢量文字保真 + 智能目标大小', color: '#ef4444' },
       'panel-svg': { text: '📐 当前模式：SVG 矢量图形瘦身 · 清理注释、折叠多余空白、精简路径坐标精度', color: '#8b5cf6' },
-      'panel-idphoto': { text: '👤 当前模式：一寸/多尺寸证件照智能制作 · 标准 300DPI 冲印规格 / 一键更换红蓝白底 / 6寸排版', color: '#10b981' }
+      'panel-idphoto': { text: '👤 当前模式：一寸/多尺寸证件照智能制作 · 标准 300DPI 冲印规格 / 一键更换红蓝白底 / 6寸排版', color: '#10b981' },
+      'panel-android': { text: '📱 当前模式：安卓 APP 设计尺寸规范与标注速查 · Material 3 控件标准 / 屏幕倍率计算器 / 8dp 栅格与图标规范', color: '#0284c7' },
+      'panel-ios': { text: '🍎 当前模式：iOS (iPhone / iPad) 设计尺寸规范与组件标注速查 · Human Interface Guidelines (HIG) / 灵动岛标准 / pt与像素倍率换算', color: '#007aff' }
     };
 
     if (navTabs && navTabs.length > 0) {
@@ -1860,14 +3544,17 @@
       });
     }
 
-    // 支持键盘快捷键 1, 2, 3, 4 快速切换工具
+    // 支持键盘快捷键 1, 2, 3, 4, 5, 6 快速切换工具
     window.addEventListener('keydown', (e) => {
       if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
       if (e.key === '1' && navTabs[0]) navTabs[0].click();
       else if (e.key === '2' && navTabs[1]) navTabs[1].click();
       else if (e.key === '3' && navTabs[2]) navTabs[2].click();
       else if (e.key === '4' && navTabs[3]) navTabs[3].click();
+      else if (e.key === '5' && navTabs[4]) navTabs[4].click();
+      else if (e.key === '6' && navTabs[5]) navTabs[5].click();
     });
+
 
     // 剪贴板粘贴支持 (⌘+V / Ctrl+V)
     window.addEventListener('paste', (e) => {
@@ -2205,7 +3892,7 @@
     });
 
     // ========================================================
-    // PDF 模块交互逻辑接入
+    // PDF 模块交互逻辑接入 (双核智能压缩引擎)
     // ========================================================
     const PDFState = { files: [], currentMode: 'balanced' };
     const pdfDropzone = document.getElementById('pdfDropzone');
@@ -2215,7 +3902,7 @@
     const pdfTargetMb = document.getElementById('pdfTargetMb');
     const pdfQualitySlider = document.getElementById('pdfQualitySlider');
     const pdfQualityVal = document.getElementById('pdfQualityVal');
-    const pdfMaxDim = document.getElementById('pdfMaxDim');
+    const pdfDpiSelect = document.getElementById('pdfDpiSelect');
     const pdfGrayscale = document.getElementById('pdfGrayscale');
     const pdfActionBar = document.getElementById('pdfActionBar');
     const pdfFileList = document.getElementById('pdfFileList');
@@ -2227,32 +3914,47 @@
     const pdfDownloadAllBtn = document.getElementById('pdfDownloadAllBtn');
     const pdfClearBtn = document.getElementById('pdfClearBtn');
 
-    pdfPresetGrid.addEventListener('click', (e) => {
-      const item = e.target.closest('.preset-item');
-      if (!item) return;
-      document.querySelectorAll('#pdfPresetGrid .preset-item').forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-      const mode = item.dataset.mode;
-      PDFState.currentMode = mode;
-      pdfTargetGroup.style.display = mode === 'target' ? 'flex' : 'none';
-      if (mode === 'balanced') { pdfQualitySlider.value = 75; pdfMaxDim.value = '1600'; }
-      else if (mode === 'max') { pdfQualitySlider.value = 50; pdfMaxDim.value = '1000'; }
-      else if (mode === 'lossless') { pdfQualitySlider.value = 95; pdfMaxDim.value = '99999'; }
-      pdfQualityVal.textContent = pdfQualitySlider.value + '%';
-    });
+    if (pdfPresetGrid) {
+      pdfPresetGrid.addEventListener('click', (e) => {
+        const item = e.target.closest('.preset-item');
+        if (!item) return;
+        document.querySelectorAll('#pdfPresetGrid .preset-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        const mode = item.dataset.mode;
+        PDFState.currentMode = mode;
+        if (pdfTargetGroup) pdfTargetGroup.style.display = mode === 'target' ? 'flex' : 'none';
+        if (mode === 'balanced') {
+          if (pdfQualitySlider) pdfQualitySlider.value = 75;
+          if (pdfDpiSelect) pdfDpiSelect.value = '140';
+        } else if (mode === 'max') {
+          if (pdfQualitySlider) pdfQualitySlider.value = 50;
+          if (pdfDpiSelect) pdfDpiSelect.value = '100';
+        } else if (mode === 'vector') {
+          if (pdfQualitySlider) pdfQualitySlider.value = 75;
+        }
+        if (pdfQualityVal && pdfQualitySlider) pdfQualityVal.textContent = pdfQualitySlider.value + '%';
+      });
+    }
 
-    pdfQualitySlider.addEventListener('input', () => { pdfQualityVal.textContent = pdfQualitySlider.value + '%'; });
-    pdfDropzone.addEventListener('click', () => pdfFileInput.click());
-    pdfDropzone.addEventListener('dragover', (e) => { e.preventDefault(); pdfDropzone.classList.add('dragover'); });
-    pdfDropzone.addEventListener('dragleave', () => pdfDropzone.classList.remove('dragover'));
-    pdfDropzone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      pdfDropzone.classList.remove('dragover');
-      if (e.dataTransfer.files) handlePDFFiles(Array.from(e.dataTransfer.files));
-    });
-    pdfFileInput.addEventListener('change', () => {
-      if (pdfFileInput.files) { handlePDFFiles(Array.from(pdfFileInput.files)); pdfFileInput.value = ''; }
-    });
+    if (pdfQualitySlider) {
+      pdfQualitySlider.addEventListener('input', () => {
+        if (pdfQualityVal) pdfQualityVal.textContent = pdfQualitySlider.value + '%';
+      });
+    }
+
+    if (pdfDropzone && pdfFileInput) {
+      pdfDropzone.addEventListener('click', () => pdfFileInput.click());
+      pdfDropzone.addEventListener('dragover', (e) => { e.preventDefault(); pdfDropzone.classList.add('dragover'); });
+      pdfDropzone.addEventListener('dragleave', () => pdfDropzone.classList.remove('dragover'));
+      pdfDropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        pdfDropzone.classList.remove('dragover');
+        if (e.dataTransfer.files) handlePDFFiles(Array.from(e.dataTransfer.files));
+      });
+      pdfFileInput.addEventListener('change', () => {
+        if (pdfFileInput.files) { handlePDFFiles(Array.from(pdfFileInput.files)); pdfFileInput.value = ''; }
+      });
+    }
 
     function handlePDFFiles(files) {
       const pdfs = files.filter(f => f.name.toLowerCase().endsWith('.pdf'));
@@ -2260,7 +3962,18 @@
       for (const f of pdfs) {
         const id = 'pdf_' + Math.random().toString(36).substr(2, 9);
         PDFState.files.push({
-          id, file: f, name: f.name, origSize: f.size, compSize: null, status: 'ready', statusText: '等待压缩', buffer: null, compBuffer: null
+          id,
+          file: f,
+          name: f.name,
+          origSize: f.size,
+          compSize: null,
+          status: 'ready',
+          statusText: '等待压缩',
+          savedPct: 0,
+          usedMode: null,
+          totalPages: null,
+          buffer: null,
+          compBuffer: null
         });
       }
       renderPDFList();
@@ -2269,25 +3982,40 @@
     }
 
     function renderPDFList() {
-      if (PDFState.files.length === 0) { pdfFileList.innerHTML = ''; pdfActionBar.style.display = 'none'; return; }
-      pdfActionBar.style.display = 'flex';
+      if (PDFState.files.length === 0) {
+        if (pdfFileList) pdfFileList.innerHTML = '';
+        if (pdfActionBar) pdfActionBar.style.display = 'none';
+        return;
+      }
+      if (pdfActionBar) pdfActionBar.style.display = 'flex';
+      if (!pdfFileList) return;
+
       pdfFileList.innerHTML = PDFState.files.map(item => `
         <div class="file-item" id="item_${item.id}">
           <div class="file-thumb" style="background:#fee2e2; color:#ef4444; font-weight:800; font-size:12px;">PDF</div>
           <div class="file-info">
             <div class="file-name-row">
               <span class="file-name" title="${item.name}">${item.name}</span>
-              <span class="file-badge-status ${item.status === 'done' ? 'done' : ''}">${item.statusText}</span>
+              <span class="file-badge-status ${item.status === 'done' ? 'done' : (item.status === 'processing' ? 'processing' : '')}">${item.statusText}</span>
               ${item.compSize && item.compSize < item.origSize ? `<span class="file-badge-saved">节省 ${((1 - item.compSize/item.origSize)*100).toFixed(1)}%</span>` : ''}
+              ${item.status === 'done' && item.usedMode === 'vector' && item.savedPct < 12 ? `
+                <span style="font-size:11.5px; color:#d97706; margin-left:8px; display:inline-flex; align-items:center; gap:4px;">
+                  ⚠️ 该文件多为图像/扫描，
+                  <button type="button" onclick="compressSinglePDF('${item.id}', 'balanced')" style="color:#0071e3; font-size:11.5px; text-decoration:underline; font-weight:700; cursor:pointer; background:none; border:none; padding:0;">
+                    点击切换【深度强力压缩】
+                  </button>
+                </span>
+              ` : ''}
             </div>
             <div class="file-meta-row">
-              <span>${formatBytes(item.origSize)}</span>
-              ${item.compSize ? `<span>➔</span><span class="file-size-comp">${formatBytes(item.compSize)}</span>` : ''}
+              <span>原始: ${formatBytes(item.origSize)}</span>
+              ${item.compSize ? `<span>➔</span><span class="file-size-comp">压缩后: ${formatBytes(item.compSize)}</span>` : ''}
+              ${item.totalPages ? `<span style="color:var(--text-3); font-size:11px;">(${item.totalPages} 页)</span>` : ''}
             </div>
           </div>
           <div class="file-actions">
             ${item.status === 'done' ? `
-              <button class="btn-icon" title="下载" onclick="downloadSinglePDF('${item.id}')">
+              <button class="btn-icon" title="下载优化后的 PDF" onclick="downloadSinglePDF('${item.id}')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               </button>
             ` : `
@@ -2304,20 +4032,21 @@
     }
 
     function updatePDFSummary() {
-      pdfTotalCount.textContent = PDFState.files.length;
+      if (pdfTotalCount) pdfTotalCount.textContent = PDFState.files.length;
       const totalOrig = PDFState.files.reduce((a, b) => a + b.origSize, 0);
       const done = PDFState.files.filter(f => f.status === 'done' && f.compSize);
       const totalComp = done.reduce((a, b) => a + b.compSize, 0);
-      pdfTotalOrig.textContent = formatBytes(totalOrig);
+      if (pdfTotalOrig) pdfTotalOrig.textContent = formatBytes(totalOrig);
       if (done.length > 0) {
-        pdfTotalComp.textContent = formatBytes(totalComp);
+        if (pdfTotalComp) pdfTotalComp.textContent = formatBytes(totalComp);
         const saved = totalOrig - totalComp;
-        pdfTotalSaved.textContent = `节省 ${formatBytes(saved)} (-${((saved/totalOrig)*100).toFixed(1)}%)`;
-        pdfDownloadAllBtn.style.display = 'inline-flex';
+        const savedPct = totalOrig > 0 ? ((saved / totalOrig) * 100).toFixed(1) : '0';
+        if (pdfTotalSaved) pdfTotalSaved.textContent = `节省 ${formatBytes(Math.max(0, saved))} (-${Math.max(0, savedPct)}%)`;
+        if (pdfDownloadAllBtn) pdfDownloadAllBtn.style.display = 'inline-flex';
       } else {
-        pdfTotalComp.textContent = '--';
-        pdfTotalSaved.textContent = '节省 0 MB (-0%)';
-        pdfDownloadAllBtn.style.display = 'none';
+        if (pdfTotalComp) pdfTotalComp.textContent = '--';
+        if (pdfTotalSaved) pdfTotalSaved.textContent = '节省 0 MB (-0%)';
+        if (pdfDownloadAllBtn) pdfDownloadAllBtn.style.display = 'none';
       }
     }
 
@@ -2327,99 +4056,253 @@
       updatePDFSummary();
     };
 
-    pdfClearBtn.addEventListener('click', () => {
-      PDFState.files = [];
-      renderPDFList();
-      updatePDFSummary();
-    });
+    if (pdfClearBtn) {
+      pdfClearBtn.addEventListener('click', () => {
+        PDFState.files = [];
+        renderPDFList();
+        updatePDFSummary();
+      });
+    }
 
-    window.compressSinglePDF = async function(id) {
-      const item = PDFState.files.find(f => f.id === id);
-      if (!item) return;
-      item.status = 'processing';
-      item.statusText = '优化中...';
-      renderPDFList();
+    // 引擎一：深度高清光栅化压缩（彻底攻破各类扫描件、PPT导出、图文PDF“压不动”难题）
+    async function compressPdfByRaster(file, options, onProgress) {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({
+        data: new Uint8Array(arrayBuffer),
+        cMapPacked: true
+      }).promise;
 
-      try {
-        const buf = await item.file.arrayBuffer();
-        const { PDFDocument, PDFName, PDFNumber, PDFRawStream, PDFStream } = PDFLib;
-        const pdfDoc = await PDFDocument.load(buf, { ignoreEncryption: true });
+      const numPages = pdf.numPages;
+      let dpi = options.dpi || 140;
+      let quality = options.quality || 0.75;
+      const grayscale = !!options.grayscale;
 
-        if (PDFState.currentMode !== 'lossless') {
-          const objects = pdfDoc.context.enumerateIndirectObjects();
-          const maxDim = parseInt(pdfMaxDim.value, 10);
-          const quality = parseInt(pdfQualitySlider.value, 10) / 100;
-          const grayscale = pdfGrayscale.checked;
+      // 若处于指定目标大小模式，自动根据页数测算并匹配最佳采样率
+      if (options.mode === 'target' && options.targetMb) {
+        const targetBytes = options.targetMb * 1024 * 1024 * 0.92;
+        const bytesPerPage = targetBytes / numPages;
+        if (bytesPerPage < 60 * 1024) {
+          dpi = 96; quality = 0.42;
+        } else if (bytesPerPage < 120 * 1024) {
+          dpi = 110; quality = 0.55;
+        } else if (bytesPerPage < 250 * 1024) {
+          dpi = 135; quality = 0.68;
+        } else if (bytesPerPage < 500 * 1024) {
+          dpi = 150; quality = 0.78;
+        } else {
+          dpi = 180; quality = 0.85;
+        }
+      }
 
-          for (const [ref, obj] of objects) {
-            if (obj instanceof PDFRawStream || obj instanceof PDFStream) {
-              const dict = obj.dict;
-              const sub = dict.get(PDFName.of('Subtype'));
-              if (sub && sub.toString() === '/Image') {
-                const filter = dict.get(PDFName.of('Filter'));
-                if (filter && filter.toString() === '/DCTDecode' && obj.contents) {
-                  try {
-                    const blob = new Blob([obj.contents], { type: 'image/jpeg' });
-                    const bmp = await createImageBitmap(blob);
-                    let w = bmp.width, h = bmp.height;
-                    if (Math.max(w, h) > maxDim) {
-                      const sc = maxDim / Math.max(w, h);
-                      w = Math.max(1, Math.round(w * sc));
-                      h = Math.max(1, Math.round(h * sc));
-                    }
-                    const cvs = document.createElement('canvas');
-                    cvs.width = w; cvs.height = h;
-                    const ctx = cvs.getContext('2d');
-                    ctx.drawImage(bmp, 0, 0, w, h);
-                    bmp.close();
-                    if (grayscale) {
-                      const d = ctx.getImageData(0,0,w,h);
-                      for (let i=0; i<d.data.length; i+=4) {
-                        const g = 0.299*d.data[i] + 0.587*d.data[i+1] + 0.114*d.data[i+2];
-                        d.data[i]=g; d.data[i+1]=g; d.data[i+2]=g;
-                      }
-                      ctx.putImageData(d, 0, 0);
-                    }
-                    const newBlob = await new Promise(r => cvs.toBlob(r, 'image/jpeg', quality));
-                    if (newBlob) {
-                      const newBuf = await newBlob.arrayBuffer();
-                      const newBytes = new Uint8Array(newBuf);
-                      if (newBytes.length < obj.contents.length || w < bmp.width) {
-                        obj.contents = newBytes;
-                        dict.set(PDFName.of('Length'), PDFNumber.of(newBytes.length));
-                        dict.set(PDFName.of('Width'), PDFNumber.of(w));
-                        dict.set(PDFName.of('Height'), PDFNumber.of(h));
-                      }
-                    }
-                  } catch(e) {}
+      const scale = dpi / 72.0;
+      const { PDFDocument } = PDFLib;
+      const outDoc = await PDFDocument.create();
+
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d', { willReadFrequently: grayscale });
+
+      for (let i = 1; i <= numPages; i++) {
+        if (onProgress) onProgress(i, numPages);
+        const page = await pdf.getPage(i);
+        const viewport = page.getViewport({ scale });
+        const origViewport = page.getViewport({ scale: 1.0 });
+
+        canvas.width = Math.floor(viewport.width);
+        canvas.height = Math.floor(viewport.height);
+
+        // 关键防御：必须先填充纯白底色，防止 PDF 默认透明层转 JPEG 时产生黑底
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        await page.render({ canvasContext: ctx, viewport }).promise;
+
+        if (grayscale) {
+          const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const d = imgData.data;
+          for (let p = 0; p < d.length; p += 4) {
+            const g = 0.299 * d[p] + 0.587 * d[p + 1] + 0.114 * d[p + 2];
+            d[p] = g; d[p + 1] = g; d[p + 2] = g;
+          }
+          ctx.putImageData(imgData, 0, 0);
+        }
+
+        const blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', quality));
+        const jpgBytes = new Uint8Array(await blob.arrayBuffer());
+        const embeddedImg = await outDoc.embedJpg(jpgBytes);
+
+        // 保持 1:1 原物理页面尺寸（如 A4、A3、横竖版），平滑贴合
+        const newPage = outDoc.addPage([origViewport.width, origViewport.height]);
+        newPage.drawImage(embeddedImg, {
+          x: 0,
+          y: 0,
+          width: origViewport.width,
+          height: origViewport.height
+        });
+      }
+
+      let outBytes = await outDoc.save({ useObjectStreams: true });
+
+      // 目标大小模式闭环微调：若首次略超目标，以针对性降档快速二轮收敛
+      if (options.mode === 'target' && options.targetMb && !options._secondPass) {
+        const targetBytes = options.targetMb * 1024 * 1024;
+        if (outBytes.byteLength > targetBytes && quality > 0.35) {
+          const ratio = targetBytes / outBytes.byteLength;
+          const newQuality = Math.max(0.30, quality * ratio * 0.9);
+          const newDpi = Math.max(80, Math.floor(dpi * Math.sqrt(ratio)));
+          return compressPdfByRaster(file, { ...options, dpi: newDpi, quality: newQuality, _secondPass: true }, onProgress);
+        }
+      }
+
+      return { bytes: outBytes, pages: numPages };
+    }
+
+    // 引擎二：矢量结构保护压缩（100% 保持文字矢量层与文字可选复制）
+    async function compressPdfByVector(file, options, onProgress) {
+      if (onProgress) onProgress(1, 1);
+      const buf = await file.arrayBuffer();
+      const { PDFDocument, PDFName, PDFNumber, PDFRawStream, PDFStream } = PDFLib;
+      const pdfDoc = await PDFDocument.load(buf, { ignoreEncryption: true });
+
+      const objects = pdfDoc.context.enumerateIndirectObjects();
+      const maxDim = options.maxDim || 1600;
+      const quality = options.quality || 0.75;
+      const grayscale = !!options.grayscale;
+
+      for (const [ref, obj] of objects) {
+        if (obj instanceof PDFRawStream || obj instanceof PDFStream) {
+          const dict = obj.dict;
+          const sub = dict.get(PDFName.of('Subtype'));
+          if (sub && sub.toString() === '/Image') {
+            const filter = dict.get(PDFName.of('Filter'));
+            const isDCT = filter && (filter.toString() === '/DCTDecode' || filter.toString().includes('DCTDecode'));
+            if (isDCT && obj.contents) {
+              try {
+                const blob = new Blob([obj.contents], { type: 'image/jpeg' });
+                const bmp = await createImageBitmap(blob);
+                let w = bmp.width, h = bmp.height;
+                if (Math.max(w, h) > maxDim) {
+                  const sc = maxDim / Math.max(w, h);
+                  w = Math.max(1, Math.round(w * sc));
+                  h = Math.max(1, Math.round(h * sc));
                 }
-              }
+                const cvs = document.createElement('canvas');
+                cvs.width = w; cvs.height = h;
+                const ctx = cvs.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, w, h);
+                ctx.drawImage(bmp, 0, 0, w, h);
+                bmp.close();
+                if (grayscale) {
+                  const d = ctx.getImageData(0, 0, w, h);
+                  for (let i = 0; i < d.length; i += 4) {
+                    const g = 0.299 * d.data[i] + 0.587 * d.data[i + 1] + 0.114 * d.data[i + 2];
+                    d.data[i] = g; d.data[i + 1] = g; d.data[i + 2] = g;
+                  }
+                  ctx.putImageData(d, 0, 0);
+                }
+                const newBlob = await new Promise(r => cvs.toBlob(r, 'image/jpeg', quality));
+                if (newBlob) {
+                  const newBuf = await newBlob.arrayBuffer();
+                  const newBytes = new Uint8Array(newBuf);
+                  if (newBytes.length < obj.contents.length || w < bmp.width) {
+                    obj.contents = newBytes;
+                    dict.set(PDFName.of('Length'), PDFNumber.of(newBytes.length));
+                    dict.set(PDFName.of('Width'), PDFNumber.of(w));
+                    dict.set(PDFName.of('Height'), PDFNumber.of(h));
+                  }
+                }
+              } catch (e) {}
             }
           }
         }
+      }
 
-        const out = await pdfDoc.save({ useObjectStreams: true });
-        item.compBuffer = out;
-        item.compSize = out.byteLength;
+      // 清理冗余属性与元数据
+      try {
+        pdfDoc.setTitle('');
+        pdfDoc.setAuthor('');
+        pdfDoc.setSubject('');
+        pdfDoc.setKeywords([]);
+        pdfDoc.setProducer('在线多功能工具箱');
+        pdfDoc.setCreator('PDF Optimizer Pro');
+      } catch (e) {}
+
+      const out = await pdfDoc.save({ useObjectStreams: true });
+      return { bytes: out, pages: pdfDoc.getPageCount() };
+    }
+
+    window.compressSinglePDF = async function(id, forcedMode) {
+      const item = PDFState.files.find(f => f.id === id);
+      if (!item) return;
+      const mode = forcedMode || PDFState.currentMode;
+      item.status = 'processing';
+      item.statusText = '准备中...';
+      item.usedMode = mode;
+      renderPDFList();
+
+      try {
+        const quality = (pdfQualitySlider ? parseInt(pdfQualitySlider.value, 10) : 75) / 100;
+        const dpi = (pdfDpiSelect ? parseInt(pdfDpiSelect.value, 10) : 140) || 140;
+        const grayscale = pdfGrayscale ? pdfGrayscale.checked : false;
+        const targetMb = (pdfTargetMb ? parseFloat(pdfTargetMb.value) : 2.0) || 2.0;
+
+        let result;
+        if (mode === 'vector') {
+          item.statusText = '矢量流分析优化中...';
+          renderPDFList();
+          result = await compressPdfByVector(item.file, { quality, grayscale, maxDim: 1600 }, () => {});
+        } else {
+          // 深度智能压缩 (balanced)、极限极小体积 (max) 或精准目标 (target)
+          let runDpi = dpi;
+          let runQuality = quality;
+          if (mode === 'max') {
+            runDpi = 100;
+            runQuality = 0.50;
+          }
+          result = await compressPdfByRaster(item.file, {
+            mode,
+            dpi: runDpi,
+            quality: runQuality,
+            grayscale,
+            targetMb
+          }, (curr, total) => {
+            item.statusText = `压缩中 第 ${curr}/${total} 页 (${Math.round((curr/total)*100)}%)...`;
+            const badge = document.querySelector(`#item_${item.id} .file-badge-status`);
+            if (badge) badge.textContent = item.statusText;
+          });
+        }
+
+        item.compBuffer = result.bytes;
+        item.compSize = result.bytes.byteLength;
+        item.totalPages = result.pages;
         item.status = 'done';
-        item.statusText = item.compSize < item.origSize ? '已完成' : '已是最优';
-      } catch(e) {
-        console.error(e);
+        const savedPct = ((1 - item.compSize / item.origSize) * 100);
+        item.savedPct = savedPct;
+
+        if (savedPct > 0) {
+          item.statusText = '已完成';
+        } else {
+          item.statusText = '已是最优';
+        }
+      } catch (e) {
+        console.error('PDF 压缩失败:', e);
         item.status = 'error';
-        item.statusText = '压缩失败';
+        item.statusText = '压缩失败: ' + (e.message || '格式异常');
       }
       renderPDFList();
       updatePDFSummary();
     };
 
-    pdfStartAllBtn.addEventListener('click', async () => {
-      pdfStartAllBtn.disabled = true;
-      for (const item of PDFState.files) {
-        if (item.status !== 'done') await window.compressSinglePDF(item.id);
-      }
-      pdfStartAllBtn.disabled = false;
-      showToast('全部 PDF 压缩完成');
-    });
+    if (pdfStartAllBtn) {
+      pdfStartAllBtn.addEventListener('click', async () => {
+        pdfStartAllBtn.disabled = true;
+        for (const item of PDFState.files) {
+          if (item.status !== 'done') await window.compressSinglePDF(item.id);
+        }
+        pdfStartAllBtn.disabled = false;
+        showToast('全部 PDF 压缩完成');
+      });
+    }
 
     window.downloadSinglePDF = function(id) {
       const item = PDFState.files.find(f => f.id === id);
@@ -2431,20 +4314,22 @@
       a.click();
     };
 
-    pdfDownloadAllBtn.addEventListener('click', () => {
-      const done = PDFState.files.filter(f => f.status === 'done' && f.compBuffer);
-      if (done.length === 0) return;
-      if (done.length === 1) { downloadSinglePDF(done[0].id); return; }
-      const zip = new SimpleZip();
-      for (const item of done) {
-        zip.add(item.name.replace(/\.pdf$/i, '_min.pdf'), item.compBuffer);
-      }
-      const zipBytes = zip.generate();
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(new Blob([zipBytes], { type: 'application/zip' }));
-      a.download = `PDF压缩包_${new Date().toISOString().slice(0,10)}.zip`;
-      a.click();
-    });
+    if (pdfDownloadAllBtn) {
+      pdfDownloadAllBtn.addEventListener('click', () => {
+        const done = PDFState.files.filter(f => f.status === 'done' && f.compBuffer);
+        if (done.length === 0) return;
+        if (done.length === 1) { downloadSinglePDF(done[0].id); return; }
+        const zip = new SimpleZip();
+        for (const item of done) {
+          zip.add(item.name.replace(/\.pdf$/i, '_min.pdf'), item.compBuffer);
+        }
+        const zipBytes = zip.generate();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([zipBytes], { type: 'application/zip' }));
+        a.download = `PDF压缩包_${new Date().toISOString().slice(0,10)}.zip`;
+        a.click();
+      });
+    }
 
     // ========================================================
     // SVG 矢量图形无损瘦身模块 (Full SVG Optimizer Engine)
@@ -3529,8 +5414,305 @@
       });
     }
 
+    // ========================================================
+    // 安卓 APP 设计尺寸规范与组件标注交互模块
+    // ========================================================
+    const convertInputVal = document.getElementById('convertInputVal');
+    const convertUnitSelect = document.getElementById('convertUnitSelect');
+    const resMdpi = document.getElementById('resMdpi');
+    const resHdpi = document.getElementById('resHdpi');
+    const resXhdpi = document.getElementById('resXhdpi');
+    const resXxhdpi = document.getElementById('resXxhdpi');
+    const resXxxhdpi = document.getElementById('resXxxhdpi');
+
+    function updateAndroidConverter() {
+      if (!convertInputVal || !convertUnitSelect) return;
+      const val = parseFloat(convertInputVal.value) || 0;
+      const unit = convertUnitSelect.value;
+      let baseDp = val;
+
+      if (unit === 'xxhdpi') baseDp = val / 3.0;
+      else if (unit === 'xhdpi') baseDp = val / 2.0;
+      else if (unit === 'mdpi') baseDp = val / 1.0;
+
+      if (resMdpi) resMdpi.textContent = Math.round(baseDp * 1.0);
+      if (resHdpi) resHdpi.textContent = (Math.round(baseDp * 1.5 * 10) / 10);
+      if (resXhdpi) resXhdpi.textContent = Math.round(baseDp * 2.0);
+      if (resXxhdpi) resXxhdpi.textContent = Math.round(baseDp * 3.0);
+      if (resXxxhdpi) resXxxhdpi.textContent = Math.round(baseDp * 4.0);
+    }
+
+    if (convertInputVal) convertInputVal.addEventListener('input', updateAndroidConverter);
+    if (convertUnitSelect) convertUnitSelect.addEventListener('change', updateAndroidConverter);
+
+    window.setConvertVal = function(val, unit) {
+      if (convertInputVal) convertInputVal.value = val;
+      if (convertUnitSelect) convertUnitSelect.value = unit;
+      updateAndroidConverter();
+    };
+
+    // 子标签页切换 (安卓)
+    const specTabBtns = document.querySelectorAll('#panel-android .spec-tab-btn');
+    const subtabContents = document.querySelectorAll('#panel-android .subtab-content');
+    specTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        specTabBtns.forEach(b => b.classList.remove('active'));
+        subtabContents.forEach(c => c.style.display = 'none');
+        btn.classList.add('active');
+        const targetId = 'subtab-' + btn.dataset.subtab;
+        const target = document.getElementById(targetId);
+        if (target) target.style.display = 'block';
+      });
+    });
+
+    // 交互机型组件字典与点击联动 (安卓)
+    const androidCompDict = {
+      statusbar: {
+        name: '状态栏 (Status Bar)',
+        dp: '标准高度: 24dp',
+        px: '@3x (xxhdpi): 72px',
+        xml: 'android:layout_height="24dp"'
+      },
+      appbar: {
+        name: '顶部应用栏 (Top App Bar)',
+        dp: '标准高度: 56dp (M2) / 64dp (M3)',
+        px: '@3x (xxhdpi): 168px / 192px',
+        xml: 'android:layout_height="64dp"'
+      },
+      listitem: {
+        name: '列表卡片组件 (List Item Card)',
+        dp: '高度: 单行 56dp / 双行 72dp / 三行 88dp',
+        px: '@3x (xxhdpi): 168px / 216px',
+        xml: 'android:layout_height="72dp"'
+      },
+      button: {
+        name: '标准按钮 (Button Touch Target)',
+        dp: '视觉高: 40dp / 最小触控区: 48dp',
+        px: '@3x (xxhdpi): 120px / 144px',
+        xml: 'android:minHeight="48dp"'
+      },
+      searchbar: {
+        name: '搜索栏组件 (Search Bar)',
+        dp: '标准高度: 56dp (全圆角 28dp)',
+        px: '@3x (xxhdpi): 168px',
+        xml: 'android:layout_height="56dp"'
+      },
+      fab: {
+        name: '浮动操作按钮 (FAB)',
+        dp: '标准尺寸: 56 × 56dp (图标 24dp)',
+        px: '@3x (xxhdpi): 168 × 168px',
+        xml: 'app:fabSize="normal"'
+      },
+      bottomnav: {
+        name: '底部导航栏 (Navigation Bar)',
+        dp: '标准高度: 80dp (M3) / 56dp (M2)',
+        px: '@3x (xxhdpi): 240px (1080P)',
+        xml: 'android:layout_height="80dp"'
+      }
+    };
+
+    const compName = document.getElementById('compName');
+    const compDpTag = document.getElementById('compDpTag');
+    const compPxTag = document.getElementById('compPxTag');
+    const compCodeTag = document.getElementById('compCodeTag');
+    const androidMockupComps = document.querySelectorAll('#panel-android .mockup-comp');
+
+    function applyCompSelection(compKey) {
+      const data = androidCompDict[compKey];
+      if (!data) return;
+
+      androidMockupComps.forEach(c => {
+        if (c.dataset.comp === compKey) c.classList.add('selected');
+        else c.classList.remove('selected');
+      });
+
+      if (compName) compName.textContent = data.name;
+      if (compDpTag) compDpTag.textContent = data.dp;
+      if (compPxTag) compPxTag.textContent = data.px;
+      if (compCodeTag) compCodeTag.textContent = data.xml;
+    }
+
+    androidMockupComps.forEach(item => {
+      item.addEventListener('click', () => {
+        const compKey = item.dataset.comp;
+        if (compKey) applyCompSelection(compKey);
+      });
+    });
+
+    window.selectComponentFromTable = function(compKey) {
+      applyCompSelection(compKey);
+      showToast(`已在原型模型中高亮选中：${androidCompDict[compKey]?.name || compKey}`);
+    };
+
+    // 自适应图标形状蒙版切换
+    window.setMaskShape = function(shape, btn) {
+      const iconBox = document.getElementById('adaptiveIconPreview');
+      if (!iconBox) return;
+      iconBox.className = 'icon-canvas-box mask-' + shape;
+      if (btn && btn.parentElement) {
+        btn.parentElement.querySelectorAll('.preset-chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+    };
+
+    // 全局复制辅助函数
+    window.copyText = function(text) {
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`已复制到剪贴板: ${text}`);
+      }).catch(() => {
+        showToast(`复制: ${text}`);
+      });
+    };
+
+    if (compDpTag) compDpTag.addEventListener('click', () => copyText(compDpTag.textContent));
+    if (compPxTag) compPxTag.addEventListener('click', () => copyText(compPxTag.textContent));
+    if (compCodeTag) compCodeTag.addEventListener('click', () => copyText(compCodeTag.textContent));
+
+    // ============================================================
+    // iOS (iPhone / iPad) 规范交互模块
+    // ============================================================
+    const convertIosInputVal = document.getElementById('convertIosInputVal');
+    const convertIosUnitSelect = document.getElementById('convertIosUnitSelect');
+    const resIosPt = document.getElementById('resIosPt');
+    const resIos2x = document.getElementById('resIos2x');
+    const resIos3x = document.getElementById('resIos3x');
+
+    function updateIOSConverter() {
+      if (!convertIosInputVal || !convertIosUnitSelect) return;
+      const val = parseFloat(convertIosInputVal.value) || 0;
+      const unit = convertIosUnitSelect.value;
+      let basePt = val;
+
+      if (unit === '3x') basePt = val / 3.0;
+      else if (unit === '2x') basePt = val / 2.0;
+      else if (unit === '1x') basePt = val / 1.0;
+
+      if (resIosPt) resIosPt.textContent = (Math.round(basePt * 10) / 10);
+      if (resIos2x) resIos2x.textContent = (Math.round(basePt * 2.0 * 10) / 10);
+      if (resIos3x) resIos3x.textContent = (Math.round(basePt * 3.0 * 10) / 10);
+    }
+
+    if (convertIosInputVal) convertIosInputVal.addEventListener('input', updateIOSConverter);
+    if (convertIosUnitSelect) convertIosUnitSelect.addEventListener('change', updateIOSConverter);
+
+    window.setIosConvertVal = function(val, unit) {
+      if (convertIosInputVal) convertIosInputVal.value = val;
+      if (convertIosUnitSelect) convertIosUnitSelect.value = unit;
+      updateIOSConverter();
+    };
+
+    // iOS 子标签页切换
+    const iosSpecTabBtns = document.querySelectorAll('#panel-ios .spec-tab-btn');
+    const iosSubtabContents = document.querySelectorAll('#panel-ios .subtab-content');
+    iosSpecTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        iosSpecTabBtns.forEach(b => b.classList.remove('active'));
+        iosSubtabContents.forEach(c => c.style.display = 'none');
+        btn.classList.add('active');
+        const targetId = 'subtab-' + btn.dataset.subtab;
+        const target = document.getElementById(targetId);
+        if (target) target.style.display = 'block';
+      });
+    });
+
+    // iOS 组件交互字典
+    const iosCompDict = {
+      dynamicisland: {
+        name: '灵动岛 (Dynamic Island)',
+        pt: '紧凑态: 126 × 37 pt | 展开: 动态自适应',
+        px: '@3x: 378 × 111 px',
+        code: 'ActivityConfiguration(for: Attributes.self)'
+      },
+      ios_statusbar: {
+        name: '状态栏 (Status Bar)',
+        pt: '高度: 54 pt (灵动岛机型) / 47 pt (刘海屏)',
+        px: '@3x: 162 px / @2x: 108 px',
+        code: '.safeAreaInset(edge: .top)'
+      },
+      ios_navbar: {
+        name: '标准导航栏 (Navigation Bar)',
+        pt: '标准高度: 44 pt',
+        px: '@3x: 132 px / @2x: 88 px',
+        code: '.navigationBarTitleDisplayMode(.inline)'
+      },
+      ios_largetitle: {
+        name: '大标题导航栏 (Large Title)',
+        pt: '展开区高度: 52 pt (总高 96 pt)',
+        px: '@3x: 288 px / @2x: 192 px',
+        code: '.navigationBarTitleDisplayMode(.large)'
+      },
+      ios_card: {
+        name: '连续曲率超椭圆卡片 (Squircle Card)',
+        pt: '标准边距: 16 pt | 圆角: 16 pt (连续曲率)',
+        px: '@3x: 48 px 圆角',
+        code: '.clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))'
+      },
+      ios_button: {
+        name: '最小触控热区 (Touch Target)',
+        pt: 'HIG 铁律下限: 44 × 44 pt',
+        px: '@3x: 132 × 132 px',
+        code: '.frame(minWidth: 44, minHeight: 44)'
+      },
+      ios_search: {
+        name: '标准搜索栏 (Search Bar)',
+        pt: '控件高度: 36 pt (圆角 10 pt)',
+        px: '@3x: 108 px',
+        code: '.searchable(text: $searchText)'
+      },
+      ios_tabbar: {
+        name: '标签栏 (Tab Bar)',
+        pt: '内容区 49 pt + 底部安全区 34 pt = 83 pt',
+        px: '@3x: 249 px / @2x: 166 px',
+        code: 'TabView { ... }'
+      },
+      ios_homeindicator: {
+        name: 'Home 指示条 (Home Indicator)',
+        pt: '横条: 134 × 5 pt | 底部留白: 8 pt (安全区 34 pt)',
+        px: '@3x: 402 × 15 px',
+        code: '.safeAreaInset(edge: .bottom)'
+      }
+    };
+
+    const iosCompName = document.getElementById('iosCompName');
+    const iosCompPtTag = document.getElementById('iosCompPtTag');
+    const iosCompPxTag = document.getElementById('iosCompPxTag');
+    const iosCompCodeTag = document.getElementById('iosCompCodeTag');
+    const iosMockupComps = document.querySelectorAll('#panel-ios .mockup-comp');
+
+    function applyIOSCompSelection(compKey) {
+      const data = iosCompDict[compKey];
+      if (!data) return;
+
+      iosMockupComps.forEach(c => {
+        if (c.dataset.comp === compKey) c.classList.add('selected');
+        else c.classList.remove('selected');
+      });
+
+      if (iosCompName) iosCompName.textContent = data.name;
+      if (iosCompPtTag) iosCompPtTag.textContent = data.pt;
+      if (iosCompPxTag) iosCompPxTag.textContent = data.px;
+      if (iosCompCodeTag) iosCompCodeTag.textContent = data.code;
+    }
+
+    iosMockupComps.forEach(item => {
+      item.addEventListener('click', () => {
+        const compKey = item.dataset.comp;
+        if (compKey) applyIOSCompSelection(compKey);
+      });
+    });
+
+    window.selectIOSComponentFromTable = function(compKey) {
+      applyIOSCompSelection(compKey);
+      showToast(`已在 iPhone 原型中定位：${iosCompDict[compKey]?.name || compKey}`);
+    };
+
+    if (iosCompPtTag) iosCompPtTag.addEventListener('click', () => copyText(iosCompPtTag.textContent));
+    if (iosCompPxTag) iosCompPxTag.addEventListener('click', () => copyText(iosCompPxTag.textContent));
+    if (iosCompCodeTag) iosCompCodeTag.addEventListener('click', () => copyText(iosCompCodeTag.textContent));
 
   </script>
 </body>
 </html>
+
 
