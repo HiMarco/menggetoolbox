@@ -200,6 +200,11 @@
     color: #ffffff !important;
     box-shadow: 0 4px 14px rgba(0, 113, 227, 0.38);
   }
+  .nav-tab.active[data-target="panel-gif"] {
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(236, 72, 153, 0.38);
+  }
   .nav-tab.active[data-target="panel-pdf"] {
     background: linear-gradient(135deg, #ef4444 0%, #f97316 100%) !important;
     color: #ffffff !important;
@@ -1249,6 +1254,94 @@
     user-select: none;
   }
 
+  /* GIF 专属尺寸与比例微调器 */
+  .dim-inputs-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    width: 100%;
+  }
+  .dim-input-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .dim-input-col label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+  .input-with-unit {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .input-with-unit input {
+    padding-right: 30px;
+  }
+  .input-with-unit .unit {
+    position: absolute;
+    right: 10px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--text-3);
+    pointer-events: none;
+  }
+  .dim-link-btn {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-strong);
+    background: #fff;
+    cursor: pointer;
+    color: var(--text-2);
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+    user-select: none;
+  }
+  .dim-link-btn:hover {
+    color: #ec4899;
+    border-color: #ec4899;
+    background: rgba(236, 72, 153, 0.05);
+  }
+  .dim-link-btn.active {
+    color: #ec4899;
+    border-color: #ec4899;
+    background: rgba(236, 72, 153, 0.1);
+  }
+  .scale-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .scale-chip {
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    background: #f8fafc;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-2);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+  .scale-chip:hover {
+    border-color: #ec4899;
+    color: #ec4899;
+    background: #fff;
+  }
+  .scale-chip.active {
+    border-color: #ec4899;
+    background: #ec4899;
+    color: #fff;
+  }
+
   /* 拖拽上传区 (Modern Interactive Dropzone) */
   .dropzone {
     border: 2px dashed #cbd5e1;
@@ -2021,35 +2114,40 @@
           <span class="nav-title">图片深度压缩</span>
           <span class="nav-shortcut">1</span>
         </button>
-        <button class="nav-tab" data-target="panel-pdf" title="快捷键: 2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-          <span class="nav-title">PDF 智能压缩</span>
+        <button class="nav-tab" data-target="panel-gif" title="快捷键: 2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          <span class="nav-title">GIF 动图压缩</span>
           <span class="nav-shortcut">2</span>
         </button>
-        <button class="nav-tab" data-target="panel-svg" title="快捷键: 3">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          <span class="nav-title">SVG 矢量瘦身</span>
+        <button class="nav-tab" data-target="panel-pdf" title="快捷键: 3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          <span class="nav-title">PDF 智能压缩</span>
           <span class="nav-shortcut">3</span>
         </button>
-        <button class="nav-tab" data-target="panel-idphoto" title="快捷键: 4">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span class="nav-title">一寸证件照生成</span>
+        <button class="nav-tab" data-target="panel-svg" title="快捷键: 4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span class="nav-title">SVG 矢量瘦身</span>
           <span class="nav-shortcut">4</span>
         </button>
-        <button class="nav-tab" data-target="panel-android" title="快捷键: 5">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/><line x1="9" y1="5" x2="15" y2="5"/></svg>
-          <span class="nav-title">安卓设计尺寸规范</span>
+        <button class="nav-tab" data-target="panel-idphoto" title="快捷键: 5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="nav-title">一寸证件照生成</span>
           <span class="nav-shortcut">5</span>
         </button>
-        <button class="nav-tab" data-target="panel-ios" title="快捷键: 6">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.87c.62-.75 1.04-1.8 0.92-2.87-.9.04-1.99.6-2.64 1.35-.57.65-1.06 1.72-.93 2.75 1 .08 2.03-.48 2.65-1.23z"/></svg>
-          <span class="nav-title">iOS 设计尺寸规范</span>
+        <button class="nav-tab" data-target="panel-android" title="快捷键: 6">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/><line x1="9" y1="5" x2="15" y2="5"/></svg>
+          <span class="nav-title">安卓设计尺寸规范</span>
           <span class="nav-shortcut">6</span>
         </button>
-        <button class="nav-tab" data-target="panel-feedback" title="快捷键: 7">
+        <button class="nav-tab" data-target="panel-ios" title="快捷键: 7">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.87c.62-.75 1.04-1.8 0.92-2.87-.9.04-1.99.6-2.64 1.35-.57.65-1.06 1.72-.93 2.75 1 .08 2.03-.48 2.65-1.23z"/></svg>
+          <span class="nav-title">iOS 设计尺寸规范</span>
+          <span class="nav-shortcut">7</span>
+        </button>
+        <button class="nav-tab" data-target="panel-feedback" title="快捷键: 8">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           <span class="nav-title">用户留言反馈</span>
-          <span class="nav-shortcut">7</span>
+          <span class="nav-shortcut">8</span>
         </button>
       </nav>
 
@@ -2059,7 +2157,7 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
           纯本地离线计算 · 零上传
         </div>
-        <div class="sidebar-tip">支持按数字键 1~7 极速切换</div>
+        <div class="sidebar-tip">支持按数字键 1~8 极速切换</div>
       </div>
     </aside>
 
@@ -2193,7 +2291,159 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- 模块二：PDF 智能压缩                                         -->
+    <!-- 模块二：GIF 动图压缩与尺寸调整                               -->
+    <!-- ============================================================ -->
+    <div class="tool-panel" id="panel-gif">
+      <section class="panel-card">
+        <div class="panel-title">
+          <span>GIF 动图专属压缩与尺寸微调</span>
+          <span style="font-size:12px; font-weight:normal; text-transform:none; color:var(--text-3);">
+            支持自由调整宽高与缩放比例 · 抽帧降容 · 智能色彩减色 · 指定目标文件体积 · 纯本地无损解析
+          </span>
+        </div>
+
+        <div class="preset-grid" id="gifPresetGrid">
+          <div class="preset-item active" data-mode="balanced">
+            <div class="preset-header">
+              <span class="preset-name">⚡ 智能均衡（推荐）</span>
+              <span class="preset-tag" style="background:#fce7f3; color:#ec4899;">推荐</span>
+            </div>
+            <p class="preset-desc">原分辨率 + 128色智能量化，体积直降 50%~75%，保留原帧率流畅动画。</p>
+          </div>
+          <div class="preset-item" data-mode="social">
+            <div class="preset-header">
+              <span class="preset-name">💬 表情包专属（≤1MB）</span>
+              <span class="preset-tag" style="background:#fdf2f8; color:#db2777;">微信/QQ</span>
+            </div>
+            <p class="preset-desc">限制长边320px + 抽帧优化 + 64色，专破微信/QQ等社交软件动图体积限制。</p>
+          </div>
+          <div class="preset-item" data-mode="target">
+            <div class="preset-header">
+              <span class="preset-name">🎯 指定目标大小</span>
+              <span class="preset-tag" style="background:#fff4e5; color:#ff9500;">精准</span>
+            </div>
+            <p class="preset-desc">指定如 500 KB 或 1 MB，算法自动测算尺寸、调色板与抽帧策略逼近达标。</p>
+          </div>
+          <div class="preset-item" data-mode="custom">
+            <div class="preset-header">
+              <span class="preset-name">📐 自由尺寸重采样</span>
+              <span class="preset-tag" style="background:#ede9fe; color:#8b5cf6;">尺寸控制</span>
+            </div>
+            <p class="preset-desc">自由指定宽高像素或按 25%~75% 快速等比缩放，精准控制像素级别尺寸。</p>
+          </div>
+        </div>
+
+        <div class="custom-settings">
+          <!-- 尺寸调整控制区 -->
+          <div class="setting-group" style="grid-column: 1 / -1; max-width: 680px;">
+            <div class="setting-label">
+              <span>尺寸设置 (宽 x 高)</span>
+              <span style="font-size: 11.5px; font-weight: normal; color: var(--text-3);">留空或0表示按原图比例自适应</span>
+            </div>
+            <div class="dim-inputs-row">
+              <div class="dim-input-col">
+                <label>宽度 (Width)</label>
+                <div class="input-with-unit">
+                  <input type="number" id="gifWidthInput" class="text-input" placeholder="保持原宽" min="10" max="3840">
+                  <span class="unit">px</span>
+                </div>
+              </div>
+              <button type="button" class="dim-link-btn active" id="gifLockRatioBtn" title="锁定宽高比（自动换算）">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </button>
+              <div class="dim-input-col">
+                <label>高度 (Height)</label>
+                <div class="input-with-unit">
+                  <input type="number" id="gifHeightInput" class="text-input" placeholder="保持原高" min="10" max="3840">
+                  <span class="unit">px</span>
+                </div>
+              </div>
+            </div>
+            <div class="scale-chips" id="gifScaleChips">
+              <button type="button" class="scale-chip active" data-scale="100">100% (原尺寸)</button>
+              <button type="button" class="scale-chip" data-scale="75">75% 缩放</button>
+              <button type="button" class="scale-chip" data-scale="50">50% 减半</button>
+              <button type="button" class="scale-chip" data-scale="33">33% (1/3)</button>
+              <button type="button" class="scale-chip" data-scale="25">25% (1/4)</button>
+            </div>
+          </div>
+
+          <!-- 最大长边预设 -->
+          <div class="setting-group">
+            <label class="setting-label">最大长边限制 (按比例缩放)</label>
+            <select id="gifMaxDimSelect" class="select-input">
+              <option value="99999" selected>无限制（保持原分辨率）</option>
+              <option value="480">480 px（网页动图常用）</option>
+              <option value="320">320 px（微信/社交表情包推荐）</option>
+              <option value="240">240 px（紧凑小动图）</option>
+              <option value="160">160 px（迷你表情 / 小头像）</option>
+            </select>
+          </div>
+
+          <!-- 目标大小 (KB) -->
+          <div class="setting-group" id="gifTargetGroup" style="display:none;">
+            <label class="setting-label">目标文件大小 (KB)</label>
+            <input type="number" id="gifTargetKb" class="text-input" value="1000" step="50" min="20" max="50000">
+          </div>
+
+          <!-- 色彩数量 (量化) -->
+          <div class="setting-group">
+            <div class="setting-label">
+              <span>调色板色彩数</span>
+              <span id="gifColorsVal" class="slider-val">128色</span>
+            </div>
+            <select id="gifColorsSelect" class="select-input">
+              <option value="256">256 色（高清全彩保真）</option>
+              <option value="128" selected>128 色（智能均衡 · 推荐）</option>
+              <option value="64">64 色（强力瘦身 · 略带噪点）</option>
+              <option value="32">32 色（极低体积 · 扁平风格）</option>
+            </select>
+          </div>
+
+          <!-- 抽帧优化 -->
+          <div class="setting-group">
+            <label class="setting-label">帧率与抽帧优化 (极大降低体积)</label>
+            <select id="gifFrameSkipSelect" class="select-input">
+              <option value="1" selected>保留全部帧（无跳帧，最流畅）</option>
+              <option value="2">隔1帧抽1帧（体积减半 · 速度自动补偿）</option>
+              <option value="3">隔2帧抽1帧（仅保留33%帧 · 极限减负）</option>
+              <option value="smart">智能抽帧（帧数>36时自动隔帧抽）</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- GIF 拖拽上传区 -->
+      <div class="dropzone" id="gifDropzone">
+        <input type="file" id="gifFileInput" accept="image/gif,.gif" multiple style="display:none;">
+        <div class="dropzone-icon" style="background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%); box-shadow: 0 8px 20px rgba(236, 72, 153, 0.28);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        </div>
+        <div class="dropzone-title">拖拽 GIF 动图到此处，或 <span style="color:#ec4899;">点击浏览选择</span></div>
+        <div class="dropzone-desc">支持单张或批量 GIF 动图 · 调节宽高尺寸与体积大小 · 纯本地急速处理不上传</div>
+        <div class="dropzone-paste-tip">支持快捷键 ⌘+V 粘贴剪贴板 GIF 动图</div>
+      </div>
+
+      <!-- GIF 统计与操作栏 -->
+      <div class="action-bar" id="gifActionBar" style="display:none;">
+        <div class="stat-summary" id="gifStatSummary">
+          <span>共 <strong id="gifTotalCount">0</strong> 个动图</span>
+          <span>原始: <strong id="gifTotalOrig">0 MB</strong></span>
+          <span>压缩后: <strong class="highlight" id="gifTotalComp" style="color:#ec4899;">0 MB</strong></span>
+          <span class="saved" id="gifTotalSaved">节省 0 MB (-0%)</span>
+        </div>
+        <div class="btn-group">
+          <button class="btn" id="gifClearBtn">清空</button>
+          <button class="btn btn-primary" id="gifStartAllBtn" style="background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%); border:none; box-shadow: 0 4px 14px rgba(236, 72, 153, 0.38);">一键全部压缩</button>
+          <button class="btn" id="gifDownloadAllBtn" style="display:none;">全部打包下载 (ZIP)</button>
+        </div>
+      </div>
+
+      <div class="file-list" id="gifFileList"></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 模块三：PDF 智能压缩                                         -->
     <!-- ============================================================ -->
     <div class="tool-panel" id="panel-pdf">
       <!-- 模式选择 -->
@@ -3968,6 +4218,7 @@
 
     const themeColors = {
       'panel-image': { text: '🖼️ 当前模式：全能图片深度压缩 · 支持 JPG/PNG/WebP/GIF/AVIF，智能达标与格式互转', color: '#0071e3' },
+      'panel-gif': { text: '🎞️ 当前模式：GIF 动图专属压缩 · 支持自定义宽高尺寸、抽帧提速、调色板色彩量化与指定目标体积', color: '#ec4899' },
       'panel-pdf': { text: '📄 当前模式：PDF 双核强力压缩 · 深度光栅重采(专克扫描件/PPT) + 矢量文字保真 + 智能目标大小', color: '#ef4444' },
       'panel-svg': { text: '📐 当前模式：SVG 矢量图形瘦身 · 清理注释、折叠多余空白、精简路径坐标精度', color: '#8b5cf6' },
       'panel-idphoto': { text: '👤 当前模式：一寸/多尺寸证件照智能制作 · 标准 300DPI 冲印规格 / 一键更换红蓝白底 / 6寸排版', color: '#10b981' },
@@ -3994,7 +4245,7 @@
       });
     }
 
-    // 支持键盘快捷键 1, 2, 3, 4, 5, 6, 7 快速切换工具
+    // 支持键盘快捷键 1, 2, 3, 4, 5, 6, 7, 8 快速切换工具
     window.addEventListener('keydown', (e) => {
       if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
       if (e.key === '1' && navTabs[0]) navTabs[0].click();
@@ -4004,6 +4255,7 @@
       else if (e.key === '5' && navTabs[4]) navTabs[4].click();
       else if (e.key === '6' && navTabs[5]) navTabs[5].click();
       else if (e.key === '7' && navTabs[6]) navTabs[6].click();
+      else if (e.key === '8' && navTabs[7]) navTabs[7].click();
     });
 
 
@@ -4015,6 +4267,14 @@
         if (activePanel.id === 'panel-image') {
           handleImageFiles(files);
           showToast(`已从剪贴板粘贴 ${files.length} 张图片`);
+        } else if (activePanel.id === 'panel-gif') {
+          const gifFiles = files.filter(f => f.type === 'image/gif' || f.name.toLowerCase().endsWith('.gif'));
+          if (gifFiles.length > 0) {
+            handleGIFFiles(gifFiles);
+            showToast(`已从剪贴板粘贴 ${gifFiles.length} 个 GIF 动图`);
+          } else {
+            showToast('未在剪贴板中检测到 GIF 动图');
+          }
         } else if (activePanel.id === 'panel-pdf') {
           handlePDFFiles(files);
           showToast(`已从剪贴板粘贴 ${files.length} 个 PDF 文件`);
@@ -4341,6 +4601,1106 @@
     modalDownloadBtn.addEventListener('click', () => {
       if (activeModalItem) downloadSingleImg(activeModalItem.id);
     });
+
+    // ========================================================
+    // GIF 专属动图压缩与尺寸调整引擎 (GIF Compressor Engine)
+    // ========================================================
+    const GIFState = {
+      files: [],
+      currentMode: 'balanced',
+      lockRatio: true,
+      scaleFactor: 1.0
+    };
+
+    const gifPresetGrid = document.getElementById('gifPresetGrid');
+    const gifTargetGroup = document.getElementById('gifTargetGroup');
+    const gifTargetKb = document.getElementById('gifTargetKb');
+    const gifWidthInput = document.getElementById('gifWidthInput');
+    const gifHeightInput = document.getElementById('gifHeightInput');
+    const gifLockRatioBtn = document.getElementById('gifLockRatioBtn');
+    const gifScaleChips = document.getElementById('gifScaleChips');
+    const gifMaxDimSelect = document.getElementById('gifMaxDimSelect');
+    const gifColorsSelect = document.getElementById('gifColorsSelect');
+    const gifColorsVal = document.getElementById('gifColorsVal');
+    const gifFrameSkipSelect = document.getElementById('gifFrameSkipSelect');
+
+    const gifDropzone = document.getElementById('gifDropzone');
+    const gifFileInput = document.getElementById('gifFileInput');
+    const gifActionBar = document.getElementById('gifActionBar');
+    const gifFileList = document.getElementById('gifFileList');
+    const gifTotalCount = document.getElementById('gifTotalCount');
+    const gifTotalOrig = document.getElementById('gifTotalOrig');
+    const gifTotalComp = document.getElementById('gifTotalComp');
+    const gifTotalSaved = document.getElementById('gifTotalSaved');
+    const gifStartAllBtn = document.getElementById('gifStartAllBtn');
+    const gifDownloadAllBtn = document.getElementById('gifDownloadAllBtn');
+    const gifClearBtn = document.getElementById('gifClearBtn');
+
+    // 预设模式切换
+    if (gifPresetGrid) {
+      gifPresetGrid.addEventListener('click', (e) => {
+        const item = e.target.closest('.preset-item');
+        if (!item) return;
+        document.querySelectorAll('#gifPresetGrid .preset-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        const mode = item.dataset.mode;
+        GIFState.currentMode = mode;
+        gifTargetGroup.style.display = mode === 'target' ? 'flex' : 'none';
+
+        if (mode === 'balanced') {
+          gifMaxDimSelect.value = '99999';
+          gifColorsSelect.value = '128';
+          gifFrameSkipSelect.value = '1';
+          resetGifDimInputs();
+        } else if (mode === 'social') {
+          gifMaxDimSelect.value = '320';
+          gifColorsSelect.value = '64';
+          gifFrameSkipSelect.value = '2';
+          resetGifDimInputs();
+        } else if (mode === 'target') {
+          gifMaxDimSelect.value = '99999';
+          gifColorsSelect.value = '128';
+          gifFrameSkipSelect.value = 'smart';
+        } else if (mode === 'custom') {
+          // 保持用户自由定义
+        }
+        updateGifColorsLabel();
+      });
+    }
+
+    function updateGifColorsLabel() {
+      if (gifColorsVal && gifColorsSelect) {
+        gifColorsVal.textContent = gifColorsSelect.value + '色';
+      }
+    }
+    if (gifColorsSelect) {
+      gifColorsSelect.addEventListener('change', updateGifColorsLabel);
+    }
+
+    // 锁定宽高比切换
+    if (gifLockRatioBtn) {
+      gifLockRatioBtn.addEventListener('click', () => {
+        GIFState.lockRatio = !GIFState.lockRatio;
+        gifLockRatioBtn.classList.toggle('active', GIFState.lockRatio);
+      });
+    }
+
+    function getBaseAspectRatio() {
+      if (GIFState.files.length > 0 && GIFState.files[0].origWidth && GIFState.files[0].origHeight) {
+        return GIFState.files[0].origWidth / GIFState.files[0].origHeight;
+      }
+      return 1;
+    }
+
+    if (gifWidthInput) {
+      gifWidthInput.addEventListener('input', () => {
+        deactivateScaleChips();
+        const w = parseInt(gifWidthInput.value, 10);
+        if (GIFState.lockRatio && w > 0) {
+          const ratio = getBaseAspectRatio();
+          gifHeightInput.value = Math.max(1, Math.round(w / ratio));
+        }
+      });
+    }
+
+    if (gifHeightInput) {
+      gifHeightInput.addEventListener('input', () => {
+        deactivateScaleChips();
+        const h = parseInt(gifHeightInput.value, 10);
+        if (GIFState.lockRatio && h > 0) {
+          const ratio = getBaseAspectRatio();
+          gifWidthInput.value = Math.max(1, Math.round(h * ratio));
+        }
+      });
+    }
+
+    function deactivateScaleChips() {
+      if (gifScaleChips) {
+        gifScaleChips.querySelectorAll('.scale-chip').forEach(c => c.classList.remove('active'));
+      }
+    }
+
+    function resetGifDimInputs() {
+      if (gifWidthInput) gifWidthInput.value = '';
+      if (gifHeightInput) gifHeightInput.value = '';
+      GIFState.scaleFactor = 1.0;
+      if (gifScaleChips) {
+        gifScaleChips.querySelectorAll('.scale-chip').forEach(c => {
+          c.classList.toggle('active', c.dataset.scale === '100');
+        });
+      }
+    }
+
+    // 缩放比例 Chips
+    if (gifScaleChips) {
+      gifScaleChips.addEventListener('click', (e) => {
+        const chip = e.target.closest('.scale-chip');
+        if (!chip) return;
+        gifScaleChips.querySelectorAll('.scale-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const scale = parseInt(chip.dataset.scale, 10);
+        GIFState.scaleFactor = scale / 100;
+
+        if (GIFState.files.length > 0 && GIFState.files[0].origWidth && GIFState.files[0].origHeight) {
+          const origW = GIFState.files[0].origWidth;
+          const origH = GIFState.files[0].origHeight;
+          gifWidthInput.value = Math.max(1, Math.round(origW * (scale / 100)));
+          gifHeightInput.value = Math.max(1, Math.round(origH * (scale / 100)));
+        } else {
+          gifWidthInput.value = '';
+          gifHeightInput.value = '';
+        }
+      });
+    }
+
+    // 拖拽与文件选择
+    if (gifDropzone && gifFileInput) {
+      gifDropzone.addEventListener('click', () => gifFileInput.click());
+      gifDropzone.addEventListener('dragover', (e) => { e.preventDefault(); gifDropzone.classList.add('dragover'); });
+      gifDropzone.addEventListener('dragleave', () => gifDropzone.classList.remove('dragover'));
+      gifDropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        gifDropzone.classList.remove('dragover');
+        if (e.dataTransfer.files) handleGIFFiles(Array.from(e.dataTransfer.files));
+      });
+      gifFileInput.addEventListener('change', () => {
+        if (gifFileInput.files) {
+          handleGIFFiles(Array.from(gifFileInput.files));
+          gifFileInput.value = '';
+        }
+      });
+    }
+
+    async function handleGIFFiles(files) {
+      const validFiles = files.filter(f => f.type === 'image/gif' || f.name.toLowerCase().endsWith('.gif'));
+      if (validFiles.length === 0) {
+        showToast('请选择有效的 .gif 动图文件');
+        return;
+      }
+
+      for (const file of validFiles) {
+        const id = 'gif_' + Math.random().toString(36).substr(2, 9);
+        const item = {
+          id,
+          file,
+          name: file.name,
+          origSize: file.size,
+          compSize: null,
+          status: 'ready',
+          statusText: '等待压缩',
+          origUrl: URL.createObjectURL(file),
+          compUrl: null,
+          compBlob: null,
+          origWidth: null,
+          origHeight: null,
+          compWidth: null,
+          compHeight: null,
+          origFrames: null,
+          compFrames: null
+        };
+        GIFState.files.push(item);
+
+        // 异步预读动图元数据（尺寸）
+        const img = new Image();
+        img.onload = () => {
+          item.origWidth = img.naturalWidth;
+          item.origHeight = img.naturalHeight;
+          renderGifFileList();
+          // 如果是第一个文件且尚未填尺寸，自动填入展示
+          if (GIFState.files[0] && GIFState.files[0].id === item.id) {
+            const activeChip = gifScaleChips ? gifScaleChips.querySelector('.scale-chip.active') : null;
+            const scale = activeChip ? parseInt(activeChip.dataset.scale, 10) : 100;
+            if (scale < 100) {
+              gifWidthInput.value = Math.max(1, Math.round(item.origWidth * (scale / 100)));
+              gifHeightInput.value = Math.max(1, Math.round(item.origHeight * (scale / 100)));
+            }
+          }
+        };
+        img.src = item.origUrl;
+      }
+
+      renderGifFileList();
+      updateGifSummary();
+      showToast(`成功添加 ${validFiles.length} 个 GIF 动图`);
+    }
+
+    function renderGifFileList() {
+      if (!gifFileList || !gifActionBar) return;
+      if (GIFState.files.length === 0) {
+        gifFileList.innerHTML = '';
+        gifActionBar.style.display = 'none';
+        return;
+      }
+      gifActionBar.style.display = 'flex';
+
+      gifFileList.innerHTML = GIFState.files.map(item => {
+        const origStr = formatBytes(item.origSize);
+        const compStr = item.compSize ? formatBytes(item.compSize) : '--';
+        const reduction = item.compSize ? ((1 - item.compSize / item.origSize) * 100).toFixed(1) : 0;
+        const isSmaller = item.compSize && item.compSize < item.origSize;
+
+        const origDimStr = item.origWidth && item.origHeight ? `${item.origWidth}×${item.origHeight}` : '解析中';
+        const compDimStr = item.compWidth && item.compHeight ? `${item.compWidth}×${item.compHeight}` : origDimStr;
+        const origFramesStr = item.origFrames ? ` · ${item.origFrames}帧` : '';
+        const compFramesStr = item.compFrames ? ` · ${item.compFrames}帧` : '';
+
+        return `
+          <div class="file-item" id="item_${item.id}">
+            <div class="file-thumb" style="background:#1e293b; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+              <img src="${item.compUrl || item.origUrl}" alt="preview" style="max-height:100%; max-width:100%; object-fit:contain;">
+            </div>
+            <div class="file-info">
+              <div class="file-name-row">
+                <span class="file-name" title="${item.name}">${item.name}</span>
+                <span class="file-badge-status ${item.status === 'done' ? 'done' : ''}">${item.statusText}</span>
+                ${item.status === 'done' && isSmaller ? `<span class="file-badge-saved">节省 ${reduction}%</span>` : ''}
+              </div>
+              <div class="file-meta-row" style="flex-wrap:wrap; gap:8px;">
+                <span>原图: <strong>${origDimStr}</strong>${origFramesStr} (${origStr})</span>
+                ${item.compSize ? `<span>➔</span><span class="file-size-comp">现: <strong>${compDimStr}</strong>${compFramesStr} (${compStr})</span>` : ''}
+              </div>
+            </div>
+            <div class="file-actions">
+              ${item.status === 'done' ? `
+                <button class="btn-icon" title="重新调整参数压缩" onclick="compressSingleGif('${item.id}')" style="color:#ec4899;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                </button>
+                <button class="btn-icon" title="下载压缩后的 GIF" onclick="downloadSingleGif('${item.id}')" style="color:#10b981;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+              ` : `
+                <button class="btn-icon" title="立即压缩" onclick="compressSingleGif('${item.id}')" ${item.status === 'processing' ? 'disabled' : ''} style="color:#ec4899;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </button>
+              `}
+              <button class="btn-icon" title="移除" onclick="removeGif('${item.id}')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateGifSummary() {
+      if (!gifTotalCount || !gifTotalOrig || !gifTotalComp || !gifTotalSaved || !gifDownloadAllBtn) return;
+      gifTotalCount.textContent = GIFState.files.length;
+      let totalOrig = 0;
+      let totalComp = 0;
+      const doneFiles = GIFState.files.filter(f => f.status === 'done' && f.compSize);
+
+      for (const item of GIFState.files) {
+        totalOrig += item.origSize;
+        if (item.compSize) totalComp += item.compSize;
+      }
+
+      gifTotalOrig.textContent = formatBytes(totalOrig);
+      if (doneFiles.length > 0) {
+        gifTotalComp.textContent = formatBytes(totalComp);
+        const saved = totalOrig - totalComp;
+        const pct = totalOrig > 0 ? ((saved / totalOrig) * 100).toFixed(1) : 0;
+        gifTotalSaved.textContent = `节省 ${formatBytes(saved)} (-${pct}%)`;
+        gifDownloadAllBtn.style.display = 'inline-flex';
+      } else {
+        gifTotalComp.textContent = '--';
+        gifTotalSaved.textContent = '节省 0 MB (-0%)';
+        gifDownloadAllBtn.style.display = 'none';
+      }
+    }
+
+    window.removeGif = function(id) {
+      GIFState.files = GIFState.files.filter(f => f.id !== id);
+      renderGifFileList();
+      updateGifSummary();
+    };
+
+    if (gifClearBtn) {
+      gifClearBtn.addEventListener('click', () => {
+        GIFState.files = [];
+        renderGifFileList();
+        updateGifSummary();
+      });
+    }
+
+    // ========================================================
+    // GIF 解码、色彩量化与 GIF89a 编码核心算法
+    // ========================================================
+
+    // 纯 JS GIF 字节流解析器 (Native ImageDecoder 降级兜底)
+    function decodeGifFallback(bytes) {
+      let pos = 0;
+      const readStr = (len) => {
+        let s = "";
+        for (let i = 0; i < len; i++) s += String.fromCharCode(bytes[pos++]);
+        return s;
+      };
+      const readShort = () => {
+        const v = bytes[pos] | (bytes[pos + 1] << 8);
+        pos += 2;
+        return v;
+      };
+
+      const sig = readStr(6);
+      if (sig !== "GIF87a" && sig !== "GIF89a") throw new Error("无效的 GIF 文件头部标识");
+
+      const screenWidth = readShort();
+      const screenHeight = readShort();
+      const packed = bytes[pos++];
+      const gctFlag = (packed & 0x80) !== 0;
+      const gctSize = 1 << ((packed & 0x07) + 1);
+      pos += 2; // bgIndex, aspect
+
+      let globalPalette = null;
+      if (gctFlag) {
+        globalPalette = [];
+        for (let i = 0; i < gctSize; i++) {
+          globalPalette.push([bytes[pos], bytes[pos + 1], bytes[pos + 2]]);
+          pos += 3;
+        }
+      }
+
+      const rawFrames = [];
+      let gce = { delay: 100, transparentIndex: -1, disposal: 0 };
+
+      while (pos < bytes.length) {
+        const blockType = bytes[pos++];
+        if (blockType === 0x3B) break; // GIF 结束符
+
+        if (blockType === 0x21) {
+          const extType = bytes[pos++];
+          if (extType === 0xF9) {
+            pos++; // skip 4
+            const gcePacked = bytes[pos++];
+            const disposal = (gcePacked >> 2) & 7;
+            const hasTrans = (gcePacked & 1) !== 0;
+            const delay = readShort() * 10;
+            const transIdx = bytes[pos++];
+            gce = {
+              delay: Math.max(20, delay || 100),
+              transparentIndex: hasTrans ? transIdx : -1,
+              disposal
+            };
+            pos++;
+          } else {
+            while (bytes[pos] !== 0) pos += bytes[pos] + 1;
+            pos++;
+          }
+        } else if (blockType === 0x2C) {
+          const left = readShort();
+          const top = readShort();
+          const width = readShort();
+          const height = readShort();
+          const imgPacked = bytes[pos++];
+          const lctFlag = (imgPacked & 0x80) !== 0;
+          const lctSize = 1 << ((imgPacked & 0x07) + 1);
+
+          let palette = globalPalette;
+          if (lctFlag) {
+            palette = [];
+            for (let i = 0; i < lctSize; i++) {
+              palette.push([bytes[pos], bytes[pos + 1], bytes[pos + 2]]);
+              pos += 3;
+            }
+          }
+
+          const minCodeSize = bytes[pos++];
+          const compressed = [];
+          while (bytes[pos] !== 0) {
+            const blockSize = bytes[pos++];
+            for (let i = 0; i < blockSize; i++) compressed.push(bytes[pos++]);
+          }
+          pos++;
+
+          // LZW 解压
+          const clearCode = 1 << minCodeSize;
+          const eoiCode = clearCode + 1;
+          let codeSize = minCodeSize + 1;
+          let codeMask = (1 << codeSize) - 1;
+
+          const prefixTable = new Int32Array(4096);
+          const suffixTable = new Uint8Array(4096);
+          const pixelStack = new Uint8Array(4096);
+
+          for (let i = 0; i < clearCode; i++) {
+            prefixTable[i] = -1;
+            suffixTable[i] = i;
+          }
+
+          let available = eoiCode + 1;
+          let oldCode = -1;
+          let datum = 0;
+          let bits = 0;
+          let cPos = 0;
+          let topStack = 0;
+          const pixels = new Uint8Array(width * height);
+          let pOut = 0;
+
+          while (pOut < pixels.length && cPos < compressed.length) {
+            datum += compressed[cPos++] << bits;
+            bits += 8;
+
+            while (bits >= codeSize) {
+              const code = datum & codeMask;
+              datum >>= codeSize;
+              bits -= codeSize;
+
+              if (code === clearCode) {
+                codeSize = minCodeSize + 1;
+                codeMask = (1 << codeSize) - 1;
+                available = eoiCode + 1;
+                oldCode = -1;
+                continue;
+              }
+              if (code === eoiCode) break;
+
+              if (oldCode === -1) {
+                if (pOut < pixels.length) pixels[pOut++] = suffixTable[code];
+                oldCode = code;
+                continue;
+              }
+
+              let inCode = code;
+              if (code >= available) {
+                pixelStack[topStack++] = suffixTable[oldCode];
+                code = oldCode;
+              }
+
+              while (code >= clearCode) {
+                pixelStack[topStack++] = suffixTable[code];
+                code = prefixTable[code];
+              }
+
+              const first = suffixTable[code];
+              pixelStack[topStack++] = first;
+
+              if (available < 4096) {
+                prefixTable[available] = oldCode;
+                suffixTable[available] = first;
+                available++;
+                if (available > codeMask && available < 4096) {
+                  codeSize++;
+                  codeMask = (1 << codeSize) - 1;
+                }
+              }
+              oldCode = inCode;
+
+              while (topStack > 0) {
+                if (pOut < pixels.length) pixels[pOut++] = pixelStack[--topStack];
+              }
+            }
+          }
+
+          rawFrames.push({
+            left, top, width, height, pixels, palette,
+            delay: gce.delay,
+            transparentIndex: gce.transparentIndex,
+            disposal: gce.disposal
+          });
+        }
+      }
+
+      // 合成为完整画面帧
+      const canvas = document.createElement('canvas');
+      canvas.width = screenWidth;
+      canvas.height = screenHeight;
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      let prevCanvasData = null;
+
+      const fullFrames = [];
+      for (let i = 0; i < rawFrames.length; i++) {
+        const rf = rawFrames[i];
+        if (rf.disposal === 3 && prevCanvasData) {
+          ctx.putImageData(prevCanvasData, 0, 0);
+        }
+
+        if (rf.disposal === 3 && !prevCanvasData) {
+          prevCanvasData = ctx.getImageData(0, 0, screenWidth, screenHeight);
+        } else if (rf.disposal !== 3) {
+          prevCanvasData = null;
+        }
+
+        const frameImgData = ctx.createImageData(rf.width, rf.height);
+        const data = frameImgData.data;
+        const p = rf.palette || globalPalette || [[0, 0, 0]];
+
+        for (let j = 0; j < rf.pixels.length; j++) {
+          const idx = rf.pixels[j];
+          const dIdx = j * 4;
+          if (idx === rf.transparentIndex) {
+            data[dIdx + 3] = 0;
+          } else {
+            const c = p[idx] || [0, 0, 0];
+            data[dIdx] = c[0];
+            data[dIdx + 1] = c[1];
+            data[dIdx + 2] = c[2];
+            data[dIdx + 3] = 255;
+          }
+        }
+
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = rf.width;
+        tempCanvas.height = rf.height;
+        tempCanvas.getContext('2d').putImageData(frameImgData, 0, 0);
+
+        ctx.drawImage(tempCanvas, rf.left, rf.top);
+
+        const frameCanvas = document.createElement('canvas');
+        frameCanvas.width = screenWidth;
+        frameCanvas.height = screenHeight;
+        frameCanvas.getContext('2d').drawImage(canvas, 0, 0);
+
+        fullFrames.push({
+          canvas: frameCanvas,
+          delay: rf.delay
+        });
+
+        if (rf.disposal === 2) {
+          ctx.clearRect(rf.left, rf.top, rf.width, rf.height);
+        }
+      }
+
+      return { width: screenWidth, height: screenHeight, frames: fullFrames };
+    }
+
+    // 智能 GIF 解码入口：现代浏览器使用 WebCodecs 原生解码，旧环境自动兜底
+    async function decodeGif(arrayBuffer) {
+      if (typeof window.ImageDecoder !== 'undefined') {
+        try {
+          const decoder = new ImageDecoder({ data: arrayBuffer, type: 'image/gif' });
+          await decoder.tracks.ready;
+          const track = decoder.tracks.selectedTrack;
+          const frameCount = track.frameCount;
+          const frames = [];
+          let width = 0, height = 0;
+
+          for (let i = 0; i < frameCount; i++) {
+            const result = await decoder.decode({ frameIndex: i });
+            const vf = result.image;
+            if (i === 0) {
+              width = vf.displayWidth;
+              height = vf.displayHeight;
+            }
+            const fc = document.createElement('canvas');
+            fc.width = width;
+            fc.height = height;
+            const fctx = fc.getContext('2d');
+            fctx.drawImage(vf, 0, 0);
+            const duration = Math.max(20, Math.round((vf.duration || 100000) / 1000));
+            vf.close();
+            frames.push({ canvas: fc, delay: duration });
+          }
+          return { width, height, frames };
+        } catch (e) {
+          console.warn("Native ImageDecoder 解码失败，自动切换为纯 JS 解析引擎:", e);
+        }
+      }
+      return decodeGifFallback(new Uint8Array(arrayBuffer));
+    }
+
+    // 中位切分色彩量化算法 (Median Cut Color Quantization)
+    function quantizeMedianCut(rgbaArray, maxColors, hasAlpha) {
+      const pixels = [];
+      const step = Math.max(1, Math.floor(rgbaArray.length / (4 * 5000)));
+      for (let i = 0; i < rgbaArray.length; i += 4 * step) {
+        const a = rgbaArray[i + 3];
+        if (a >= 128) {
+          pixels.push([rgbaArray[i], rgbaArray[i + 1], rgbaArray[i + 2]]);
+        }
+      }
+
+      if (pixels.length === 0) {
+        return { palette: [[0, 0, 0]], transparentIndex: hasAlpha ? 0 : -1 };
+      }
+
+      const targetColors = hasAlpha ? Math.max(2, maxColors - 1) : Math.max(2, maxColors);
+      let boxes = [pixels];
+
+      while (boxes.length < targetColors) {
+        let bestBoxIdx = -1;
+        let maxRange = -1;
+        let splitChannel = 0;
+
+        for (let i = 0; i < boxes.length; i++) {
+          const box = boxes[i];
+          if (box.length <= 1) continue;
+
+          let minR = 255, maxR = 0, minG = 255, maxG = 0, minB = 255, maxB = 0;
+          for (let j = 0; j < box.length; j++) {
+            const p = box[j];
+            if (p[0] < minR) minR = p[0];
+            if (p[0] > maxR) maxR = p[0];
+            if (p[1] < minG) minG = p[1];
+            if (p[1] > maxG) maxG = p[1];
+            if (p[2] < minB) minB = p[2];
+            if (p[2] > maxB) maxB = p[2];
+          }
+
+          const rRange = maxR - minR;
+          const gRange = maxG - minG;
+          const bRange = maxB - minB;
+          const range = Math.max(rRange, gRange, bRange);
+
+          if (range > maxRange) {
+            maxRange = range;
+            bestBoxIdx = i;
+            splitChannel = (range === rRange) ? 0 : (range === gRange ? 1 : 2);
+          }
+        }
+
+        if (bestBoxIdx === -1 || maxRange === 0) break;
+
+        const boxToSplit = boxes[bestBoxIdx];
+        boxToSplit.sort((a, b) => a[splitChannel] - b[splitChannel]);
+        const median = Math.floor(boxToSplit.length / 2);
+        const box1 = boxToSplit.slice(0, median);
+        const box2 = boxToSplit.slice(median);
+
+        boxes.splice(bestBoxIdx, 1, box1, box2);
+      }
+
+      const palette = [];
+      for (const box of boxes) {
+        let sumR = 0, sumG = 0, sumB = 0;
+        for (const p of box) {
+          sumR += p[0];
+          sumG += p[1];
+          sumB += p[2];
+        }
+        const len = box.length || 1;
+        palette.push([
+          Math.round(sumR / len),
+          Math.round(sumG / len),
+          Math.round(sumB / len)
+        ]);
+      }
+
+      let transparentIndex = -1;
+      if (hasAlpha) {
+        transparentIndex = palette.length;
+        palette.push([0, 0, 0]); // 透明色槽位
+      }
+
+      let pSize = 2;
+      while (pSize < palette.length && pSize < 256) pSize *= 2;
+      while (palette.length < pSize) palette.push([0, 0, 0]);
+
+      return { palette, transparentIndex };
+    }
+
+    // GIF89a 标准动图编码器 (支持多帧、帧延时累加补偿与局部调色板 LZW 压缩)
+    function encodeGif(width, height, frames) {
+      const buffer = [];
+      const writeByte = (b) => buffer.push(b & 0xFF);
+      const writeShort = (s) => { buffer.push(s & 0xFF); buffer.push((s >> 8) & 0xFF); };
+      const writeStr = (str) => { for (let i = 0; i < str.length; i++) buffer.push(str.charCodeAt(i)); };
+
+      // Header
+      writeStr("GIF89a");
+      writeShort(width);
+      writeShort(height);
+      writeByte(0x70); // 无全局色表，8位基色
+      writeByte(0);    // 背景色索引
+      writeByte(0);    // 宽高比
+
+      // Netscape 2.0 Loop Extension (保证动图循环播放)
+      writeByte(0x21);
+      writeByte(0xFF);
+      writeByte(11);
+      writeStr("NETSCAPE2.0");
+      writeByte(3);
+      writeByte(1);
+      writeShort(0); // 0 表示无限循环
+      writeByte(0);
+
+      for (const frame of frames) {
+        const { indexedPixels, delay, palette, transparentIndex } = frame;
+        const hasTrans = transparentIndex >= 0;
+
+        // Graphic Control Extension (图形控制扩展块)
+        writeByte(0x21);
+        writeByte(0xF9);
+        writeByte(4);
+        const disposal = hasTrans ? 2 : 1;
+        writeByte((disposal << 2) | (hasTrans ? 1 : 0));
+        writeShort(Math.max(2, Math.round(delay / 10))); // 单位为 1/100 秒
+        writeByte(hasTrans ? transparentIndex : 0);
+        writeByte(0);
+
+        // Image Descriptor (图像描述符)
+        writeByte(0x2C);
+        writeShort(0); // Left
+        writeShort(0); // Top
+        writeShort(width);
+        writeShort(height);
+
+        const pSize = palette.length;
+        let colorBits = 1;
+        while ((1 << colorBits) < pSize && colorBits < 8) colorBits++;
+        const lctPacked = 0x80 | (colorBits - 1);
+        writeByte(lctPacked);
+
+        // 局部调色板数据
+        for (let i = 0; i < (1 << colorBits); i++) {
+          if (i < palette.length) {
+            writeByte(palette[i][0]);
+            writeByte(palette[i][1]);
+            writeByte(palette[i][2]);
+          } else {
+            writeByte(0); writeByte(0); writeByte(0);
+          }
+        }
+
+        // LZW 压缩编码
+        const minCodeSize = Math.max(2, colorBits);
+        writeByte(minCodeSize);
+
+        const clearCode = 1 << minCodeSize;
+        const eoiCode = clearCode + 1;
+        let codeSize = minCodeSize + 1;
+        let codeMask = (1 << codeSize) - 1;
+        let available = eoiCode + 1;
+
+        const prefixTable = new Int32Array(5003);
+        const suffixTable = new Int32Array(5003);
+        const codeTable = new Int32Array(5003);
+        prefixTable.fill(-1);
+
+        const subBlock = new Uint8Array(256);
+        let subBlockLen = 0;
+        let curBits = 0;
+        let curData = 0;
+
+        const flushBlock = () => {
+          if (subBlockLen > 0) {
+            writeByte(subBlockLen);
+            for (let b = 0; b < subBlockLen; b++) writeByte(subBlock[b]);
+            subBlockLen = 0;
+          }
+        };
+
+        const emitBits = (code) => {
+          curData |= (code << curBits);
+          curBits += codeSize;
+          while (curBits >= 8) {
+            subBlock[subBlockLen++] = curData & 0xFF;
+            if (subBlockLen === 254) flushBlock();
+            curData >>= 8;
+            curBits -= 8;
+          }
+        };
+
+        emitBits(clearCode);
+
+        let prefix = -1;
+        for (let i = 0; i < indexedPixels.length; i++) {
+          const suffix = indexedPixels[i];
+          if (prefix === -1) {
+            prefix = suffix;
+            continue;
+          }
+
+          let hKey = ((prefix << 8) ^ suffix) % 5003;
+          let found = false;
+          let step = 1;
+
+          while (prefixTable[hKey] !== -1) {
+            if (prefixTable[hKey] === prefix && suffixTable[hKey] === suffix) {
+              prefix = codeTable[hKey];
+              found = true;
+              break;
+            }
+            hKey = (hKey + step) % 5003;
+            step += 2;
+          }
+
+          if (!found) {
+            emitBits(prefix);
+            if (available < 4096) {
+              prefixTable[hKey] = prefix;
+              suffixTable[hKey] = suffix;
+              codeTable[hKey] = available;
+              available++;
+              if (available > codeMask && available < 4096) {
+                codeSize++;
+                codeMask = (1 << codeSize) - 1;
+              }
+            } else {
+              emitBits(clearCode);
+              prefixTable.fill(-1);
+              codeSize = minCodeSize + 1;
+              codeMask = (1 << codeSize) - 1;
+              available = eoiCode + 1;
+            }
+            prefix = suffix;
+          }
+        }
+
+        if (prefix !== -1) emitBits(prefix);
+        emitBits(eoiCode);
+
+        if (curBits > 0) {
+          subBlock[subBlockLen++] = curData & 0xFF;
+          curBits = 0;
+          curData = 0;
+        }
+        flushBlock();
+        writeByte(0);
+      }
+
+      writeByte(0x3B); // 结束符
+      return new Uint8Array(buffer);
+    }
+
+    // 单个 GIF 动图压缩执行入口
+    window.compressSingleGif = async function(id) {
+      const item = GIFState.files.find(f => f.id === id);
+      if (!item) return;
+
+      item.status = 'processing';
+      item.statusText = '解析中...';
+      renderGifFileList();
+
+      try {
+        const arrayBuf = await item.file.arrayBuffer();
+        item.statusText = '解码帧...';
+        renderGifFileList();
+
+        const decoded = await decodeGif(arrayBuf);
+        const origW = decoded.width;
+        const origH = decoded.height;
+        const allFrames = decoded.frames;
+
+        item.origWidth = origW;
+        item.origHeight = origH;
+        item.origFrames = allFrames.length;
+
+        if (allFrames.length === 0) throw new Error("未能成功解析 GIF 动图帧序列");
+
+        // 1. 计算目标宽高 (Target Dimensions)
+        let targetW = origW;
+        let targetH = origH;
+
+        const manualW = parseInt(gifWidthInput ? gifWidthInput.value : 0, 10);
+        const manualH = parseInt(gifHeightInput ? gifHeightInput.value : 0, 10);
+
+        if (manualW > 0 && manualH > 0) {
+          targetW = manualW;
+          targetH = manualH;
+        } else if (manualW > 0) {
+          targetW = manualW;
+          targetH = Math.max(1, Math.round(manualW * (origH / origW)));
+        } else if (manualH > 0) {
+          targetH = manualH;
+          targetW = Math.max(1, Math.round(manualH * (origW / origH)));
+        } else if (GIFState.scaleFactor && GIFState.scaleFactor < 1.0) {
+          targetW = Math.max(1, Math.round(origW * GIFState.scaleFactor));
+          targetH = Math.max(1, Math.round(origH * GIFState.scaleFactor));
+        }
+
+        // 结合最大长边限制 (Max Dimension Cap)
+        const maxDim = parseInt(gifMaxDimSelect ? gifMaxDimSelect.value : 99999, 10);
+        if (Math.max(targetW, targetH) > maxDim) {
+          const scale = maxDim / Math.max(targetW, targetH);
+          targetW = Math.max(1, Math.round(targetW * scale));
+          targetH = Math.max(1, Math.round(targetH * scale));
+        }
+
+        // 2. 抽帧优化 (Frame Skipping) 与延时时间累加
+        const skipMode = gifFrameSkipSelect ? gifFrameSkipSelect.value : '1';
+        let skipStep = 1;
+        if (skipMode === '2') skipStep = 2;
+        else if (skipMode === '3') skipStep = 3;
+        else if (skipMode === 'smart') skipStep = allFrames.length > 36 ? 2 : 1;
+
+        // 3. 颜色量化参数配置
+        let numColors = parseInt(gifColorsSelect ? gifColorsSelect.value : 128, 10);
+
+        // 执行核心压缩过程（带目标大小智能逼近策略）
+        async function runPipeline(tw, th, step, colors) {
+          const keptFrames = [];
+          for (let i = 0; i < allFrames.length; i += step) {
+            let accumulatedDelay = 0;
+            for (let s = 0; s < step && (i + s) < allFrames.length; s++) {
+              accumulatedDelay += allFrames[i + s].delay;
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = tw;
+            canvas.height = th;
+            const ctx = canvas.getContext('2d');
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            ctx.drawImage(allFrames[i].canvas, 0, 0, tw, th);
+
+            const imgData = ctx.getImageData(0, 0, tw, th);
+            keptFrames.push({
+              rgba: imgData.data,
+              delay: Math.max(20, accumulatedDelay)
+            });
+          }
+
+          // 收集全部像素采样生成调色板
+          let hasAlpha = false;
+          const allRgba = [];
+          for (const f of keptFrames) {
+            for (let p = 0; p < f.rgba.length; p += 16) {
+              if (f.rgba[p + 3] < 128) hasAlpha = true;
+              allRgba.push(f.rgba[p], f.rgba[p + 1], f.rgba[p + 2], f.rgba[p + 3]);
+            }
+          }
+
+          const qResult = quantizeMedianCut(new Uint8Array(allRgba), colors, hasAlpha);
+          const palette = qResult.palette;
+          const transIdx = qResult.transparentIndex;
+
+          // 建立色彩快速映射索引
+          const encodedFrames = [];
+          for (let fi = 0; fi < keptFrames.length; fi++) {
+            item.statusText = `量化中 (${fi + 1}/${keptFrames.length})...`;
+            renderGifFileList();
+
+            const f = keptFrames[fi];
+            const indexed = new Uint8Array(tw * th);
+            const colorCache = new Map();
+
+            for (let px = 0; px < indexed.length; px++) {
+              const r = f.rgba[px * 4];
+              const g = f.rgba[px * 4 + 1];
+              const b = f.rgba[px * 4 + 2];
+              const a = f.rgba[px * 4 + 3];
+
+              if (a < 128 && transIdx >= 0) {
+                indexed[px] = transIdx;
+                continue;
+              }
+
+              const key = (r << 16) | (g << 8) | b;
+              let bestIdx = colorCache.get(key);
+              if (bestIdx === undefined) {
+                let bestDist = 1e9;
+                bestIdx = 0;
+                for (let ci = 0; ci < palette.length; ci++) {
+                  if (ci === transIdx) continue;
+                  const dr = r - palette[ci][0];
+                  const dg = g - palette[ci][1];
+                  const db = b - palette[ci][2];
+                  const dist = dr * dr + dg * dg + db * db;
+                  if (dist < bestDist) {
+                    bestDist = dist;
+                    bestIdx = ci;
+                    if (dist === 0) break;
+                  }
+                }
+                colorCache.set(key, bestIdx);
+              }
+              indexed[px] = bestIdx;
+            }
+
+            encodedFrames.push({
+              indexedPixels: indexed,
+              delay: f.delay,
+              palette,
+              transparentIndex: transIdx
+            });
+          }
+
+          item.statusText = '编码动图...';
+          renderGifFileList();
+
+          const gifBytes = encodeGif(tw, th, encodedFrames);
+          return {
+            blob: new Blob([gifBytes], { type: 'image/gif' }),
+            compWidth: tw,
+            compHeight: th,
+            compFrames: encodedFrames.length
+          };
+        }
+
+        let result = await runPipeline(targetW, targetH, skipStep, numColors);
+
+        // 如果用户选择了“指定目标大小”模式且体积超标，自适应精炼
+        if (GIFState.currentMode === 'target' && gifTargetKb) {
+          const targetBytes = (parseFloat(gifTargetKb.value) || 1000) * 1024;
+          if (result.blob.size > targetBytes) {
+            item.statusText = '逼近目标大小...';
+            renderGifFileList();
+            // 第 1 步：降色或抽帧
+            let secondStep = Math.max(skipStep, 2);
+            let secondColors = Math.min(numColors, 64);
+            let secondW = Math.round(targetW * 0.85);
+            let secondH = Math.round(targetH * 0.85);
+            result = await runPipeline(secondW, secondH, secondStep, secondColors);
+          }
+        }
+
+        item.compBlob = result.blob;
+        item.compSize = result.blob.size;
+        item.compUrl = URL.createObjectURL(result.blob);
+        item.compWidth = result.compWidth;
+        item.compHeight = result.compHeight;
+        item.compFrames = result.compFrames;
+        item.status = 'done';
+        item.statusText = '已完成';
+
+        renderGifFileList();
+        updateGifSummary();
+        showToast(`${item.name} 压缩成功`);
+      } catch (err) {
+        console.error("GIF 压缩失败:", err);
+        item.status = 'error';
+        item.statusText = '压缩失败';
+        renderGifFileList();
+        showToast(`${item.name} 压缩出错: ${err.message || '格式不支持'}`);
+      }
+    };
+
+    // 单个 GIF 下载
+    window.downloadSingleGif = function(id) {
+      const item = GIFState.files.find(f => f.id === id);
+      if (!item || !item.compBlob) return;
+      const a = document.createElement('a');
+      a.href = item.compUrl;
+      const base = item.name.replace(/\.[^/.]+$/, "");
+      a.download = `${base}_min.gif`;
+      a.click();
+    };
+
+    // 一键全部压缩
+    if (gifStartAllBtn) {
+      gifStartAllBtn.addEventListener('click', async () => {
+        const readyItems = GIFState.files.filter(f => f.status !== 'done' && f.status !== 'processing');
+        if (readyItems.length === 0) {
+          showToast('列表中没有需要压缩的 GIF 动图');
+          return;
+        }
+        for (const item of readyItems) {
+          await compressSingleGif(item.id);
+        }
+        showToast('批量压缩已全部完成！');
+      });
+    }
+
+    // 全部打包下载 (ZIP)
+    if (gifDownloadAllBtn) {
+      gifDownloadAllBtn.addEventListener('click', async () => {
+        const done = GIFState.files.filter(f => f.status === 'done' && f.compBlob);
+        if (done.length === 0) return;
+        if (done.length === 1) { downloadSingleGif(done[0].id); return; }
+
+        const zip = new SimpleZip();
+        for (const item of done) {
+          const buf = await item.compBlob.arrayBuffer();
+          const base = item.name.replace(/\.[^/.]+$/, "");
+          zip.add(`${base}_min.gif`, new Uint8Array(buf));
+        }
+        const zipBytes = zip.generate();
+        const blob = new Blob([zipBytes], { type: 'application/zip' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `压缩GIF动图包_${new Date().toISOString().slice(0, 10)}.zip`;
+        a.click();
+      });
+    }
 
     // ========================================================
     // PDF 模块交互逻辑接入 (双核智能压缩引擎)
