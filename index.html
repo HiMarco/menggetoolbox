@@ -3727,25 +3727,17 @@
               <span>留言与反馈内容</span>
               <span id="fbCharCount" style="font-size:11px; color:var(--text-3); font-weight:normal;">0 / 500</span>
             </label>
-            <textarea id="fbContent" class="text-input" rows="4" maxlength="500" placeholder="写下您在使用过程中的想法、想增加的新工具，或者遇到的问题与建议..." style="resize:vertical; line-height:1.6; font-size:13px;"></textarea>
+            <textarea id="fbContent" class="text-input" rows="4" maxlength="500" placeholder="写下您在使用过程中的想法、想增加的新工具，或者体验心得...（纯本地安全保存，即时展示）" style="resize:vertical; line-height:1.6; font-size:13px;"></textarea>
           </div>
 
-          <!-- 发布与同步按钮 -->
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <button class="btn btn-primary" id="btnSubmitFeedback" onclick="submitUserFeedback()" style="width:100%; justify-content:center; height:38px; font-weight:700; background:linear-gradient(135deg, #f59e0b 0%, #ec4899 100%); border:none; box-shadow:0 3px 10px rgba(245, 158, 11, 0.3);">
-              🚀 立即公开发布留言
+          <!-- 发布操作按钮 -->
+          <div style="display:flex; gap:10px; margin-top:4px;">
+            <button class="btn btn-primary" id="btnSubmitFeedback" onclick="submitUserFeedback()" style="flex:1; justify-content:center; height:40px; font-size:13.5px; font-weight:700; background:linear-gradient(135deg, #f59e0b 0%, #ec4899 100%); border:none; box-shadow:0 3px 10px rgba(245, 158, 11, 0.3);">
+              🚀 立即发布留言
             </button>
-            <div style="display:flex; gap:8px;">
-              <button class="btn" onclick="copyFeedbackToClipboard()" style="flex:1; font-size:12px; justify-content:center; padding:6px 10px;" title="复制当前留言内容到剪贴板，方便粘贴发送">
-                📋 复制留言
-              </button>
-              <button class="btn" onclick="openGiteeIssueForm()" style="flex:1; font-size:12px; justify-content:center; padding:6px 10px; color:#c71d23;" title="跳转前往 Gitee 开源仓库提交 Issue">
-                🐙 Gitee Issue
-              </button>
-              <button class="btn" onclick="openMailClient()" style="flex:1; font-size:12px; justify-content:center; padding:6px 10px;" title="一键调用本地邮件客户端发送反馈">
-                ✉️ 邮件反馈
-              </button>
-            </div>
+            <button class="btn" type="button" onclick="clearFeedbackForm()" style="padding:0 18px; font-size:13px;" title="清空已输入内容">
+              清空
+            </button>
           </div>
         </div>
 
@@ -6546,34 +6538,13 @@
     }
 
     // 辅助动作
-    window.copyFeedbackToClipboard = function() {
-      const content = document.getElementById('fbContent')?.value.trim();
-      const nickname = document.getElementById('fbNickname')?.value.trim() || '极客用户';
-      if (!content) {
-        showToast('请先在文本框中填写留言内容~');
-        return;
-      }
-      const formatted = `【极简工具箱留言反馈】\n用户：${nickname}\n分类：${categoryMeta[currentFbCat]?.label || '建议'}\n评分：${starLabels[currentFbStars] || '5星'}\n内容：\n${content}`;
-      copyText(formatted);
-    };
-
-    window.openGiteeIssueForm = function() {
-      const content = document.getElementById('fbContent')?.value.trim() || '';
-      const cat = categoryMeta[currentFbCat]?.label || '功能建议';
-      const title = encodeURIComponent(`[用户反馈] ${cat}: ${content.slice(0, 30) || '工具箱功能优化'}`);
-      const body = encodeURIComponent(`### 反馈详情\n\n- **分类**：${cat}\n- **体验评分**：${starLabels[currentFbStars]}\n- **具体描述**：\n${content || '（请输入详细内容）'}\n\n---\n*来自极简工具箱在线留言*`);
-      // 若有开源仓库可直接拼接，通用回退跳转
-      const url = `https://gitee.com/explore/search?q=${encodeURIComponent('极简工具箱')}`;
-      window.open(url, '_blank');
-      showToast('已复制反馈模板，可直接前往 Issue 粘贴提交');
-    };
-
-    window.openMailClient = function() {
-      const content = document.getElementById('fbContent')?.value.trim() || '';
-      const cat = categoryMeta[currentFbCat]?.label || '功能建议';
-      const subject = encodeURIComponent(`【极简工具箱反馈】${cat}`);
-      const body = encodeURIComponent(`你好！我在使用极简工具箱时有以下留言反馈：\n\n【分类】${cat}\n【评分】${starLabels[currentFbStars]}\n【内容】\n${content || '（暂无详细内容）'}\n\n期待回复！`);
-      window.location.href = `mailto:developer@example.com?subject=${subject}&body=${body}`;
+    window.clearFeedbackForm = function() {
+      const contentEl = document.getElementById('fbContent');
+      const nicknameEl = document.getElementById('fbNickname');
+      if (contentEl) contentEl.value = '';
+      if (nicknameEl) nicknameEl.value = '';
+      updateCharCount();
+      showToast('已清空输入内容');
     };
 
     window.exportFeedbackData = function() {
